@@ -1,0 +1,24 @@
+<span class="btn-menu"><button onclick="btnMenuDashboard()"><i class="mdi mdi-menu" id="menuIcon"></i></button><i class="mdi mdi-xing"></i>onoha</span>
+<nav class="menu" id="menuDashboard">
+    <div class="plano-de-fundo">
+        <figure>
+            <a routerLink='alterar-foto' title="Alterar minha foto de perfil">
+                <img src="http://localhost:51990/Imagens/Usuario/{{user?.PathFotoPerfil}}" alt="minha foto">
+            </a>
+        </figure>
+        <span>{{user.Nome}}</span>
+    </div>
+    <button id="sair" class="btnSair" (click)="logout()" onmousemove="mudarTextoBotao()" onmouseout="voltarTextoBotao()"><i class="mdi mdi-circle"></i>Conectado</button>
+
+    <ul>
+        <li><a [routerLink]="['/participante-dashboard']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"><i class="mdi mdi-home"></i>Home</a></li>
+        <li><a [routerLink]="['/']"><i class="mdi mdi-magnify"></i>Buscar Eventos</a></li>
+        <li><a [routerLink]="['meus-dados']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"><i class="mdi mdi-archive"></i>Meus Dados</a></li>
+        <li><a [routerLink]="['minhas-inscricoes']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"><i class="mdi mdi-square-edit-outline"></i>Minhas Inscrições</a></li>
+        <li><a [routerLink]="['meus-certificados']" routerLinkActive="router-link-active" [routerLinkActiveOptions]="{exact: true}"><i class="mdi mdi-file-pdf"></i>Meus Certificados</a></li>
+    </ul>
+</nav>
+
+<main class="conteudo-dashboard">
+    <router-outlet></router-outlet>
+</main>

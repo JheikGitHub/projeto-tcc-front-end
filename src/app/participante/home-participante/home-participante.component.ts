@@ -11,5 +11,4 @@ export class HomeParticipanteComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

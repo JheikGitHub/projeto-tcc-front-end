@@ -23,9 +23,12 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/mdi/css/materialdesignicons.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/konoha.js"
+            ]
           },
           "configurations": {
             "production": {
