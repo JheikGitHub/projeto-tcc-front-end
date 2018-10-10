@@ -7,6 +7,8 @@ import { ErrorsModule } from '../errors/errors.module';
 import { RecuperaSenhaService } from './email-recuperar-senha/email-recupera-senha.service';
 import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.component';
 import { RouterModule } from '@angular/router';
+import { UserService } from './user.service';
+import { GetUserResolve } from './get-user.resolve';
 
 @NgModule({
   imports: [
@@ -20,11 +22,13 @@ import { RouterModule } from '@angular/router';
     EmailRecuperarSenhaComponent,
     RecuperaSenhaComponent
   ],
-  exports:[
+  exports: [
     EmailRecuperarSenhaComponent,
     RecuperaSenhaComponent
   ],
   providers: [
+    UserService,
+    GetUserResolve,
     RecuperaSenhaService
   ]
 

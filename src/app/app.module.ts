@@ -7,6 +7,7 @@ import { ErrorsModule } from './errors/errors.module';
 import { AccountModule } from './account/account.module';
 import { AuthGuard } from './guarda-rotas/auth.guard';
 import { UsuarioGuard } from './guarda-rotas/usuario.guard';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { UsuarioGuard } from './guarda-rotas/usuario.guard';
   imports: [
     BrowserModule,
     ErrorsModule,
+    HomeModule,
     AccountModule,
     AppRoutingModule
   ],

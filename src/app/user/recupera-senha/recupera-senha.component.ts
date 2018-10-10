@@ -4,6 +4,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { RecuperaSenhaDTO, RecuperaSenhaService } from '../email-recuperar-senha/email-recupera-senha.service';
+import { User } from '../user';
 
 @Component({
   selector: 'app-recupera-senha',
@@ -13,18 +14,18 @@ import { RecuperaSenhaDTO, RecuperaSenhaService } from '../email-recuperar-senha
 export class RecuperaSenhaComponent implements OnInit {
 
   private form: FormGroup;
-  private idUsuario: string = '';
   private erro: string = '';
+  private usuario: User;
   private Senha: RecuperaSenhaDTO = new RecuperaSenhaDTO();
   private submit: boolean = false;
 
   constructor(
     private service: RecuperaSenhaService,
-    private parans: ActivatedRoute,
+    private activated: ActivatedRoute,
     private router: Router) { }
 
   ngOnInit() {
-    this.idUsuario = this.parans.snapshot.paramMap.get('id');
+    this.usuario = this.activated.snapshot.data['user'];
 
     this.form = new FormGroup({
       NovaSenha: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -41,7 +42,7 @@ export class RecuperaSenhaComponent implements OnInit {
     this.Senha.novaSenha = this.form.get('NovaSenha').value;
     this.Senha.confimarSenha = this.form.get('ConfimarSenha').value;
 
-    this.service.recuperarSenha(parseInt(this.idUsuario), this.Senha).subscribe(
+    this.service.recuperarSenha(this.usuario.Id, this.Senha).subscribe(
       () => {
         alert("senha alterada com sucesso."), this.router.navigate(['/login'])
       },

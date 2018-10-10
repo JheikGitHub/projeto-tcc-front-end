@@ -1,0 +1,18 @@
+<nav class="menu-home" id="menu">
+    <a routerLink="/" class="logo"><i class="mdi mdi-xing"></i>onoha</a>
+    <i class="mdi mdi-menu menu-icon" id="menuIcon" onclick="menuResponsive()"></i>
+    <div class="user" *ngIf="user">
+        <figure><img src="http://localhost:51990/Imagens/Usuario/{{user.PathFotoPerfil}}" alt="Photo usuário logado" title="Nome do usuário logado"></figure>
+        <span title="{{user.Nome}}">{{user.Nome}}</span>
+        <div class="options">
+            <button id="sair" class="btnSair" (click)="logout()" onmousemove="mudarTextoBotao()" onmouseout="voltarTextoBotao()"><i class="mdi mdi-circle"></i>Conectado</button>
+            <a routerLink='/participante-dashboard' *ngIf="user.Perfil == 'Aluno' || user.Perfil == 'Participante'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
+            <a routerLink='' *ngIf="user.Perfil == 'Funcionario'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
+            <a routerLink='' *ngIf="user.Perfil == 'Admin'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
+        </div>
+    </div>
+    <div class="links" *ngIf="!user">
+        <a [routerLink]="['login']" routerLinkActive="router-link-active" class="login-link"><i class="mdi mdi-lock"></i>Acessar minha conta</a>
+        <a [routerLink]="['criar-conta']" routerLinkActive="router-link-active" class="criar-conta-link"><i class="mdi mdi-account-edit"></i>Criar minha conta</a>
+    </div>
+</nav>

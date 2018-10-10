@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { MenuVoltarComponent } from './menu-voltar/menu-voltar.component';
+import { MenuHomeComponent } from './menu-home/menu-home.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   imports: [
@@ -10,9 +12,13 @@ import { MenuVoltarComponent } from './menu-voltar/menu-voltar.component';
     RouterModule
   ],
   declarations: [
-    MenuVoltarComponent
+    MenuVoltarComponent,
+    MenuHomeComponent,
+    FooterComponent
   ],
   exports: [
+    MenuHomeComponent,
+    FooterComponent,
     MenuVoltarComponent
   ]
 })
