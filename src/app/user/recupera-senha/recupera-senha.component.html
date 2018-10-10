@@ -1,0 +1,43 @@
+<nav class="menu-go-to-home">
+  <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="btn-voltar" title="Voltar para a página inicial"><i
+          class="mdi mdi-chevron-left"></i><span class="texto-btn-voltar">Voltar</span></a>
+  <span><i class="mdi mdi-xing"></i><span class="texto-logo">onoha</span></span>
+</nav>
+
+<main class="conteudo-page">
+
+  <h1><i class="mdi mdi-textbox-password"></i> Alterar senha de acesso</h1>
+
+  <p class="info info-blue info-create-account"><span class="mdi mdi-close closebtn"></span>Esqueceu ou perdeu sua senha, não se preocupe, é fácil alterá-la.</p>
+
+  <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
+  
+  <form class="form-konoha create-account" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+      <div *ngIf="submit && (form.controls['NovaSenha'].invalid || form.controls['NovaSenha'].touched)">
+          <app-message-erro *ngIf="form.get('NovaSenha').errors?.required" text=" campo senha é obrigátorio.">
+          </app-message-erro>
+          <app-message-erro *ngIf="form.get('NovaSenha').errors?.minlength" text="senha deve conter no minimo 6 caracteres.">
+          </app-message-erro>
+      </div>
+
+      <div *ngIf="submit && (form.controls['ConfimarSenha'].invalid || form.controls['ConfimarSenha'].touched)">
+          <app-message-erro *ngIf="form.get('ConfimarSenha').errors?.required" text=" campo nova senha é obrigátorio.">
+          </app-message-erro>
+          <app-message-erro *ngIf="form.get('ConfimarSenha').errors?.minlength" text="novaSenha deve conter no minimo 6 caracteres.">
+          </app-message-erro>
+      </div>
+
+      <div *ngIf="form.get('NovaSenha').value != form.get('ConfimarSenha').value">
+          <p> senha não se coincidem.</p>
+      </div>
+      <label for="NovaSenha">Qual sua nova senha</label>
+      <input formControlName="NovaSenha" type="password" name="NovaSenha" id="NovaSenha" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+
+      <label for="ConfimarSenha">Confirmar nova senha</label>
+      <input formControlName="ConfimarSenha" type="password" name="ConfimarSenha" id="ConfimarSenha" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+
+      <button [disabled]="form.invalid && submit" type="submit" class="btn btn-blue">Alterar minha senha</button>
+
+  </form>
+</main>

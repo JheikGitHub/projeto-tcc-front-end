@@ -1,0 +1,27 @@
+<nav class="menu-go-to-home">
+  <a [routerLink]="['/login']" routerLinkActive="router-link-active" class="btn-voltar" title="Voltar para a página inicial"><i
+      class="mdi mdi-chevron-left"></i><span class="texto-btn-voltar">Voltar</span></a>
+  <span><i class="mdi mdi-xing"></i><span class="texto-logo">onoha</span></span>
+</nav>
+<div class="box-recuperar-senha">
+  <div class="info-recuperar-senha">
+    <i class="mdi mdi-key-variant"></i>
+    <h1>Recuperar senha de acesso</h1>
+  </div>
+
+  <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
+
+  <form action="" [formGroup]="form" (ngSubmit)="onSubmit()">
+<h1>
+    <div *ngIf="form.controls['cpf'].invalid || form.controls['cpf'].touched">
+      <app-message-erro *ngIf="form.get('cpf').errors?.required" text="campo cpf é obrigatório.">
+      </app-message-erro>
+      <app-message-erro *ngIf="form.get('cpf').errors?.pattern" text="cpf inválido.">
+      </app-message-erro>
+    </div>
+  </h1>
+    <input formControlName="cpf" type="text" placeholder="Digite seu número de CPF">
+
+    <button type="submit" class="btn btn-blue">Enviar nova senha por email</button>
+  </form>
+</div>

@@ -1,1 +1,3048 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box !important;
+}
+
+
+/*Menu dashboard*/
+
+.menu {
+    font-size: 17px;
+    box-shadow: 0 1px 8px #bbb;
+    background-color: #fff;
+    width: 100%;
+    max-width: 275px;
+    display: inline-block;
+    position: fixed;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index: 999;
+}
+
+.plano-de-fundo {
+    height: 125px;
+    width: 100%;
+    padding-top: 75px;
+    background: url("./assets/img/5a2a3affa89f67.7144301915127170556907.png");
+    text-align: center;
+    background-size: cover;
+    color: #333;
+}
+
+.plano-de-fundo span {
+    display: block;
+    margin: auto;
+    white-space: nowrap;
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.plano-de-fundo figure {
+    width: 100px;
+    height: auto;
+    max-height: 95px;
+    overflow: hidden;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 8px
+}
+
+.plano-de-fundo figure img {
+    width: 100%
+}
+
+.menu ul {
+    list-style: none;
+    margin-top: 0px;
+    min-height: 320px
+}
+
+.menu ul li:hover {
+    border-left: 3px solid #2196F3;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333;
+    padding: 11px 15px;
+    display: block;
+    width: 100%;
+    min-width: 250px;
+}
+
+.menu ul li a:hover,
+.menu ul li a:focus {
+    background-color: #eee;
+    padding-left: 30px;
+    transition: all .5s
+}
+
+.menu ul li .router-link-active {
+    background-color: #eee;
+    transition: all .5s;
+    border-left: 3px solid #2196F3;
+    padding-left: 12px;
+}
+
+.menu ul li .router-link-active:hover {
+    border-left: none;
+}
+
+.menu ul li a i {
+    margin-right: 15px;
+    font-size: 22px;
+}
+
+.menu .btnSair {
+    margin: 90px auto 25px
+}
+
+.btn-menu {
+    font-size: 30px;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+    color: #333;
+    padding: 15px 15px 10px;
+    position: fixed;
+    display: none;
+    z-index: 999;
+}
+
+.btn-menu button {
+    float: right;
+    font-size: 35px;
+    border: 0;
+    background: none;
+    color: #333
+}
+
+.btn-menu .mdi-xing {
+    margin-right: -3px;
+    color: #2196F3
+}
+
+
+/******************************************************************************************************************************/
+
+
+/******************************************************************************************************************************/
+
+
+/******************************************************************************************************************************/
+
+
+/*menu go to home*/
+
+.menu-go-to-home {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 10px 0 10px;
+    font-size: 30px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 1)
+}
+
+.menu-go-to-home .mdi-xing {
+    color: #2196F3;
+    margin-right: -5px;
+    font-size: 40px
+}
+
+.menu-go-to-home .btn-voltar {
+    position: absolute;
+    font-size: 20px;
+    left: 10px;
+    padding: 0px 5px;
+    width: 45px;
+    height: 45px;
+    border-radius: 0 5px 5px 0;
+    color: #333;
+    background-color: rgba(255, 255, 255, .75)
+}
+
+.menu-go-to-home .btn-voltar .mdi {
+    font-size: 40px;
+    position: absolute;
+    left: 0;
+}
+
+.menu-go-to-home .btn-voltar .texto-btn-voltar {
+    color: #2196F3;
+    position: absolute;
+    margin-top: 10px;
+    margin-left: -20px;
+    display: none
+}
+
+.menu-go-to-home .btn-voltar:hover {
+    border: 1px solid #eee;
+    width: 135px;
+    transition: .5s
+}
+
+.menu-go-to-home .btn-voltar:hover .texto-btn-voltar {
+    display: inline;
+    transition: .8s;
+    background-color: #fff
+}
+
+.menu-go-to-home .btn-voltar:active {
+    border: 1px solid #ccc;
+    transform: scale(0.95)
+}
+
+
+/*Menu home*/
+
+.menu-home {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+    background-color: rgba(255, 255, 255, 1);
+    z-index: 999;
+    height: 85px;
+    text-align: right
+}
+
+.menu-home .logo {
+    text-decoration: none;
+    font-size: 30px;
+    color: #333;
+    position: absolute;
+    left: 30px;
+    margin: 18px 0 0 0
+}
+
+.menu-home .logo i {
+    font-size: 35px;
+    color: #2196F3;
+    margin-right: -5px
+}
+
+.menu-home .logo:hover,
+.menu-home .logo:focus {
+    transition: all .5s;
+    transform: scale(1.2)
+}
+
+.menu-home .logo:active {
+    opacity: .8;
+}
+
+.menu-home .links {
+    margin-top: 10px;
+    padding: 20px 25px;
+}
+
+.menu-home .links a {
+    padding: 30px 25px;
+    color: #333;
+    text-decoration: none
+}
+
+.menu-home .links a:hover {
+    color: #666;
+}
+
+.menu-home .links a i {
+    margin-right: 10px;
+    font-size: 20px
+}
+
+.menu-icon {
+    font-size: 35px;
+    position: absolute;
+    right: 35px;
+    top: 20px;
+    display: none;
+    cursor: pointer;
+    color: #333
+}
+
+.menu-home .user {
+    float: right;
+    background-color: rgba(255, 255, 255, 0.9);
+    height: 84px;
+    padding: 0 15px 15px;
+    transition: all .5s ease-in;
+    overflow: hidden;
+    text-align: center
+}
+
+.menu-home .user:hover {
+    height: 240px;
+    box-shadow: 2px 0px 5px #aaa
+}
+
+.menu-home .user figure {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 12px auto 0;
+    float: left;
+}
+
+.menu-home .user figure img {
+    width: 100%;
+}
+
+.menu-home .user span {
+    float: left;
+    margin-left: -4px;
+    margin-top: 27px;
+    color: #333;
+    border: 1px solid #ddd;
+    border-left: 0;
+    padding: 5px 15px 5px 8px;
+    border-radius: 0 10px 10px 0;
+    max-width: 115px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.menu-home .options {
+    display: block;
+    margin-top: 105px;
+}
+
+.menu-home .user button {
+    display: block;
+    margin: 0 auto 25px;
+    border: 1px solid #ccc;
+    background: 0;
+    font-size: 16px;
+}
+
+.menu-home .user a {
+    display: block;
+    color: #333;
+    text-decoration: none;
+}
+
+.menu-home .user a i {
+    margin-right: 8px
+}
+
+
+/*Footer*/
+
+footer {
+    width: 100%;
+    border-top: 1px solid #ccc;
+    padding: 40px 0;
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row-reverse;
+    color: #333
+}
+
+footer .line {
+    min-height: 2px;
+    width: 50px;
+    background: #2196F3;
+    display: block;
+    margin: 20px auto;
+    border-radius: 3px;
+}
+
+footer .social-info,
+footer .validar-certificado {
+    min-width: 50%;
+}
+
+footer .social-info {
+    font-size: 18px;
+}
+
+footer .validar-certificado {
+    font-size: 15px;
+    padding: 5px 80px 0;
+    text-align: justify;
+    line-height: 20px;
+}
+
+footer .validar-certificado a {
+    text-decoration: none;
+    color: #2196F3;
+    padding: 8px 13px;
+    border: 1px solid #2196F3;
+    border-radius: 3px;
+    outline: 0
+}
+
+footer .validar-certificado h2 {
+    text-align: center
+}
+
+footer .validar-certificado a:hover,
+footer .validar-certificado a:focus {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+footer .validar-certificado a:active {
+    opacity: .7;
+}
+
+footer .social-info a i {
+    padding: 12px 15px;
+    border-radius: 50%;
+    transition: all 1s
+}
+
+footer .social-info .copyright {
+    display: block;
+    margin-top: 15px;
+}
+
+footer .mdi-twitter {
+    color: #55ACEE
+}
+
+footer a:hover .mdi-twitter {
+    color: #fff;
+    background-color: #55ACEE
+}
+
+footer .mdi-instagram {
+    color: #125688
+}
+
+footer a:hover .mdi-instagram {
+    color: #fff;
+    background-color: #125688
+}
+
+footer .mdi-facebook {
+    color: #3B5998;
+}
+
+footer a:hover .mdi-facebook {
+    color: #fff;
+    background-color: #3B5998
+}
+
+footer .mdi-youtube {
+    color: #bb0000;
+}
+
+footer a:hover .mdi-youtube {
+    color: #fff;
+    background-color: #bb0000
+}
+
+footer .mdi-xing {
+    margin-right: -3px
+}
+
+
+/*Botão sair - Logout*/
+
+.btnSair {
+    display: block;
+    width: 150px;
+    height: 35px;
+    padding: 5px 10px;
+    border: 1px solid #eee;
+    outline: none;
+    border-radius: 2px;
+    color: #333;
+    background: none;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.btnSair:focus {
+    border: 1px solid #aaa;
+}
+
+.btnSair:active {
+    transform: scale(0.95);
+    border: 1px solid #ccc;
+}
+
+.btnSair .mdi {
+    font-size: 12px;
+    margin-right: 15px;
+}
+
+.btnSair .mdi-circle {
+    color: #2EB801;
+    font-size: 12px;
+}
+
+.btnSair .mdi-logout {
+    color: rgb(233, 41, 41);
+    font-size: 18px;
+}
+
+
+/*Login Page  e Page recuperar senha*/
+
+.info-login,
+.info-recuperar-senha {
+    text-align: center;
+}
+
+.box-login,
+.box-recuperar-senha {
+    max-width: 400px;
+    margin: 130px auto 0;
+    color: #333;
+}
+
+.box-login a {
+    text-decoration: none;
+    color: #555
+}
+
+.icon-login {
+    font-size: 80px;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.box-login h1,
+.box-recuperar-senha h1 {
+    padding: 5px;
+}
+
+.box-login h1 {
+    font-size: 25px;
+}
+
+.box-recuperar-senha h1 {
+    font-size: 22px
+}
+
+.box-login form {
+    padding: 0 30px 20px;
+}
+
+.box-login input,
+.box-recuperar-senha input {
+    padding: 5px 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    margin: 15px 0 25px;
+    outline: 0;
+    font-size: 16px;
+    color: #333
+}
+
+.box-login input:focus,
+.box-recuperar-senha input:focus {
+    border-bottom: 1px solid rgb(0, 157, 209);
+    transition: all .5s;
+}
+
+.box-login button,
+.box-recuperar-senha button {
+    font-size: 16px;
+    padding: 8px 15px;
+    min-width: 100px;
+    border-radius: 3px;
+    outline: 0;
+    border: 1px solid #2196F3;
+    color: #2196F3;
+    cursor: pointer;
+    background: none
+}
+
+.box-login button:hover,
+.box-login button:focus,
+.box-recuperar-senha button:hover,
+.box-recuperar-senha button:focus {
+    transition: all .5s;
+    color: #fff;
+    background-color: #2196F3;
+}
+
+.box-login button:active,
+.box-recuperar-senha button:active {
+    opacity: .7
+}
+
+.link-recuperar-senha {
+    display: block;
+    float: right;
+    font-size: 15px;
+    margin-top: -22px;
+}
+
+.link-recuperar-senha:hover {
+    color: #000
+}
+
+.link-criar-conta {
+    display: block;
+    padding: 8px 15px;
+    border: 1px solid #ccc;
+    margin-top: 35px;
+    text-align: center
+}
+
+.link-criar-conta i {
+    margin-right: 5px;
+}
+
+.link-criar-conta:hover {
+    border: 1px solid #999;
+}
+
+
+/*Page Create account*/
+
+.info-create-account {
+    max-width: 506px;
+}
+
+
+/*Page Recuperar senha*/
+
+.box-recuperar-senha .info-recuperar-senha i {
+    font-size: 60px
+}
+
+.box-recuperar-senha form {
+    max-width: 300px;
+    margin: auto
+}
+
+.box-recuperar-senha button {
+    display: block;
+    width: 100%
+}
+
+
+/*Validar certificado*/
+
+.msg-validacao {
+    text-align: center;
+    padding: 10px 5px;
+    max-width: 300px;
+    margin: 20px auto 0;
+    /* display: none */
+}
+
+.resultado-vaidacao-ok {
+    border-left: 3px solid #4CAF50;
+    color: #4CAF50;
+    background-color: rgba(76, 175, 79, .1)
+}
+
+.resultado-vaidacao-ok a {
+    color: inherit;
+    border-bottom: 1px solid #4CAF50;
+    text-decoration: none;
+}
+
+.resultado-vaidacao-ok a i {
+    display: unset;
+}
+
+.resultado-validacao-falso {
+    border-left: 3px solid #f44336;
+    color: #f44336;
+    background-color: rgba(244, 67, 54, .1)
+}
+
+
+/*Conteúdo*/
+
+.conteudo-dashboard {
+    display: inline-block;
+    margin: 0 0 0 275px;
+    padding: 25px 40px;
+    min-height: 100vh;
+    width: calc(100% - 275px);
+}
+
+.conteudo-dashboard .mdi-emoticon {
+    font-size: 65px;
+    display: block;
+    width: 80px;
+    margin: 15% auto 0;
+    animation: rubberBand 2s infinite
+}
+
+.btn-qrcode {
+    background-color: #2196F3;
+    color: #fff;
+    font-size: 25px;
+    padding: 11px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    position: fixed;
+    bottom: 3%;
+    right: 2%;
+}
+
+.btn-qrcode:hover {
+    opacity: .8;
+}
+
+@keyframes rubberBand {
+    0% {
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+    30% {
+        -ms-transform: scaleX(1.25) scaleY(0.75);
+        transform: scaleX(1.25) scaleY(0.75);
+    }
+    40% {
+        -ms-transform: scaleX(0.75) scaleY(1.25);
+        transform: scaleX(0.75) scaleY(1.25);
+    }
+    60% {
+        -ms-transform: scaleX(1.15) scaleY(0.85);
+        transform: scaleX(1.15) scaleY(0.85);
+    }
+    100% {
+        -ms-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.home-dashboard {
+    text-align: center
+}
+
+.h1-title-dashboard {
+    font-size: 24px;
+    margin-bottom: -5px
+}
+
+.title-dashboard {
+    margin: 45px 0 65px;
+    font-size: 25px
+}
+
+.h1-title-dashboard.home {
+    text-align: center
+}
+
+.title-dashboard .mdi {
+    font-size: 32px;
+    padding: 10px;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px #999;
+    margin: 0 15px 0 0
+}
+
+.title-dashboard .mdi-file-pdf {
+    background: linear-gradient(rgb(255, 0, 0) 0%, rgb(194, 0, 0) 100%);
+}
+
+.title-dashboard .mdi-square-edit-outline,
+.title-dashboard .green {
+    background: linear-gradient( #2EB801 0%, rgb(35, 139, 0) 100%);
+}
+
+.title-dashboard .mdi-archive,
+.title-dashboard .blue {
+    background: linear-gradient( #2196F3 0%, rgb(26, 114, 185) 100%);
+}
+
+.title-dashboard .mdi-book {
+    background: linear-gradient( #FF5733, rgb(224, 76, 43) 100%);
+}
+
+.title-dashboard .mdi-star {
+    background: linear-gradient( #FF0063, rgb(212, 0, 81) 100%);
+}
+
+.title-dashboard .amarelo {
+    background: linear-gradient( #FFC500, #FFB200 100%);
+}
+
+.title-dashboard .mdi-account-group,
+.title-dashboard .dark-blue {
+    background: linear-gradient( #0080BB, #00547B 100%);
+}
+
+.page-details {
+    display: grid;
+    grid-template-columns: max-content auto;
+    grid-gap: 10px;
+    text-align: justify;
+    margin-top: 20px;
+}
+
+.page-details dt {
+    font-weight: 700
+}
+
+.page-details dl img {
+    display: block;
+    border-radius: 5px;
+    max-width: 100%;
+    box-shadow: 0 0 5px #aaa
+}
+
+.page-details dl .phto3x4 {
+    max-width: 150px
+}
+
+.alterar-dados {
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+    min-width: 200px;
+    text-align: center
+}
+
+.alterar-dados i {
+    margin-right: 7px
+}
+
+.link-editar-dados {
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding: 0 5px
+}
+
+.link-editar-dados2 {
+    margin-top: 20px;
+    display: block;
+    max-width: 170px;
+    text-decoration: none;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+}
+
+.link-editar-dados i,
+.link-editar-dados2 i {
+    margin-right: 7px;
+    font-size: 25px;
+}
+
+.link-voltar {
+    color: #333;
+    text-decoration: none;
+    font-size: 22px;
+    padding: 5px 5px 0 0;
+    border-bottom: 1px solid #999;
+    margin-bottom: 20px;
+    display: block;
+    width: 95px
+}
+
+.link-voltar i {
+    color: #2196F3;
+    margin-right: 10px;
+}
+
+.alterar-senha,
+.alterar-foto {
+    margin-top: 30px !important
+}
+
+.alterar-senha input {
+    min-width: 0;
+}
+
+
+/*Moderador Admin*/
+
+.lista-agendas-eventos {
+    padding-top: 20px
+}
+
+.item-agenda-eventos {
+    margin-bottom: 30px;
+    max-width: 450px;
+    position: relative;
+}
+
+.item-agenda-eventos figure {
+    display: block;
+    max-width: 450px;
+    max-height: 200px;
+    overflow: hidden;
+    box-shadow: 0 0 2px #aaa;
+    border-radius: 3px 3px 0 0;
+}
+
+.item-agenda-eventos figure img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.item-agenda-eventos .link-opcoes {
+    display: inline-block;
+}
+
+.item-agenda-eventos .nome-agenda {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    background-color: rgba(33, 149, 243, 0.85);
+    padding: 5px 0;
+    margin-top: -31px;
+    position: absolute;
+    width: 100%;
+    font-size: 18px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.item-agenda-eventos .link-opcoes {
+    text-align: center;
+    display: block;
+    border: 1px solid #ddd;
+    border-top: 0
+}
+
+.item-agenda-eventos .link-opcoes a {
+    color: #333;
+    text-decoration: none;
+    padding: 5px;
+    display: inline-block;
+    font-size: 20px;
+    padding: 7px 10px;
+    border-radius: 50%;
+    margin: 2px 5px;
+    transition: all .5s;
+    outline: 0;
+    cursor: pointer;
+}
+
+.item-agenda-eventos .green:hover,
+.item-agenda-eventos .green:focus {
+    background-color: #04A747;
+    color: #fff
+}
+
+.item-agenda-eventos .blue:hover,
+.item-agenda-eventos .blue:focus {
+    background-color: #2196F3;
+    color: #fff
+}
+
+.item-agenda-eventos .aqua:hover,
+.item-agenda-eventos .aqua:focus {
+    background-color: #048EA7;
+    color: #fff
+}
+
+.item-agenda-eventos .yellow:hover,
+.item-agenda-eventos .yellow:focus {
+    background-color: #FFA600;
+    color: #fff
+}
+
+.item-agenda-eventos .red:hover,
+.item-agenda-eventos .red:focus {
+    background-color: #DF2525;
+    color: #fff
+}
+
+.item-agenda-eventos .gray:hover,
+.item-agenda-eventos .gray:focus {
+    background-color: #273746;
+    color: #eee
+}
+
+.btn-criar-agenda {
+    color: #333;
+    padding: 10px 15px;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    width: 200px;
+    text-align: center;
+    border-radius: 3px;
+}
+
+.btn-criar-agenda i {
+    margin-right: 7px;
+    font-size: 20px;
+}
+
+.confirmar-presenca {
+    margin-top: 55px
+}
+
+.particpante-check {
+    margin-top: 15px;
+    max-width: 500px;
+}
+
+.particpante-check .buttons {
+    text-align: center;
+}
+
+.particpante-check .buttons button {
+    border: 0;
+    background: none;
+    padding: 10px 15px;
+    font-size: 14px;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 5px 5px;
+    outline: 0
+}
+
+.particpante-check .buttons button:hover,
+.particpante-check .buttons button:focus {
+    transform: scale(1.08);
+    opacity: .9;
+}
+
+.particpante-check .buttons button:active {
+    opacity: .5;
+}
+
+.particpante-check .buttons button i {
+    margin-right: 7px;
+}
+
+.particpante-check .buttons .btn-confirmar-presenca {
+    background-color: #2196F3
+}
+
+.particpante-check .buttons .btn-cancel-confirmar-presenca {
+    background-color: #333
+}
+
+.particpante-check figure {
+    width: 125px;
+    height: 120px;
+    display: block;
+    margin: 0 auto 25px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #aaa;
+    /* border: 1px solid #bbb */
+}
+
+.particpante-check figure img {
+    display: block;
+    width: 100%;
+    min-height: 100%;
+}
+
+.particpante-check dl {
+    margin-bottom: 20px
+}
+
+.particpante-check .messagens-check {
+    text-align: center
+}
+
+.topicos-discussao {
+    margin-top: 25px;
+}
+
+.topico {
+    padding: 15px 15px;
+    border: 1px solid #ccc;
+    border-left: 3px solid #2196F3;
+    margin: 0 0 10px;
+    border-radius: 3px;
+    max-width: 550px;
+}
+
+.topico span {
+    display: block;
+    max-width: 450px;
+    word-break: break-all;
+}
+
+.topico i,
+.topico a {
+    font-size: 20px;
+    float: right;
+    vertical-align: middle;
+    cursor: pointer;
+    color: #333;
+    margin: 0 2px
+}
+
+.topico i.mdi-delete-empty:hover {
+    color: #f44336
+}
+
+.topico i.mdi-pencil:hover {
+    color: #2196F3
+}
+
+.topico i.mdi-eye:hover {
+    color: #1db954
+}
+
+.title-evento-tp-discussao {
+    margin: 35px 0;
+    font-size: 20px
+}
+
+.title-evento-tp-discussao i {
+    margin-right: 10px;
+    font-size: 28px;
+}
+
+.tab {
+    transform: scale(0);
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+}
+
+.criar-evento {
+    position: relative;
+}
+
+.criar-evento button {
+    margin: auto
+}
+
+.criar-evento .duracao-evento span {
+    margin: 0 15px
+}
+
+.criar-evento .duracao-evento {
+    text-align: left
+}
+
+.criar-evento .duracao-evento input {
+    display: inline;
+    min-width: 0px;
+    max-width: 240px;
+    text-align: center
+}
+
+.criar-evento .info h2 {
+    max-width: 75%;
+    margin: 0 auto 25px;
+    font-size: 22px
+}
+
+.btn-ctrl {
+    background: 0;
+    font-size: 25px;
+    border: 1px solid #ccc;
+    padding: 2px 5px;
+    border-radius: 50%;
+    color: #333;
+    position: absolute
+}
+
+.btn-ctrl:hover {
+    background-color: #eee;
+}
+
+.previous {
+    top: 0;
+    left: 0;
+}
+
+.next {
+    top: 0;
+    right: 0;
+}
+
+.indicators .step {
+    color: #aaa;
+}
+
+.indicators .step.active {
+    color: #2196F3
+}
+
+.select-agenda {
+    text-align: center;
+}
+
+.select-agenda input[type="radio"] {
+    display: none;
+}
+
+.select-agenda label::after {
+    content: "" !important;
+}
+
+.select-agenda label {
+    display: inline-block;
+    margin: 15px 5px;
+    width: 45%;
+    max-width: 600px;
+    vertical-align: text-top;
+}
+
+.select-agenda label figure {
+    margin: 0 0 5px;
+    width: 100%;
+    max-height: 150px;
+    overflow: hidden;
+    display: block;
+    border-radius: 3px;
+    position: relative;
+    cursor: pointer;
+}
+
+.select-agenda label figure img {
+    width: 100%;
+    display: block;
+}
+
+.select-agenda input[type="radio"]:checked+label,
+.select-moderadores input[type="checkbox"]:checked+label {
+    text-decoration: underline;
+}
+
+.select-agenda input[type="radio"]:checked+label figure figcaption,
+.select-moderadores input[type="checkbox"]:checked+label figure figcaption {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 50px;
+    background-color: rgba(33, 149, 243, 0.8);
+    color: #FFF;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.todos-moderadores {
+    display: none;
+}
+
+.select-moderadores {
+    text-align: center;
+    margin: 15px 0 25px;
+    max-height: 180px;
+    overflow: auto;
+}
+
+.select-moderadores label {
+    display: inline-block;
+    text-align: center;
+    margin: 10px;
+    vertical-align: text-top;
+    max-width: 120px;
+    cursor: pointer;
+}
+
+.select-moderadores input {
+    display: none
+}
+
+.select-moderadores label figure {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    display: block;
+    border-radius: 50%;
+    position: relative;
+}
+
+.select-moderadores label figure figcaption,
+.select-agenda label figure figcaption {
+    display: none
+}
+
+.select-moderadores label figure img {
+    width: 100%
+}
+
+.usuarios {
+    padding-top: 25px
+}
+
+.usuario {
+    min-height: 120px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 35px;
+    max-width: 500px;
+}
+
+.usuario figure {
+    float: left;
+    width: 110px;
+    height: 120px;
+    overflow: hidden;
+    box-shadow: 0 0 2px #aaa;
+}
+
+.usuario figure img {
+    width: 100%;
+}
+
+.usuario span {
+    margin: 0 0 10px 120px;
+    display: block;
+}
+
+.usuario .nome-usuario {
+    font-weight: 700;
+    font-size: 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.usuario .nome-usuario i {
+    margin-right: 7px;
+    font-size: 25px
+}
+
+.usuario .tipo-usuario i {
+    font-size: 20px;
+    padding-left: 4px;
+    margin-right: 10px
+}
+
+.usuario .opcoes {
+    margin: 25px 0 0 120px
+}
+
+.usuario a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 7px;
+    display: inline-block;
+    margin: 0 6px 0;
+    outline: 0
+}
+
+.usuario a:hover,
+.usuario a:focus {
+    color: #555;
+    border-bottom: 1px solid #555
+}
+
+.usuario a:hover .mdi-pencil,
+.usuario a:focus .mdi-pencil {
+    color: #2196F3
+}
+
+.usuario a:hover .mdi-view-list,
+.usuario a:focus .mdi-view-list {
+    color: rgb(255, 136, 0)
+}
+
+.usuario a:hover .mdi-delete-empty,
+.usuario a:focus .mdi-delete-empty {
+    color: rgb(255, 41, 41)
+}
+
+.usuario a i {
+    margin-right: 4px
+}
+
+.select-type-user,
+.state-user {
+    text-align: left;
+    padding-bottom: 25px;
+}
+
+.select-type-user input,
+.state-user input {
+    display: none
+}
+
+.select-type-user label::after,
+.state-user label::after {
+    content: '' !important
+}
+
+.select-type-user label,
+.state-user label {
+    padding: 5px 12px;
+    background-color: #eee;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: -3px;
+    transition: all .5s;
+    text-align: center;
+    display: inline-block;
+}
+
+.state-user label {
+    position: absolute;
+    width: 57px;
+}
+
+.state-user .yes {
+    color: #2196F3;
+}
+
+.state-user .no {
+    color: orange
+}
+
+.select-type-user input[type="radio"]:checked+label {
+    background-color: #2196F3;
+    color: #fff
+}
+
+.state-user input[type="checkbox"]:checked~.no {
+    opacity: 0;
+}
+
+main {
+    margin-top: 60px;
+    padding: 40px;
+    color: #333
+}
+
+
+/*Conteúdo agendas e eventos*/
+
+.home-page {
+    padding: 0 0 120px;
+    min-height: 100vh;
+}
+
+.home-page header {
+    padding: 80px 125px 0;
+    max-width: 1300px;
+    margin: auto
+}
+
+.logo-faculdade {
+    width: 300px;
+    height: auto;
+    position: absolute;
+    float: left;
+    z-index: 1;
+}
+
+.h1-home {
+    margin-top: 15px;
+    float: right;
+    font-size: 28px
+}
+
+.home-page .search-agendas-eventos {
+    margin: 150px 0 50px;
+}
+
+.search-agendas-eventos,
+.form-pesquisa {
+    text-align: center;
+}
+
+.form-pesquisa {
+    margin: 25px 0 15px
+}
+
+.search-agendas-eventos input,
+.search-eventos-agenda input,
+.form-pesquisa input {
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    max-width: 400px;
+    font-size: 16px;
+    padding: 0 25px 5px 0;
+    margin: 0 auto 15px;
+    color: #333
+}
+
+.search-agendas-eventos input:focus,
+.search-eventos-agenda input:focus,
+.form-pesquisa input:focus {
+    border-bottom: 1px solid #2196F3;
+    transition: all .5s;
+}
+
+.search-agendas-eventos button,
+.search-eventos-agenda button,
+.form-pesquisa button {
+    border: 0;
+    background: none;
+    outline: 0;
+    font-size: 30px;
+    margin-left: -27px
+}
+
+.search-agendas-eventos button:focus,
+.search-agendas-eventos button:hover,
+.search-eventos-agenda button:focus,
+.search-eventos-agenda button:hover,
+.form-pesquisa button:hover,
+.form-pesquisa button:focus {
+    color: #2196F3;
+    transform: scale(1.5);
+}
+
+.search-agendas-eventos button:active,
+.search-evento-agenda button:active,
+.form-pesquisa button:active {
+    opacity: .8;
+}
+
+.agendas {
+    text-align: center;
+}
+
+.agenda {
+    display: inline-block;
+    max-width: 550px;
+    text-decoration: none;
+    vertical-align: middle;
+    margin: 0 10px 55px;
+    color: #333;
+    transition: all .5s;
+    outline: 0;
+    vertical-align: text-top
+}
+
+.agenda figure {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-height: 180px;
+    overflow: hidden;
+    margin: 0 0 10px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #aaa
+}
+
+.agenda img {
+    display: block;
+    width: 100%;
+    transition: all .5s
+}
+
+.agenda .nome-agenda {
+    display: block;
+    margin: auto;
+    border-radius: 3px;
+    padding: 7px 5px;
+}
+
+.agenda span {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    background-color: rgba(33, 149, 243, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: all .5s;
+    font-size: 16px;
+}
+
+.agenda:hover,
+.agenda:focus {
+    text-decoration: underline
+}
+
+.agenda:hover span,
+.agenda:focus span {
+    width: 100%;
+}
+
+.agenda span i {
+    margin-right: 10px;
+    font-size: 35px
+}
+
+.agenda:hover img,
+.agenda:focus img {
+    filter: blur(5px)
+}
+
+
+/*Page Agenda*/
+
+.page-agenda-evento {
+    padding: 0;
+}
+
+.img-agenda-evento {
+    position: absolute;
+    top: 85px;
+    height: 45%;
+    width: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.img-efect-blur {
+    filter: blur(10px);
+    width: 100%;
+    min-height: 100%;
+}
+
+.img-visible {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 60%;
+    max-width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.block-agenda-evento {
+    display: block;
+    width: 100%;
+    max-width: 1000px;
+    margin: 40% auto 150px;
+    padding: 40px 25px 80px;
+    box-shadow: 0 0 8px #aaa;
+    border-radius: 5px;
+    min-height: 100vh;
+    margin-top: 350px;
+    background-color: rgba(255, 255, 255, 1);
+    /* transform: scale(1); */
+}
+
+.info-agenda-evento {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.block-agenda-evento .nome-agenda-evento {
+    font-size: 18px;
+    padding: 10px 20px 10px 10px;
+    border-right: 3px solid #2196F3;
+    text-align: center;
+    width: 40%;
+    float: left;
+}
+
+.block-agenda-evento .descricao-agenda-evento {
+    font-size: 16px;
+    text-align: justify;
+    width: 60%;
+    float: left;
+    padding-left: 20px;
+}
+
+.eventos {
+    margin-top: 25px;
+    padding-top: 30px;
+    text-align: center
+}
+
+.evento {
+    width: 100%;
+    max-width: 300px;
+    display: inline-block;
+    position: relative;
+    margin: 0 7px 50px;
+    text-decoration: none;
+    color: #444;
+    vertical-align: text-top;
+    border-radius: 3px;
+    outline: 0
+}
+
+.evento:hover,
+.evento:focus {
+    transform: scale(1.065);
+    text-decoration: underline
+}
+
+.evento .img-evento {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    display: block;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px #aaa
+}
+
+.evento img {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+}
+
+
+/*Page agenda - Paradinha lokona*/
+
+.tipo-evento {
+    position: absolute;
+    left: -5px;
+    top: -5px;
+    z-index: 1;
+    overflow: hidden;
+    width: 75px;
+    height: 75px;
+    text-align: right;
+}
+
+.tipo-evento span {
+    font-size: 10px;
+    font-weight: bold;
+    color: #eee;
+    background-color: rgba(18, 116, 196, .85);
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 20px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    width: 100px;
+    display: block;
+    /* background: linear-gradient(#1e5799e1 0%, rgba(33, 149, 243, 0.95) 100%); */
+    /* background: linear-gradient(rgba(33, 149, 243, 1) 0%, #2196F3 100%); */
+    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+    position: absolute;
+    top: 19px;
+    left: -21px;
+}
+
+.tipo-evento span::before {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid #222;
+    border-right: 3px solid transparent;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #222;
+}
+
+.tipo-evento span::after {
+    content: "";
+    position: absolute;
+    right: 0px;
+    top: 100%;
+    z-index: -1;
+    border-left: 3px solid transparent;
+    border-right: 3px solid #222;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid #222;
+}
+
+
+/*Page evento*/
+
+.detalhes-evento-agenda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.detalhes-evento-agenda .time-local-agenda-evento {
+    width: 40%;
+    float: left;
+}
+
+.detalhes-evento-agenda .time-local-agenda-evento p {
+    margin: 0 0 15px
+}
+
+.detalhes-evento-agenda .time-local-agenda-evento p span {
+    font-weight: 700
+}
+
+.detalhes-evento-agenda .time-local-agenda-evento i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.detalhes-evento-agenda .moderadores {
+    width: 60%;
+    float: right;
+    text-align: center;
+}
+
+.moderadores figure {
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 10px 10px
+}
+
+.moderadores img {
+    width: 100%;
+}
+
+.moderadores p {
+    font-weight: 700
+}
+
+.btn-evento {
+    padding: 10px 20px;
+    border: 0;
+    outline: 0;
+    font-size: 18px;
+    color: #eee;
+    border-radius: 3px;
+    display: block;
+    margin: 25px auto 0
+}
+
+.btn-evento:hover,
+.btn-evento:focus {
+    opacity: .8;
+    cursor: pointer;
+}
+
+.btn-evento:active {
+    opacity: .5;
+}
+
+.btn-evento i {
+    margin-right: 10px;
+}
+
+.subscribe {
+    background-color: #1db954
+}
+
+.cancel-subscribe {
+    color: #fd3e30;
+    border: 1px solid #fd3e30;
+    background: rgba(253, 62, 48, 0.1)
+}
+
+.info-login-required {
+    max-width: 550px;
+    margin: 25px auto 0
+}
+
+.info-login-required a {
+    color: #555;
+    text-decoration: none
+}
+
+
+/*Page evento - Fórum*/
+
+.forum-debates {
+    margin-top: 20px;
+    padding: 25px 0 0;
+    text-align: center
+}
+
+.title-forum-debates {
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #ccc;
+    padding: 0 0 5px;
+    border-radius: 2px;
+    width: 220px;
+    text-align: center;
+    display: block;
+    margin: 0 auto 25px;
+    text-decoration: none
+}
+
+.title-forum-debates:hover {
+    border-bottom: 1px solid #888;
+}
+
+.title-forum-debates i {
+    color: #2196F3;
+    margin-right: 10px;
+}
+
+.topico-discussao {
+    display: inline-block;
+    width: 45%;
+    text-align: center;
+    vertical-align: middle;
+    text-decoration: none;
+    outline: 0;
+    color: #333;
+    border-radius: 2px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px 5px;
+}
+
+.topico-discussao:hover,
+.topico-discussao:focus {
+    border-color: #999;
+    color: #2196F3
+}
+
+.nome-topico-discussao {
+    font-size: 20px;
+    font-weight: 400;
+    padding: 10px;
+    max-width: 700px;
+    margin: 0 auto 25px;
+}
+
+.comentarios {
+    text-align: justify;
+}
+
+.comentario {
+    margin-bottom: 20px;
+}
+
+.comentario-pai {
+    margin-bottom: 45px
+}
+
+.comentario figure {
+    width: 60px;
+    min-height: 60px;
+    max-height: 60px;
+    overflow: hidden;
+    border-radius: 5px;
+    float: left;
+    margin-right: 10px;
+}
+
+.comentario figure img {
+    width: 100%;
+}
+
+.comentario p {
+    padding: 5px 0 0 70px;
+    word-wrap: break-word;
+    min-height: 45px
+}
+
+.comentario p .btn-resposta-comentario {
+    display: block;
+    margin-top: 3px;
+    width: 80px;
+    padding: 3px 0;
+    text-align: center;
+    cursor: pointer;
+    color: #999;
+}
+
+.comentario p .btn-resposta-comentario:hover {
+    color: #555;
+    width: 110px;
+}
+
+.comentario p .btn-resposta-comentario:hover i {
+    display: inline-block;
+}
+
+.comentario p .btn-resposta-comentario i {
+    margin-right: 5px;
+    display: none;
+}
+
+.comentario .btn-delete-comment {
+    float: right;
+    font-size: 18px;
+    background: none;
+    border: 0;
+    color: #333;
+    cursor: pointer;
+    /* display: none; */
+}
+
+.comentario .nome-autor {
+    font-weight: 700;
+}
+
+.comentario .data-hora {
+    font-size: 12px;
+    color: #666;
+    margin-left: 10px;
+    vertical-align: middle
+}
+
+.comentario .reply {
+    padding: 25px 0 0 10px;
+    margin: -25px 50px -40px 50px;
+}
+
+.comentario .reply figure {
+    width: 48px;
+    min-height: 48px;
+    max-height: 48px;
+}
+
+.comentario .reply p {
+    padding-left: 60px;
+}
+
+.form-comentario button {
+    display: inline;
+}
+
+.form-comentario textarea {
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    transition: all .5s;
+    vertical-align: middle;
+    margin-bottom: 10px;
+}
+
+.form-comentario textarea:focus {
+    border-bottom-color: #2196F3;
+    height: 90px;
+}
+
+.info-debates {
+    margin: 25px 0 30px;
+    text-align: left;
+}
+
+.info-debates h3,
+.info-debates h4 {
+    font-weight: 400
+}
+
+.mini-line {
+    min-height: 2px;
+    width: 50px;
+    background: #2196F3;
+    display: block;
+    margin: 20px auto;
+    border-radius: 3px;
+}
+
+.reply-user figure {
+    border-radius: 50%;
+}
+
+.form-replay .btn {
+    padding: 4px 8px;
+}
+
+
+/*Formulário*/
+
+.form-konoha {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-gap: 10px;
+    text-align: right;
+    margin-top: 25px;
+}
+
+.form-konoha input {
+    border: 0;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    min-width: 300px;
+    font-size: 16px;
+    padding: 0 0 5px 0;
+    margin-bottom: 15px;
+    color: #333
+}
+
+.form-konoha input:focus {
+    border-bottom: 1px solid #2196F3;
+    transition: all .5s;
+}
+
+.form-konoha .text-area-k {
+    height: 75px;
+    font-size: 16px;
+    border: 0;
+    outline: 0;
+    padding: 0 5px 10px 0;
+    border-bottom: 1px solid #ccc;
+    transition: all .5s;
+    margin-bottom: 10px;
+}
+
+.form-konoha .text-area-k:focus {
+    height: 130px;
+    border-bottom: 1px solid #2196F3;
+    transition: all .5s;
+}
+
+.form-konoha label {
+    font-size: 16px
+}
+
+.form-konoha label:after {
+    content: ":";
+}
+
+
+/*Botões*/
+
+.btn {
+    display: block;
+    background: none;
+    border: 0;
+    outline: 0;
+    padding: 12px 15px;
+    color: #eee;
+    border-radius: 3px;
+    font-size: 14px
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn:focus {
+    opacity: .9;
+}
+
+.btn:active {
+    opacity: .6;
+}
+
+.btn-blue {
+    background-color: #2196F3
+}
+
+
+/**/
+
+.text-center {
+    text-align: center
+}
+
+
+/*Messages*/
+
+.mensagem {
+    font-size: 18px;
+}
+
+.mensagem i {
+    margin-right: 10px;
+    font-size: 25px;
+    vertical-align: middle;
+}
+
+.mensagem.animation {
+    animation: animation-message 2s;
+}
+
+.mensagem.danger {
+    color: #f44336;
+}
+
+.mensagem.success {
+    color: #1db954;
+}
+
+.mensagem.information {
+    color: #2196F3;
+}
+
+.mensagem.warning {
+    color: #ff9800;
+}
+
+@keyframes animation-message {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+
+.alert {
+    padding: 10px 20px;
+    opacity: 1;
+    transition: opacity 0.6s;
+    display: inline-block;
+    margin: 10px 0;
+    color: #fff;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center
+}
+
+.alert i {
+    margin-right: 10px;
+    font-size: 22px;
+}
+
+.alert.danger {
+    color: #f44336;
+    border: 1px solid #f44336;
+}
+
+.alert.success {
+    color: #1db954;
+    border: 1px solid #1db954;
+}
+
+.alert.information {
+    color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.alert.warning {
+    border: 1px solid #ff9800;
+    color: #ff9800;
+}
+
+.alert-float {
+    right: 5%;
+    top: 100px;
+    margin-left: 25px;
+    position: fixed;
+    max-width: 55%;
+    padding: 5px 0 5px 15px !important;
+    border-radius: 3px;
+    color: #fff;
+    transition: all .5s;
+    animation: show-alert 1.5s;
+}
+
+@keyframes show-alert {
+    from {
+        opacity: .3;
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.alert-float:hover {
+    opacity: .85;
+}
+
+.alert-float i {
+    margin-right: 10px;
+    font-size: 30px;
+    vertical-align: middle;
+}
+
+.alert-float.danger {
+    background-color: #f44336;
+}
+
+.alert-float.success {
+    background-color: #1db954;
+}
+
+.alert-float.info {
+    background-color: #2196F3;
+}
+
+.alert-float.warning {
+    background-color: #ff9800;
+}
+
+.alert-float.black {
+    background-color: #000;
+}
+
+.alert-float .mdi-close {
+    float: right;
+    font-size: 20px;
+    margin: 0 12px 0 15px;
+    cursor: pointer;
+    line-height: 35px
+}
+
+.info {
+    border-radius: 3px;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.info-blue {
+    color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.closebtn {
+    float: right;
+    font-size: 20px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.vagas-esgotadas {
+    display: block;
+    margin: auto;
+    max-width: 307px;
+}
+
+
+/*Select genero*/
+
+.options-select {
+    margin: -5px 0 10px;
+    text-align: left
+}
+
+.options-select label:after {
+    content: "";
+}
+
+.options-select input[type="radio"] {
+    display: none;
+}
+
+.options-select label {
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: inline-block
+}
+
+.options-select label:hover {
+    border: 1px solid #555;
+    cursor: pointer;
+}
+
+.options-select input[type="radio"]:checked+.men {
+    border: 1px solid #2196F3;
+    color: #2196F3;
+    background-color: rgba(33, 149, 243, .1);
+    transition: all .5s
+}
+
+.options-select input[type="radio"]:checked+.woman {
+    border: 1px solid rgb(228, 55, 147);
+    color: rgb(228, 55, 147);
+    background-color: rgba(228, 55, 147, .1);
+    transition: all .5s
+}
+
+
+/*Preview image*/
+
+input[type="file"] {
+    display: none;
+}
+
+.form-konoha .label-upload-image:after {
+    content: "";
+}
+
+.preview-image {
+    text-align: center;
+    margin-top: 10px;
+    min-height: 80px;
+}
+
+.preview-image label .mdi-account-outline,
+.preview-image label .mdi-image {
+    font-size: 50px;
+    padding: 15px 25px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.preview-image img {
+    max-width: 120px;
+    height: auto;
+    border-radius: 5px;
+    display: block;
+    margin: 0 auto 5px
+}
+
+.cancel-upload {
+    border: 1px solid #ff9800;
+    background-color: rgb(255, 152, 0, .1);
+    color: #ff9800;
+    border-radius: 2px;
+    padding: 5px;
+    display: none;
+    cursor: pointer;
+    max-width: 200px;
+    margin: auto;
+    font-size: 14px
+}
+
+.cancel-upload i {
+    font-size: 14px;
+    margin: 0 7px 0 0
+}
+
+.cancel-upload:after {
+    content: "" !important;
+}
+
+.cancel-upload:hover {
+    opacity: .5;
+}
+
+.cancel-upload:active {
+    transform: scale(.95)
+}
+
+.preview-image span {
+    display: block;
+    margin: 10px 0;
+    color: #2196F3;
+    font-size: 13px
+}
+
+.preview-image span i {
+    margin-right: 5px;
+    font-size: 15px;
+    border: 1px solid #2196F3;
+    padding: 0 2px;
+    border-radius: 50%;
+}
+
+
+/*h1-h6, p*/
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-bottom: 20px
+}
+
+
+/*Modal*/
+
+
+/*Modal*/
+
+
+/* The Modal (background) */
+
+.modal,
+.modal2 {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding: 100px 0 0 275px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.modal2 {
+    padding: 150px 0 0;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-border {
+    border: 1px solid #ddd;
+    border-radius: 2px;
+}
+
+.modal-border .comentario {
+    text-align: left
+}
+
+.modal-border .comentario p {
+    font-size: 15px;
+    text-align: justify;
+    margin-right: 25px;
+}
+
+.modal-border .comentario button i {
+    margin-right: 7px
+}
+
+.modal-border .form-comentario button {
+    display: block;
+    margin: auto
+}
+
+
+/* Modal Content */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    width: 75%;
+    max-width: 600px;
+}
+
+.modal-content img {
+    display: block;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto 10px
+}
+
+.modal-content p {
+    font-size: 18px
+}
+
+.modal-content .nome-evento {
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.modal-content p i {
+    font-size: 25px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+.modal-content object {
+    display: block;
+    margin: auto;
+    width: 400px;
+    height: 330px;
+}
+
+.modal-content .btn-modal {
+    padding: 8px 15px;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    outline: 0;
+    color: #fff;
+    margin-right: 5px;
+}
+
+.modal-content .yes {
+    background-color: #2196F3
+}
+
+.modal-content .no {
+    background-color: #888
+}
+
+.modal-content .btn-modal:focus {
+    opacity: .8;
+}
+
+.modal-content .btn-modal:active {
+    opacity: .4;
+}
+
+.modal-content-comentario {
+    background-color: #fefefe;
+    border: 1px solid #aaa;
+    right: 0;
+    padding: 20px;
+    width: 75%;
+    max-width: 600px;
+    position: fixed;
+}
+
+
+/* The Close Button */
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-download {
+    background-color: dodgerblue;
+    max-width: 120px;
+    margin: 20px auto 0;
+    text-decoration: none
+}
+
+.btn-download i {
+    margin-right: 10px
+}
+
+
+/*Scroll*/
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2196F3;
+    border: 17px none #ffffff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2196F3;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: #2196F3;
+}
+
+::-webkit-scrollbar-track {
+    background: #aaa;
+    border: 0px none #ffffff;
+}
+
+::-webkit-scrollbar-track:hover {
+    background: #999;
+}
+
+::-webkit-scrollbar-track:active {
+    background: #555;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+
+/******************************************************************************************************************************/
+
+
+/******************************************************************************************************************************/
+
+
+/******************************************************************************************************************************/
+
+
+/*Responsive*/
+
+@media(max-width: 1250px) {
+    .home-page header {
+        padding: 80px 50px 0;
+    }
+    .img-agenda-evento .img-visible {
+        width: 80%;
+    }
+}
+
+@media(max-width: 1000px) {
+    .img-agenda-evento .img-visible {
+        width: 90%;
+    }
+}
+
+@media(max-width: 820px) {
+    .criar-evento .form-konoha {
+        grid-template-columns: max-content;
+        text-align: left
+    }
+}
+
+@media(max-width: 960px) {
+    .form-responsive {
+        text-align: left;
+        grid-template-columns: max-content
+    }
+}
+
+@media(max-width: 850px) {
+    .form-presenca {
+        display: flex;
+        margin-bottom: 25px
+    }
+    .form-presenca label {
+        display: inline-block;
+        margin-right: 15px;
+        text-align: center
+    }
+    .form-presenca input {
+        min-width: 150px;
+        text-align: center
+    }
+}
+
+@media(max-width: 801px) {
+    .link-agenda {
+        width: 100%;
+        max-width: 500px;
+    }
+    footer {
+        flex-direction: column;
+    }
+    footer .validar-certificado {
+        padding: 10px
+    }
+    footer .social-info {
+        margin-top: 35px;
+        padding-top: 25px;
+        border-top: 2px dashed #ccc;
+    }
+    .img-agenda-evento {
+        position: initial;
+        max-height: 350px;
+        margin-top: 85px
+    }
+    .img-agenda-evento .img-visible {
+        width: 100%;
+        margin-top: 85px;
+    }
+    .block-agenda-evento {
+        box-shadow: none;
+        position: relative;
+        margin: 0
+    }
+    .editar-dados {
+        grid-template-columns: max-content;
+        text-align: left;
+    }
+}
+
+@media(max-width: 760px) {
+    .logo-faculdade {
+        position: relative;
+        float: none;
+        display: block;
+        margin: 0 auto 35px;
+        width: 100%;
+        max-width: 350px;
+    }
+    .h1-home {
+        float: none;
+        text-align: center
+    }
+    .home-page .search-agendas-eventos {
+        margin-top: 45px;
+    }
+}
+
+@media(max-width: 720px) {
+    .menu {
+        width: 0;
+        margin-top: 67px;
+        border-right: 1px solid #eee;
+        box-shadow: none;
+    }
+    .btn-menu {
+        display: block
+    }
+    .conteudo-dashboard {
+        margin-left: 0;
+    }
+    .conteudo-dashboard {
+        width: 100%;
+        padding-top: 100px;
+    }
+    .menu-icon {
+        display: block
+    }
+    .menu-home {
+        overflow: hidden;
+    }
+    .menu-home .links {
+        margin-top: 60px;
+        float: none;
+        animation: all 2s;
+    }
+    .menu-home .links a {
+        position: initial;
+        display: block;
+        text-align: center;
+        padding: 15px;
+    }
+    .menu-home .user {
+        float: none;
+        margin-top: 72px;
+        height: 100%
+    }
+    .menu-home .user .options {
+        margin-top: 19px;
+        display: block
+    }
+    .menu-home .user .options button,
+    .menu-home .user .options a {
+        display: inline-block;
+        margin-bottom: 8px;
+        margin-right: 15px
+    }
+    .menu-home .user span,
+    .menu-home .user figure {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+    }
+    .menu-home .user span {
+        border: 1px solid #ddd;
+        border-left: 0;
+        padding: 5px 15px 5px 8px;
+        border-radius: 0 10px 10px 0;
+        /* margin-left: -8px; */
+        margin-top: 11px
+    }
+    .menu-home .user:hover {
+        box-shadow: none
+    }
+    .info-agenda-evento {
+        flex-direction: column;
+        margin-bottom: 0px
+    }
+    .block-agenda-evento .nome-agenda-evento,
+    .block-agenda-evento .descricao-agenda-evento {
+        width: 100%;
+        padding: 15px;
+    }
+    .block-agenda-evento .nome-agenda-evento {
+        border: 0;
+        text-align: center;
+        margin-bottom: 0
+    }
+    .block-agenda-evento {
+        padding: 0 5px 50px
+    }
+    .title-dashboard {
+        margin: 15px 0 65px;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding: 80px 0 20px 0;
+    }
+    .modal object {
+        width: 100%;
+        height: 350px;
+    }
+    .modal-content {
+        width: 95%;
+    }
+    .editar-dados {
+        grid-template-columns: max-content max-content;
+        text-align: right;
+    }
+    .form-responsive {
+        text-align: right;
+        grid-template-columns: max-content max-content;
+    }
+    .criar-evento .form-konoha {
+        grid-template-columns: max-content max-content;
+        text-align: right
+    }
+    .alert-float {
+        max-width: 80%;
+    }
+}
+
+@media(max-width: 675px) {
+    .form-responsive {
+        text-align: left;
+        grid-template-columns: max-content
+    }
+    .form-responsive input,
+    .form-responsive .text-area-k,
+    .form-responsive .preview-image {
+        min-width: 0;
+        max-width: 270px;
+    }
+}
+
+@media(max-width: 660px) {
+    .eventos {
+        padding: 15px 10px
+    }
+    .evento {
+        max-width: 250px;
+        margin: 0 10px 50px;
+    }
+}
+
+@media(max-width: 650px) {
+    .home-page {
+        padding-bottom: 30px
+    }
+    .home-page .search-agendas-eventos {
+        margin-bottom: 25px;
+    }
+    .agendas {
+        padding: 0 10px
+    }
+    .detalhes-evento-agenda {
+        flex-direction: column;
+        margin-bottom: 20px;
+        padding: 0 15px;
+    }
+    .detalhes-evento-agenda .time-local-agenda-evento,
+    .detalhes-evento-agenda .moderadores {
+        width: 100% !important
+    }
+    .detalhes-evento-agenda .moderadores {
+        margin-top: 10px
+    }
+    .detalhes-evento-agenda .moderadores figure {
+        margin: 0 0 5px
+    }
+}
+
+@media(max-width: 580px) {
+    .evento {
+        max-width: 350px;
+        margin: 0 auto 50px;
+        display: block
+    }
+}
+
+@media(max-width: 560px) {
+    main {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .create-account,
+    .alterar-senha,
+    .alterar-foto,
+    .editar-dados {
+        grid-template-columns: max-content;
+        text-align: left;
+    }
+    .create-account input,
+    .alterar-senha input,
+    .editar-dados input {
+        min-width: 0;
+    }
+    .page-details {
+        grid-template-columns: none;
+    }
+}
+
+@media(max-width: 550px) {
+    .comentario p {
+        padding: 5px 5px 0 70px;
+    }
+    .comentario .reply {
+        margin: -20px 5px 0 20px;
+    }
+    .criar-evento .form-konoha {
+        grid-template-columns: max-content;
+        text-align: left;
+    }
+}
+
+@media(max-width:515px) {
+    .h1-home {
+        font-size: 25px
+    }
+    .search-agendas-eventos input,
+    .form-pesquisa input {
+        text-align: center
+    }
+    .search-agendas-eventos button,
+    .form-pesquisa button {
+        display: block;
+        margin: -10px auto 0;
+        border: 1px solid #eee;
+        padding: 15px 20px;
+        border-radius: 50%;
+        font-size: 22px
+    }
+}
+
+@media(max-width: 500px) {
+    .menu-go-to-home .texto-logo {
+        display: none
+    }
+    .box-login {
+        margin-top: 80px;
+    }
+    .box-login form {
+        padding: 25px 10px 10px;
+    }
+    .link-recuperar-senha {
+        margin-top: 15px
+    }
+    .conteudo-dashboard {
+        padding: 100px 10px 50px
+    }
+}
+
+@media(max-width: 415px) {
+    .usuario figure {
+        width: 70px;
+        height: 80px;
+    }
+    .usuario span {
+        margin-left: 75px;
+    }
+    .usuario .opcoes {
+        margin: 30px 0 10px 0;
+        text-align: center
+    }
+}
+
+@media(max-width: 408px) {
+    .menu-home .user .options {
+        margin-top: 5px;
+    }
+    .h1-home {
+        font-size: 20px
+    }
+}
+
+@media(max-width:350px) {
+    .h1-home {
+        font-size: 16px
+    }
+}
+
+
+/*Button disabilitado para clicks*/
+
+button:disabled {
+    border: 1px solid #dddddd;
+    background-color: #dddddd;
+    color: #333;
+    cursor: not-allowed !important;
+}
+
+button:disabled:hover {
+    background-color: #eee;
+    color: #333;
+}

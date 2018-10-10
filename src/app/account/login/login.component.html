@@ -1,0 +1,23 @@
+<app-menu-voltar></app-menu-voltar>
+
+<div class="box-login">
+    <div class="info-login">
+        <span class="icon-login mdi mdi-lock-open-outline"></span>
+        <h1>Acesse sua conta</h1>
+    </div>
+
+    <ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
+
+    <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input formControlName="username" type="text" name="username" id="username" placeholder="Username" autofocus />
+
+        <input formControlName="password" type="password" name="senha" id="senha" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
+
+        <button [disabled]="form.invalid" type="submit">Login</button>
+        <a [routerLink]="['/email-recuperacao-senha']" routerLinkActive="router-link-active" class="link-recuperar-senha">Esqueci
+            minha senha</a>
+
+        <a routerLink='/criar-conta' class="link-criar-conta"><i class="mdi mdi-account-plus"></i>Criar conta</a>
+    </form>
