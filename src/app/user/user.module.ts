@@ -9,6 +9,9 @@ import { RecuperaSenhaComponent } from './recupera-senha/recupera-senha.componen
 import { RouterModule } from '@angular/router';
 import { UserService } from './user.service';
 import { GetUserResolve } from './get-user.resolve';
+import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
+import { AlterarDadosComponent } from './alterar-dados/alterar-dados.component';
+import { AlterarFotoComponent } from './alterar-foto/alterar-foto.component';
 
 @NgModule({
   imports: [
@@ -20,11 +23,17 @@ import { GetUserResolve } from './get-user.resolve';
   ],
   declarations: [
     EmailRecuperarSenhaComponent,
-    RecuperaSenhaComponent
+    RecuperaSenhaComponent,
+    AlterarSenhaComponent,
+    AlterarDadosComponent,
+    AlterarFotoComponent
   ],
   exports: [
     EmailRecuperarSenhaComponent,
-    RecuperaSenhaComponent
+    RecuperaSenhaComponent,
+    AlterarSenhaComponent,
+    AlterarFotoComponent,
+    AlterarDadosComponent
   ],
   providers: [
     UserService,

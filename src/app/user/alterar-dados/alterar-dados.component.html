@@ -1,0 +1,74 @@
+<form class="form-konoha editar-dados" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div *ngIf="form.controls['Nome'].invalid || form.controls['Nome'].touched">
+    <app-message-erro *ngIf="form.get('Nome').errors?.required" text="Campo nome é obrigatório.">
+    </app-message-erro>
+    <app-message-erro *ngIf="form.get('Nome').errors?.maxlength" text="permitido até 100 caracteres.">
+    </app-message-erro>
+  </div>
+
+  <div *ngIf="form.controls['Username'].invalid || form.controls['Username'].touched">
+    <app-message-erro *ngIf="form.get('Username').errors?.required" text="Campo nome é obrigatório.">
+    </app-message-erro>
+    <app-message-erro *ngIf="form.get('Username').errors?.maxlength" text="permitido até 100 caracteres.">
+    </app-message-erro>
+  </div>
+
+  <div *ngIf="form.controls['DataNascimento'].invalid || form.controls['DataNascimento'].touched">
+    <app-message-erro *ngIf="form.get('DataNascimento').errors?.required" text="Campo data de nascimento é obrigatório.">
+    </app-message-erro>
+    <app-message-erro *ngIf="form.get('DataNascimento').errors?.pattern" text="data inválida.">
+    </app-message-erro>
+  </div>
+
+  <div *ngIf="form.controls['Cpf'].invalid || form.controls['Cpf'].touched">
+    <app-message-erro *ngIf="form.get('Cpf').errors?.required" text="Campo cpf é obrigatório.">
+    </app-message-erro>
+    <app-message-erro *ngIf="form.get('Cpf').errors?.pattern" text="Cpf inválido.">
+    </app-message-erro>
+  </div>
+
+  <div *ngIf="form.controls['Genero'].invalid || form.controls['Genero'].touched">
+    <app-message-erro *ngIf="form.get('Genero').errors?.required" text="Escolha de um gênero é obrigatório.">
+    </app-message-erro>
+  </div>
+
+  <label for="nome" class="label-k">Nome Completo</label>
+  <input formControlName="Nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite seu nome completo">
+
+  <label for="Username" class="label-k">Nome Completo</label>
+  <input formControlName="Username" type="text" name="Username" id="Username" class="input-k" placeholder="Nome de usuário">
+
+  <label for="dataNascimento" class="label-k">Data de Nascimento</label>
+  <input formControlName="DataNascimento" type="text" name="dataNascimento" id="dataNascimento" class="input-k"
+    placeholder="ano/mês/dia">
+
+  <label for="cpf" class="label-k">CPF</label>
+  <input formControlName="Cpf" type="text" name="cpf" id="cpf" class="input-k" placeholder="000.000.000-00">
+
+  <label class="label-k">Gênero</label>
+
+  <div class="options-select">
+    <ng-container *ngIf="user.Genero === 'M'; else elseTemplate">
+      <input formControlName="Genero" type="radio" name="Genero" id="men" value="M" checked>
+      <label for="men" class="men">Masculino <i class="mdi mdi-gender-male"></i></label>
+
+      <input formControlName="Genero" type="radio" name="Genero" id="woman" value="F">
+      <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
+
+    </ng-container>
+    <ng-template #elseTemplate>
+      <input formControlName="Genero" type="radio" name="Genero" id="men" value="M">
+      <label for="men" class="men">Masculino <i class="mdi mdi-gender-male"></i></label>
+
+      <input formControlName="Genero" type="radio" name="Genero" id="woman" value="F" checked>
+      <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
+    </ng-template>
+  </div>
+
+  <button type="submit" class="btn btn-blue">Salvar alterações</button>
+
+</form>
+
+<p class="alert-float success" *ngIf="msgAlert"><i class="mdi mdi-check-circle-outline"></i><i class="mdi mdi-close"
+    onclick="this.parentElement.style.display='none';"></i>{{ msgAlert }}</p>

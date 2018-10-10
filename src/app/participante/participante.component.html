@@ -6,7 +6,7 @@
                 <img src="http://localhost:51990/Imagens/Usuario/{{user?.PathFotoPerfil}}" alt="minha foto">
             </a>
         </figure>
-        <span>{{user.Nome}}</span>
+        <span>{{user?.Nome}}</span>
     </div>
     <button id="sair" class="btnSair" (click)="logout()" onmousemove="mudarTextoBotao()" onmouseout="voltarTextoBotao()"><i class="mdi mdi-circle"></i>Conectado</button>
 

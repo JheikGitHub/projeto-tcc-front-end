@@ -1,0 +1,29 @@
+<h1 class="title-dashboard"><i class="mdi mdi-archive"></i>Meus Dados</h1>
+<a *ngIf="!participant?.IsAluno" [routerLink]="['/participante-dashboard/alterar-foto']" class="alterar-dados foto"><i
+        class="mdi mdi-account"></i>Alterar minha foto</a>
+
+<a [routerLink]="['/participante-dashboard/alterar-senha']" routerLinkActive="router-link-active" class="alterar-dados senha"><i
+        class="mdi mdi-lock"></i>Alterar minha senha</a>
+
+<a *ngIf="!participant?.IsAluno" [routerLink]="['/participante-dashboard/alterar-dados']" class="link-editar-dados2"><i
+        class="mdi mdi-pencil"></i>Editar meus dados</a>
+
+<dl class="page-details">
+    <dt>Nome: </dt>
+    <dd>{{participant?.Usuario.Nome}}</dd>
+    <dt>CPF: </dt>
+    <dd>{{participant?.Usuario.Cpf}}</dd>
+    <dt *ngIf="participant?.IsAluno">Matricula: </dt>
+    <dd *ngIf="participant?.IsAluno">{{participant?.Matricula}}</dd>
+    <dt>Data de Nascimento:</dt>
+    <dd>{{participant?.Usuario.DataNascimento | date: 'dd/MM/yyyy'}}</dd>
+    <dt>Genêro:</dt>
+    <ng-container *ngIf="participant?.Usuario.Genero == 'M'; else elseTemplate">
+        <dd>Masculino</dd>
+    </ng-container>
+    <ng-template #elseTemplate>
+        <dd>Feminino</dd>
+    </ng-template>
+    <dt>Cadastrado(a) em: </dt>
+    <dd>{{participant?.Usuario.DataCadastro | date: 'dd/MM/yyyy' }}</dd>
+</dl>

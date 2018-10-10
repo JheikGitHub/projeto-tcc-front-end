@@ -44,9 +44,9 @@ export class LoginComponent implements OnInit {
             this.service.setUser(data.UserName, data.Perfil);
             this.spinner.hide();
 
-            if (data.Perfil.toLocaleLowerCase() == "aluno") {
+            if (data.Perfil.toLowerCase() == "aluno") {
               this.route.navigate(['/participante-dashboard']);
-            } else if (data.Perfil.toLocaleLowerCase() == "funcionario") {
+            } else if (data.Perfil.toLowerCase() == "funcionario") {
               this.route.navigate(['/funcionario-dashboard'])
             } else {
               this.route.navigate(['/admin-dashboard'])

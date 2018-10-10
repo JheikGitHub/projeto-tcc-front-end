@@ -1,0 +1,17 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-konoha alterar-foto" *ngIf="!msgAlert">
+
+    <label for="fotoPerfil">Selecione sua foto</label>
+
+    <div class="preview-image">
+        <label for="fotoPerfil" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
+        <input (change)="onFileChange($event)" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
+        <img id="previewImage" />
+        <label for="fotoPerfil" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
+            outra imagem</label>
+    </div>
+
+    <button [disabled]="form.invalid" type="submit" class="btn btn-blue">Alterar foto</button>
+</form>
+
+<p class="alert-float success" *ngIf="msgAlert"><i class="mdi mdi-check-circle-outline"></i><i class="mdi mdi-close"
+        onclick="this.parentElement.style.display='none';"></i>{{ msgAlert }}</p>
