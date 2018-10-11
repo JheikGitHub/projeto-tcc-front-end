@@ -1,0 +1,35 @@
+<h1 class="title-dashboard"><i class="mdi mdi-square-edit-outline"></i>Minhas Inscrições</h1>
+
+
+<p *ngIf="events.length < 1" class="mensagem information">
+  <i class="mdi mdi-information-outline"></i>No momento você não está inscrito em nenhum evento.</p>
+
+<div class="lista-agendas-eventos">
+  <div class="item-agenda-eventos" *ngFor="let event of events">
+    <figure>
+      <img src="http://localhost:51990/Imagens/Eventos/{{event.PathImagem}}" [alt]="event.Nome">
+    </figure>
+    <a class="nome-agenda" href="../../evento.html" title="Ver evento">{{event.Nome}}</a>
+    <div class="link-opcoes">
+      <a class="red" title="Cancelar minha inscrição neste evento" onclick="openModal()" (click)="cancelarInscricao(event)"><i
+          class="mdi mdi-close"></i></a>
+      <a href="http://localhost:4200/evento.html" class="blue" title="Visualizar evento"><i class="mdi mdi-eye"></i></a>
+      <a href="http://localhost:4200/evento.html#topicos-discussao" class="yellow" title="Participar do fórum do evento"><i
+          class="mdi mdi-comment"></i></a>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
+
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <p><i class="mdi mdi-information-outline"></i>Deseja cancelar sua inscrição no evento {{eventoDesinscricao?.Nome}}</p>
+    <button class="btn-modal yes" onclick="closeModal()" (click)="confirmarDesinscricao()">Sim</button><button class="btn-modal no"
+      onclick="closeModal()">Não</button>
+  </div>
+</div>
+
+<p class="alert-float info" *ngIf="mensagem"><i class="mdi mdi-information-outline"></i><i class="mdi mdi-close"
+    onclick="this.parentElement.style.display='none';"></i>{{ mensagem }}</p>

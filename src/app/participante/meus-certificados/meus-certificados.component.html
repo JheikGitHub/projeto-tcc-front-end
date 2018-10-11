@@ -1,0 +1,20 @@
+<h1 class="title-dashboard"><i class="mdi mdi-file-pdf"></i>Meus Certificados</h1>
+
+<h4>{{message}}</h4>
+
+<p *ngIf="events.length < 1" class="mensagem information"><i class="mdi mdi-information-outline"></i>Você não possui nenhum certificado de confimação de presença.</p>
+
+<div class="lista-agendas-eventos">
+    <div class="item-agenda-eventos" *ngFor="let event of events">
+        <figure>
+            <img src="http://localhost:51990/imagens/eventos/{{event.PathImagem}}" [alt]="event.Nome">
+        </figure>
+        <a class="nome-agenda" href="../../evento.html" title="Ver evento">{{event.Nome}}</a>
+        <div class="link-opcoes">
+            <a class="red" (click)="gerarPdf(event.Id)" title="Visualizar em PDF"><i class="mdi mdi-file-pdf"></i></a>
+            <a class="blue" (click)="downloadPdf(event.Id)" download title="Download do certificado"><i class="mdi mdi-download"></i></a>
+        </div>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>

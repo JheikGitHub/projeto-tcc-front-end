@@ -10,11 +10,15 @@ import { ParticipanteAlterarSenhaComponent } from './alterar-senha/alterar-senha
 import { UserModule } from '../user/user.module';
 import { ParticipanteAlterarDadosComponent } from './alterar-dados/alterar-dados.component';
 import { ParticipanteAlterarFotoComponent } from './alterar-foto/alterar-foto.component';
+import { MinhasInscricoesComponent } from './minhas-inscricoes/minhas-inscricoes.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { MeusCertificadosComponent } from './meus-certificados/meus-certificados.component';
 
 @NgModule({
   imports: [
     CommonModule,
     UserModule,
+    NgxSpinnerModule,
     ParticipanteRoutingModule
   ],
   declarations: [
@@ -23,7 +27,9 @@ import { ParticipanteAlterarFotoComponent } from './alterar-foto/alterar-foto.co
     ParticipanteComponent,
     HomeParticipanteComponent,
     ParticipanteAlterarDadosComponent,
-    ParticipanteAlterarFotoComponent
+    ParticipanteAlterarFotoComponent,
+    MinhasInscricoesComponent,
+    MeusCertificadosComponent
   ],
   providers: [ParticipanteService]
 })
