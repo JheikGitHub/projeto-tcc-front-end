@@ -5,8 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../../user/user';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { GerarCertificado, ParticipanteService } from '../participante.service';
-import { Evento } from '../../events/evento';
+
 import { saveAs } from 'file-saver';
+import { Evento } from '../../evento/evento';
 
 @Component({
   selector: 'app-meus-certificados',

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home-funcionario',
-  templateUrl: './home-funcionario.component.html',
-  styleUrls: ['./home-funcionario.component.css']
+  templateUrl: './home-funcionario.component.html'
 })
 export class HomeFuncionarioComponent implements OnInit {
 

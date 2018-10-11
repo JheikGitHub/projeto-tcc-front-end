@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeFuncionarioComponent } from './home-funcionario.component';
+import { AlterarDadosComponent } from './alterar-dados.component';
 
-describe('HomeFuncionarioComponent', () => {
-  let component: HomeFuncionarioComponent;
-  let fixture: ComponentFixture<HomeFuncionarioComponent>;
+describe('AlterarDadosComponent', () => {
+  let component: AlterarDadosComponent;
+  let fixture: ComponentFixture<AlterarDadosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeFuncionarioComponent ]
+      declarations: [ AlterarDadosComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeFuncionarioComponent);
+    fixture = TestBed.createComponent(AlterarDadosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

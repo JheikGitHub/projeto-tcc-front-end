@@ -1,0 +1,26 @@
+<h1 class="title-dashboard"><i class="mdi mdi-archive"></i>Meus Dados</h1>
+
+<a [routerLink]="['/funcionario-dashboard/alterar-foto']" routerLinkActive="router-link-active" class="alterar-dados foto"><i
+    class="mdi mdi-account"></i>Alterar minha foto</a>
+<a [routerLink]="['/funcionario-dashboard/alterar-senha']" routerLinkActive="router-link-active" class="alterar-dados senha"><i
+    class="mdi mdi-lock"></i>Alterar minha senha</a>
+<a [routerLink]="['/funcionario-dashboard/alterar-dados']" routerLinkActive="router-link-active" class="link-editar-dados2"><i
+    class="mdi mdi-pencil"></i>Editar meus dados</a>
+
+<dl class="page-details">
+  <dt>Nome: </dt>
+  <dd>{{user?.Nome}}</dd>
+  <dt>CPF: </dt>
+  <dd>{{user?.Cpf}}</dd>
+  <dt>Data de Nascimento:</dt>
+  <dd>{{user?.DataNascimento | date: 'dd/MM/yyyy'}}</dd>
+  <dt>Genêro: </dt>
+  <ng-container *ngIf="user?.Genero == 'M'; else elseTemplate">
+    <dd>Masculino</dd>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <dd>Feminino</dd>
+  </ng-template>
+  <dt>Cadastrado(a) em: </dt>
+  <dd>{{user?.DataCadastro| date: 'dd/MM/yyyy'}}</dd>
+</dl>

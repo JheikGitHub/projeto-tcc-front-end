@@ -7,10 +7,10 @@
     </app-message-erro>
   </div>
 
-  <div *ngIf="form.controls['Username'].invalid || form.controls['Username'].touched">
-    <app-message-erro *ngIf="form.get('Username').errors?.required" text="Campo nome é obrigatório.">
+  <div *ngIf="form.controls['UserName'].invalid || form.controls['UserName'].touched">
+    <app-message-erro *ngIf="form.get('UUserNamesername').errors?.required" text="Campo nome é obrigatório.">
     </app-message-erro>
-    <app-message-erro *ngIf="form.get('Username').errors?.maxlength" text="permitido até 100 caracteres.">
+    <app-message-erro *ngIf="form.get('UserName').errors?.maxlength" text="permitido até 100 caracteres.">
     </app-message-erro>
   </div>
 
@@ -36,8 +36,8 @@
   <label for="nome" class="label-k">Nome Completo</label>
   <input formControlName="Nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite seu nome completo">
 
-  <label for="Username" class="label-k">Nome Completo</label>
-  <input formControlName="Username" type="text" name="Username" id="Username" class="input-k" placeholder="Nome de usuário">
+  <label for="UserName" class="label-k">Nome de Usuário</label>
+  <input formControlName="UserName" type="text" name="UserName" id="UserName" class="input-k" placeholder="Nome de usuário">
 
   <label for="dataNascimento" class="label-k">Data de Nascimento</label>
   <input formControlName="DataNascimento" type="text" name="dataNascimento" id="dataNascimento" class="input-k"

@@ -7,8 +7,8 @@
         <div class="options">
             <button id="sair" class="btnSair" (click)="logout()" onmousemove="mudarTextoBotao()" onmouseout="voltarTextoBotao()"><i class="mdi mdi-circle"></i>Conectado</button>
             <a routerLink='/participante-dashboard' *ngIf="user.Perfil == 'Aluno' || user.Perfil == 'Participante'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
-            <a routerLink='' *ngIf="user.Perfil == 'Funcionario'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
-            <a routerLink='' *ngIf="user.Perfil == 'Admin'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
+            <a routerLink='/funcionario-dashboard' *ngIf="user.Perfil == 'Funcionario'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
+            <a routerLink='/admin-dashboard' *ngIf="user.Perfil == 'Admin'"><i class="mdi mdi-view-dashboard"></i>Meu Painel de Controle</a>
         </div>
     </div>
     <div class="links" *ngIf="!user">

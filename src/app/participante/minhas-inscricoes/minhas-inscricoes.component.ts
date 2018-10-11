@@ -4,8 +4,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 import { User } from '../../user/user';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Evento } from '../../events/evento';
+
 import { ParticipanteService } from '../participante.service';
+import { Evento } from '../../evento/evento';
 
 @Component({
   selector: 'app-minhas-inscricoes',

@@ -27,8 +27,10 @@ export class AlterarDadosComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.routerActivated.snapshot.data['user'];
+    
     this.form = this.formBuild.group({
       Nome: [this.user.Nome, [Validators.required, Validators.maxLength(100)]],
+      UserName: [this.user.UserName, [Validators.required, Validators.maxLength(100)]],
       DataNascimento: [this.user.DataNascimento.slice(0, 10), [Validators.required, Validators.pattern('[0-9]{4}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{2}')]],
       Cpf: [this.user.Cpf, [Validators.required, Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
       Genero: [this.user.Genero, Validators.required]
