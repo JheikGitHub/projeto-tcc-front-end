@@ -12,12 +12,17 @@ import { GetUserResolve } from './get-user.resolve';
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { AlterarDadosComponent } from './alterar-dados/alterar-dados.component';
 import { AlterarFotoComponent } from './alterar-foto/alterar-foto.component';
+import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
+import { SharedModule } from '../shared/shared.module';
+import { CriarUsuarioComponent } from './criar-usuario/criar-usuario.component';
+import { DetalhesUsuarioComponent } from './detalhes-usuario/detalhes-usuario.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     RouterModule,
+    SharedModule,
     ErrorsModule,
     ReactiveFormsModule
   ],
@@ -26,14 +31,18 @@ import { AlterarFotoComponent } from './alterar-foto/alterar-foto.component';
     RecuperaSenhaComponent,
     AlterarSenhaComponent,
     AlterarDadosComponent,
-    AlterarFotoComponent
+    AlterarFotoComponent,
+    ListaUsuariosComponent,
+    CriarUsuarioComponent,
+    DetalhesUsuarioComponent
   ],
   exports: [
     EmailRecuperarSenhaComponent,
     RecuperaSenhaComponent,
     AlterarSenhaComponent,
     AlterarFotoComponent,
-    AlterarDadosComponent
+    AlterarDadosComponent,
+    ListaUsuariosComponent
   ],
   providers: [
     UserService,

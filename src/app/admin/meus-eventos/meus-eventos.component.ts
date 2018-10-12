@@ -8,10 +8,9 @@ import { EventoService } from '../../evento/evento.service';
 
 @Component({
   selector: 'app-meus-eventos',
-  templateUrl: './meus-eventos.component.html',
-  styleUrls: ['./meus-eventos.component.css']
+  templateUrl: './meus-eventos.component.html'
 })
-export class FuncionarioMeusEventosComponent implements OnInit {
+export class AdminMeusEventosComponent implements OnInit {
   eventos: Evento[] = [];
   user: User;
 
@@ -39,7 +38,7 @@ export class FuncionarioMeusEventosComponent implements OnInit {
       this.eventService.deleteEvento(idEvento).subscribe(
         () => {
           alert('Agenda Excluida com sucesso!');
-          this.router.navigate(['/funcionario-dashboard/minhas-agendas']);
+          this.router.navigate(['/admin-dashboard/minhas-agendas']);
         },
         (err: HttpErrorResponse) => {
           if (err.status == 401) {

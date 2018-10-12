@@ -1,0 +1,39 @@
+<h1 class="title-dashboard"><i class="mdi mdi-book"></i>Agendas de Eventos</h1>
+<a [routerLink]="['/admin-dashboard/criar-agenda']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
+    class="mdi mdi-book-plus"></i>Criar nova agenda</a>
+
+<ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
+
+<!-- <form action="" class="form-pesquisa">
+  <input type="text" name="paramentoBusca" id="parametoBusca" placeholder="Digite o nome de uma agenda de eventos">
+  <button type="submit"><i class="mdi mdi-magnify"></i></button>
+</form> -->
+
+<div class="lista-agendas-eventos">
+
+  {{message}}
+
+  <div class="item-agenda-eventos" *ngFor="let agenda of agendas">
+    <figure>
+      <img src="http://localhost:51990/Imagens\Agenda/{{agenda.PathImagem}}" alt="Imagem da agenda">
+    </figure>
+    <a class="nome-agenda" href="../../evento.html" title="Ver evento">{{ agenda.Nome }} </a>
+    <div class="link-opcoes">
+      <a [routerLink]="['/admin-dashboard/criar-evento']" routerLinkActive="router-link-active" class="green"
+        title="Criar evento na agenda">
+        <i class="mdi mdi-plus"></i>
+      </a>
+      <a [routerLink]="['detalhes-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="aqua" title="Detalhar Agenda">
+        <i class="mdi mdi-view-list"></i>
+      </a>
+      <a [routerLink]="['/admin-dashboard/editar-agenda/',agenda.Id]" routerLinkActive="router-link-active"
+        class="blue" title="Editar agenda">
+        <i class="mdi mdi-pencil"></i>
+      </a>
+      <a (click)="deleteAgenda(agenda.Id)" class="red" title="Deletar Agenda">
+        <i class="mdi mdi-delete-empty"></i>
+      </a>
+    </div>
+  </div>
+
+</div>

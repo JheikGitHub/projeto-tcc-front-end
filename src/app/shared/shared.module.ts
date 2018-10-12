@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MenuVoltarComponent } from './menu-voltar/menu-voltar.component';
 import { MenuHomeComponent } from './menu-home/menu-home.component';
 import { FooterComponent } from './footer/footer.component';
+import { BotaoCarregarMaisComponent } from './botao-carregar-mais/botao-carregar-mais.component';
 
 @NgModule({
   imports: [
@@ -14,12 +15,14 @@ import { FooterComponent } from './footer/footer.component';
   declarations: [
     MenuVoltarComponent,
     MenuHomeComponent,
-    FooterComponent
+    FooterComponent,
+    BotaoCarregarMaisComponent
   ],
   exports: [
     MenuHomeComponent,
     FooterComponent,
-    MenuVoltarComponent
+    MenuVoltarComponent,
+    BotaoCarregarMaisComponent
   ]
 })
 export class SharedModule { }

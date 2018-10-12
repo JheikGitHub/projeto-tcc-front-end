@@ -7,11 +7,10 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { AgendaService } from '../../agenda/agenda.service';
 
 @Component({
-  selector: 'app-funcionario-minhas-agenda',
-  templateUrl: './minhas-agenda.component.html',
-  styleUrls: ['./minhas-agenda.component.css']
+  selector: 'app-admin-minhas-agenda',
+  templateUrl: './minhas-agenda.component.html'
 })
-export class FuncionarioMinhasAgendaComponent implements OnInit {
+export class AdminMinhasAgendaComponent implements OnInit {
 
   private user: User;
   private agendas: Agenda[] = [];

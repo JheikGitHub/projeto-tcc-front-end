@@ -1,0 +1,29 @@
+<h1 class="title-dashboard"><i class="mdi mdi-star"></i>Meus Eventos</h1>
+<a [routerLink]="['/admin-dashboard/criar-evento']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
+    class="mdi mdi-plus-box"></i>Criar novo evento</a>
+
+<div action="" class="form-pesquisa">
+  <input type="text" name="paramentoBusca" id="parametoBusca" placeholder="Digite o nome ou tipo do evento"><button
+    type="submit"><i class="mdi mdi-magnify"></i></button>
+</div>
+
+<div class="lista-agendas-eventos">
+
+  <div class="item-agenda-eventos" *ngFor="let evento of eventos">
+    <figure>
+      <img src="http://localhost:51990/Imagens/Eventos/{{evento.PathImagem}}" alt="Imagem da agenda">
+    </figure>
+    <a class="nome-agenda" href="../../evento.html" title="Ver evento">{{evento.Nome}}</a>
+
+    <div class="link-opcoes">
+      <a [routerLink]="['/admin-dashboard/confirmacao-presenca',evento.Id]" routerLinkActive="router-link-active"
+        class="green" title="Confirmar presenças"><i class="mdi mdi-account-multiple-check"></i></a>
+      <a class="gray" title="Qr Code do Evento" onclick="openModalQrCode()"><i class="mdi mdi-qrcode"></i></a>
+      <a href="topicos-discussao.html" class="yellow" title="Tópicos de discussão"><i class="mdi mdi-comment"></i></a>
+      <a [routerLink]="['detalhes-evento/',evento.Id]" routerLinkActive="router-link-active" class="aqua" title="Detalhar Evento"><i
+          class="mdi mdi-view-list"></i></a>
+      <a [routerLink]="['/admin-dashboard/editar-evento/',evento.Id]" routerLinkActive="router-link-active" class="blue"
+        title="Editar Evento"><i class="mdi mdi-pencil"></i></a>
+      <a (click)="delete(evento.Id)" class="red" title="Deletar Evento"><i class="mdi mdi-delete-empty"></i></a>
+    </div>
+  </div>

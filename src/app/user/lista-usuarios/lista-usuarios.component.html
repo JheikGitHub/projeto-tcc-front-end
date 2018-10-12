@@ -1,0 +1,21 @@
+
+<!-- <form class="form-pesquisa">
+  <input type="text" name="paramentoBusca" id="parametoBusca" placeholder="Pesquisar nome, tipo ou CPF do usuário">
+  <button type="submit"><i class="mdi mdi-magnify"></i></button>
+</form> -->
+
+<div class="usuarios">
+  <div class="usuario" *ngFor="let user of users">
+    <figure>
+      <img src="http://localhost:51990/Imagens/Usuario/{{user?.PathFotoPerfil}}" alt="foto perfil">
+    </figure>
+    <span class="nome-usuario"><i class="mdi mdi-account"></i>{{user.Nome}}</span>
+    <span class="tipo-usuario"><i class="mdi mdi-account-settings-variant"></i>{{user.Perfil}}</span>
+    <div class="opcoes">
+      <a ><i class="mdi mdi-pencil"></i>Editar</a>
+      <a ><i class="mdi mdi-view-list"></i>Detalhar</a>
+      <a href=""><i class="mdi mdi-delete-empty"></i>Excluir</a>
+    </div>
+  </div>
+  <app-botao-carregar-mais [hasMore]="hasMore" (click)="load()"></app-botao-carregar-mais>
+</div>

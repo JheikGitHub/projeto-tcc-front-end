@@ -1,0 +1,6 @@
+<div  *ngIf="hasMore; else elseTemplate">
+  <button class="btn btn-blue">Carregar mais</button>
+</div>
+<ng-template #elseTemplate>
+  <p>Nâo possuir mais dados para ser carregados</p>
+</ng-template>
