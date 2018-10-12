@@ -1,0 +1,60 @@
+<form class="form-konoha form-responsive" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <div>
+    <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
+      <app-message-erro *ngIf="form.get('nome').errors?.required" text=" campo nome é obrigátorio.">
+      </app-message-erro>
+      <app-message-erro *ngIf="form.get('nome').errors?.maxlength" text="limite de caracteres 100.">
+      </app-message-erro>
+    </div>
+    <div *ngIf="submit && form.controls['dataInicio'].invalid || form.controls['dataInicio'].touched">
+      <app-message-erro *ngIf="form.get('dataInicio').errors?.required" text=" campo data de inicio é obrigátorio.">
+      </app-message-erro>
+    </div>
+    <div *ngIf="submit && form.controls['dataEncerramento'].invalid || form.controls['dataEncerramento'].touched">
+      <app-message-erro *ngIf="form.get('dataEncerramento').errors?.required" text=" campo data encerramento é obrigátorio.">
+      </app-message-erro>
+    </div>
+    <div *ngIf="submit && form.controls['descricao'].invalid || form.controls['descricao'].touched">
+      <app-message-erro *ngIf="form.get('descricao').errors?.required" text=" campo descrição é obrigátorio.">
+      </app-message-erro>
+      <app-message-erro *ngIf="form.get('descricao').errors?.maxlength" text="limite de caracteres 500.">
+      </app-message-erro>
+    </div>
+
+    <div *ngIf="submit && form.controls['imagem'].invalid || form.controls['imagem'].touched">
+      <app-message-erro *ngIf="form.get('imagem').errors?.required" text=" imagem do evento é obrigátorio.">
+      </app-message-erro>
+    </div>
+  </div>
+
+  <label for="nome" class="label-k">Nome da agenda</label>
+  <input formControlName="nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite o nome da agenda">
+
+  <label for="dataInicio" class="label-k">Data de inicio</label>
+  <input formControlName="dataInicio" type="text" name="dataInicio" [value]="agenda.DataInicio | date:'dd/MM/yyyy'" id="dataInicio"
+    class="input-k" placeholder="dia/mês/ano">
+
+  <label for="dataEncerramento" class="label-k">Data de encerramento</label>
+  <input formControlName="dataEncerramento" type="text" name="dataEncerramento" [value]="agenda.DateEncerramento | date:'dd/MM/yyyy'"
+    id="
+    dataEncerramento" class="input-k" placeholder="dia/mês/ano">
+
+  <label for="descricao" class="label-k">Descrição</label>
+  <textarea formControlName="descricao" name="descricao" id="descricao" class="text-area-k" placeholder="Discorra sobre a agenda"
+    maxlength="250"></textarea>
+    
+<label>Imagem atual da agenda</label>
+  <div class="preview-image">
+      <figure> <img src="http://localhost:51990/Imagens/Agenda/{{agenda?.PathImagem}}" alt="imagem" width="200px" height="200px"></figure>
+    <label for="imagem" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i>Altera imagem</label>
+    <input (change)="onFileChange($event)" #fileInput type="file" name="imagem" id="imagem" onchange="loadFile()">
+    <img id="previewImage" />
+    <label for="imagem" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
+      outra imagem</label>
+    <span id="info-image-preview"><i class="mdi mdi-information-variant"></i>Recomendamos uma imagem de tamanho:
+      993x304 pixels</span>
+  </div>
+  <button [disabled]="form.invalid" type="submit" class="btn btn-blue">Criar agenda</button>
+
+</form>

@@ -1,0 +1,13 @@
+<dl class="page-details">
+    <dt>Nome da Agenda: </dt>
+    <dd>{{agenda.Nome}}</dd>
+    <dt>Data inicio: </dt>
+    <dd>{{agenda.DataInicio | date:'dd/MM/yyyy'}}</dd>
+    <dt>Data encerramento: </dt>
+    <dd>{{agenda.DateEncerramento | date:'dd/MM/yyyy'}}</dd>
+    <dt>Descrição:</dt>
+    <dd>{{agenda.Descricao}}</dd>
+    <dt>Imagem da agenda:</dt>
+    <dl><img src="http://localhost:51990/Imagens\Agenda/{{agenda.PathImagem}}"></dl>
+  
+  </dl>

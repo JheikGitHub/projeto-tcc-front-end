@@ -20,7 +20,10 @@ import { HomeModule } from './home/home.module';
     AccountModule,
     AppRoutingModule
   ],
-  providers: [AuthGuard,UsuarioGuard],
+  providers: [
+    AuthGuard,
+    UsuarioGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

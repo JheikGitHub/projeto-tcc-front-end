@@ -8,7 +8,7 @@ import { UserService } from '../../user/user.service';
   templateUrl: './meus-dados.component.html',
   styleUrls: ['./meus-dados.component.css']
 })
-export class MeusDadosComponent implements OnInit {
+export class FuncionarioMeusDadosComponent implements OnInit {
 
   user: User;
 

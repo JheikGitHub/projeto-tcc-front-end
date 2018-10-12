@@ -4,20 +4,43 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeFuncionarioComponent } from './home-funcionario/home-funcionario.component';
 import { FuncionarioComponent } from './funcionario.component';
 import { GetUserResolve } from '../user/get-user.resolve';
-import { MeusDadosComponent } from './meus-dados/meus-dados.component';
-import { FuncionarioAlterarDadosComponent } from './alterar-dados/alterar-dados.component';
-import { FuncionarioAlterarFotoComponent } from './alterar-foto/alterar-foto.component';
-import { FuncionarioAlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
+
+import { FuncionarioMinhasAgendaComponent } from './minhas-agenda/minhas-agenda.component';
+import { FuncionarioMeusEventosComponent } from './meus-eventos/meus-eventos.component';
+import { BuscaEventoResolve } from '../evento/busca-evento.resolve';
+import { FuncionarioCriarEventoComponent } from './meus-eventos/criar-evento/criar-evento.component';
+import { FuncionarioAlterarEventoComponent } from './meus-eventos/alterar-evento/alterar-evento.component';
+import { FuncionarioConfirmaPresencaComponent } from './meus-eventos/confirma-presenca/confirma-presenca.component';
+import { FuncionarioDetalhesEventoComponent } from './meus-eventos/detalhes-evento/detalhes-evento.component';
+import { FuncionarioAlterarSenhaComponent } from './meus-dados/alterar-senha/alterar-senha.component';
+import { FuncionarioAlterarFotoComponent } from './meus-dados/alterar-foto/alterar-foto.component';
+import { FuncionarioAlterarDadosComponent } from './meus-dados/alterar-dados/alterar-dados.component';
+import { FuncionarioMeusDadosComponent } from './meus-dados/meus-dados.component';
+import { FuncionarioCriarAgendaComponent } from './minhas-agenda/criar-agenda/criar-agenda.component';
+import { FuncionarioAlterarAgendaComponent } from './minhas-agenda/alterar-agenda/alterar-agenda.component';
+import { FuncionarioDetalhesAgendaComponent } from './minhas-agenda/detalhes-agenda/detalhes-agenda.component';
+import { BuscaAgendaResolve } from '../agenda/busca-agenda.resolve';
+
+
 
 const routes: Routes = [
   {
     path: '', component: FuncionarioComponent, resolve: { user: GetUserResolve },
     children: [
       { path: '', component: HomeFuncionarioComponent },
-      { path: 'meus-dados', component: MeusDadosComponent },
+      { path: 'meus-dados', component: FuncionarioMeusDadosComponent },
+      { path: 'meus-eventos', component: FuncionarioMeusEventosComponent, resolve: { user: GetUserResolve } },
+      { path: 'minhas-agendas', component: FuncionarioMinhasAgendaComponent, resolve: { user: GetUserResolve } },
+      { path: 'criar-evento', component: FuncionarioCriarEventoComponent },
+      { path: 'criar-agenda', component: FuncionarioCriarAgendaComponent, resolve: { user: GetUserResolve } },
       { path: 'alterar-senha', component: FuncionarioAlterarSenhaComponent },
       { path: 'alterar-foto', component: FuncionarioAlterarFotoComponent },
       { path: 'alterar-dados', component: FuncionarioAlterarDadosComponent, resolve: { user: GetUserResolve } },
+      { path: 'editar-evento/:id', component: FuncionarioAlterarEventoComponent, resolve: { evento: BuscaEventoResolve } },
+      { path: 'editar-agenda/:id', component: FuncionarioAlterarAgendaComponent, resolve: { agenda: BuscaAgendaResolve } },
+      { path: 'confirmacao-presenca/:id', component: FuncionarioConfirmaPresencaComponent },
+      { path: 'meus-eventos/detalhes-evento/:id', component: FuncionarioDetalhesEventoComponent },
+      { path: 'minhas-agendas/detalhes-agenda/:id', component: FuncionarioDetalhesAgendaComponent }
     ]
   }
 ];
