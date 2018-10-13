@@ -1,4 +1,3 @@
-
 <!-- <form class="form-pesquisa">
   <input type="text" name="paramentoBusca" id="parametoBusca" placeholder="Pesquisar nome, tipo ou CPF do usuário">
   <button type="submit"><i class="mdi mdi-magnify"></i></button>
@@ -11,10 +10,14 @@
     </figure>
     <span class="nome-usuario"><i class="mdi mdi-account"></i>{{user.Nome}}</span>
     <span class="tipo-usuario"><i class="mdi mdi-account-settings-variant"></i>{{user.Perfil}}</span>
+
     <div class="opcoes">
-      <a ><i class="mdi mdi-pencil"></i>Editar</a>
-      <a ><i class="mdi mdi-view-list"></i>Detalhar</a>
-      <a href=""><i class="mdi mdi-delete-empty"></i>Excluir</a>
+      <a [routerLink]="['/admin-dashboard/usuario/alterar',user.Id]" routerLinkActive="router-link-active">
+        <i class="mdi mdi-pencil"></i>Editar</a>
+
+      <a [routerLink]="['/admin-dashboard/usuario/detalhes',user.Id]" routerLinkActive="router-link-active"><i class="mdi mdi-view-list"></i>Detalhar</a>
+      
+      <a (click)="delete(user.Id)"><i class="mdi mdi-delete-empty"></i>Excluir</a>
     </div>
   </div>
   <app-botao-carregar-mais [hasMore]="hasMore" (click)="load()"></app-botao-carregar-mais>

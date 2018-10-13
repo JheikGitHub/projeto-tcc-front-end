@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
@@ -15,19 +15,17 @@ import { LoginService } from '../../account/login/login.service';
 export class AlterarDadosComponent implements OnInit {
 
   form: FormGroup;
-  user: User = new User();
+  @Input() user: User;
   msgAlert: string = null;
 
 
-  constructor(private routerActivated: ActivatedRoute,
+  constructor(
     private formBuild: FormBuilder,
     private serviceUser: UserService,
-    private token:LoginService,
+    private token: LoginService,
     private route: Router) { }
 
   ngOnInit() {
-    this.user = this.routerActivated.snapshot.data['user'];
-    
     this.form = this.formBuild.group({
       Nome: [this.user.Nome, [Validators.required, Validators.maxLength(100)]],
       UserName: [this.user.UserName, [Validators.required, Validators.maxLength(100)]],

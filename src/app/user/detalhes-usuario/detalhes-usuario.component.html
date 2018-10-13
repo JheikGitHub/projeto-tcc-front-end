@@ -1,3 +1,17 @@
-<p>
-  detalhes-usuario works!
-</p>
+<dl class="page-details">
+  <dt>Nome: </dt>
+  <dd>{{user?.Nome}}</dd>
+  <dt>CPF: </dt>
+  <dd>{{user?.Cpf}}</dd>
+  <dt>Data de Nascimento:</dt>
+  <dd>{{user?.DataNascimento | date: 'dd/MM/yyyy'}}</dd>
+  <dt>Genêro: </dt>
+  <ng-container *ngIf="user?.Genero == 'M'; else elseTemplate">
+    <dd>Masculino</dd>
+  </ng-container>
+  <ng-template #elseTemplate>
+    <dd>Feminino</dd>
+  </ng-template>
+  <dt>Cadastrado(a) em: </dt>
+  <dd>{{user?.DataCadastro| date: 'dd/MM/yyyy'}}</dd>
+</dl>

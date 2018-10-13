@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -15,7 +17,9 @@ export class ListaUsuariosComponent implements OnInit {
   pageSize: number = 1;
   pageIndex: number = 2;
 
-  constructor(private usuarioService: UserService) { }
+  constructor(
+    private usuarioService: UserService,
+    private router:Router) { }
 
   ngOnInit() {
     this.usuarioService.getAllUser(this.pageSize, this.pageIndex).subscribe(
@@ -38,5 +42,26 @@ export class ListaUsuariosComponent implements OnInit {
     )
   }
 
+  delete(idUsuario) {
+    let respota = confirm("Deseja realmente excluir esse usuario?")
+    if (respota) {
+      this.usuarioService.excluiUsuario(idUsuario).subscribe(
+        () => {
+          alert('Usuário excluido com sucesso!');
+          this.router.navigate(['/admin-dashboard']);
+        },
+        (err: HttpErrorResponse) => {
+          if (err.status == 401) {
+            alert("Usuario invalido.");
+            this.router.navigate(['/login'])
+          }
+          else
+            alert("Falha ao excluir usuario.");
+        }
+      );
+
+    }
+    
+  }
 
 }

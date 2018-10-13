@@ -1,4 +1,8 @@
 <h1 class="title-dashboard"><i class="mdi mdi-account-group"></i>Usuários</h1>
-<a href="cadastrar-usuario.html" class="btn-criar-agenda"><i class="mdi mdi-account-plus"></i>Cadastrar usuário</a>
+<a [routerLink]="['/admin-dashboard/usuario/criar-usuario']" routerLinkActive="router-link-active"  class="btn-criar-agenda"><i class="mdi mdi-account-plus"></i>Cadastrar usuário</a>
 
-<app-lista-usuarios></app-lista-usuarios>
+<app-lista-usuarios>
+</app-lista-usuarios>
+<router-outlet>
+    
+</router-outlet>

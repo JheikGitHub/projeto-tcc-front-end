@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../user/user';
+import { User } from '../../../user/user';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-meus-dados',
-  templateUrl: './meus-dados.component.html',
-  styleUrls: ['./meus-dados.component.css']
+  selector: 'app-alterar-dados-usuario',
+  templateUrl: './alterar-dados-usuario.component.html',
+  styleUrls: ['./alterar-dados-usuario.component.css']
 })
-export class FuncionarioMeusDadosComponent implements OnInit {
+export class AlterarDadosUsuarioComponent implements OnInit {
 
   private usuario: User;
+  
   constructor(private routeActivated: ActivatedRoute) { }
 
   ngOnInit() {

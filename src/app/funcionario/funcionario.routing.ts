@@ -28,7 +28,7 @@ const routes: Routes = [
     path: '', component: FuncionarioComponent, resolve: { user: GetUserResolve },
     children: [
       { path: '', component: HomeFuncionarioComponent },
-      { path: 'meus-dados', component: FuncionarioMeusDadosComponent },
+      { path: 'meus-dados', component: FuncionarioMeusDadosComponent, resolve: { user: GetUserResolve } },
       { path: 'meus-eventos', component: FuncionarioMeusEventosComponent, resolve: { user: GetUserResolve } },
       { path: 'minhas-agendas', component: FuncionarioMinhasAgendaComponent, resolve: { user: GetUserResolve } },
       { path: 'criar-evento', component: FuncionarioCriarEventoComponent },

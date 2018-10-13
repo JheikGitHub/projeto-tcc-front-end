@@ -14,6 +14,25 @@ export class UserService {
         private token: LoginService
     ) { }
 
+    buscaUsuario(id) {
+        return this.http.get<User>(URL_API + "/api/usuario/busca-por-id/" + id, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + this.token.getToken()
+            })
+        });
+    }
+
+    excluiUsuario(idUsuario) {
+        return this.http.delete(URL_API + "/api/usuario/remove/" + idUsuario,
+            {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': 'bearer ' + this.token.getToken()
+                })
+            });
+    }
+
     getUserCpf(cpf: object) {
         return this.http.post(URL_API + "/api/usuario/busca-por-cpf/", cpf,
             {

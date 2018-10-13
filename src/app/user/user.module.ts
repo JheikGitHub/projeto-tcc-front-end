@@ -16,6 +16,7 @@ import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.componen
 import { SharedModule } from '../shared/shared.module';
 import { CriarUsuarioComponent } from './criar-usuario/criar-usuario.component';
 import { DetalhesUsuarioComponent } from './detalhes-usuario/detalhes-usuario.component';
+import { GetUserIdResolve } from './get-user-id.resolve';
 
 @NgModule({
   imports: [
@@ -42,11 +43,14 @@ import { DetalhesUsuarioComponent } from './detalhes-usuario/detalhes-usuario.co
     AlterarSenhaComponent,
     AlterarFotoComponent,
     AlterarDadosComponent,
-    ListaUsuariosComponent
+    ListaUsuariosComponent,
+    CriarUsuarioComponent,
+    DetalhesUsuarioComponent
   ],
   providers: [
     UserService,
     GetUserResolve,
+    GetUserIdResolve,
     RecuperaSenhaService
   ]
 
