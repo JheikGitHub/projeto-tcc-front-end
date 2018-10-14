@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginService } from '../account/login/login.service';
-import { Funcionario } from '../funcionario/funcionario';
 import { Evento } from './evento';
 
 const URL_API = 'http://localhost:51990';
@@ -61,13 +60,9 @@ export class EventoService {
     });
   }
 
-  moderadoresEventos(Eventoid: number) {
-    return this.http.get<Funcionario[]>(URL_API + "/api/evento/todos-moderadores/" + Eventoid, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': 'bearer ' + this.token.getToken()
-      })
-    });
+  moderadoresEvento(Eventoid: number) {
+    return this.http.get(URL_API + "/api/evento/busca-moderadores-evento/" + Eventoid
+    );
   }
 
   detailsEvent(id: number) {

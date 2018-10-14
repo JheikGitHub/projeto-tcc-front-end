@@ -76,8 +76,8 @@ export class AgendaService {
         return this.http.get<Evento>(URL_API + 'evento/busca-por-nome/' + nomeEvento)
     }
 
-    verificarInscricao(idParticipante: number, idEvento: number): Observable<boolean> {
-        return this.http.get<boolean>(URL_API + 'usuario/verificacao-inscricao/' + idParticipante + '/' + idEvento)
+    verificarInscricao(subscribe: Subscribe): Observable<boolean> {
+        return this.http.post<boolean>(URL_API + 'usuario/verificar-inscricao', subscribe)
     }
 
     realizarInscricao(inscricao: Subscribe) {

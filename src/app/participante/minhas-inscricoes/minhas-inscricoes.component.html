@@ -1,6 +1,8 @@
 <h1 class="title-dashboard"><i class="mdi mdi-square-edit-outline"></i>Minhas Inscrições</h1>
 
-
+<p class="alert-float info" *ngIf="mensagem"><i class="mdi mdi-information-outline"></i><i class="mdi mdi-close"
+    onclick="this.parentElement.style.display='none';"></i>{{mensagem}}</p>
+    
 <p *ngIf="events.length < 1" class="mensagem information">
   <i class="mdi mdi-information-outline"></i>No momento você não está inscrito em nenhum evento.</p>
 
@@ -13,8 +15,8 @@
     <div class="link-opcoes">
       <a class="red" title="Cancelar minha inscrição neste evento" onclick="openModal()" (click)="cancelarInscricao(event)"><i
           class="mdi mdi-close"></i></a>
-      <a href="http://localhost:4200/evento.html" class="blue" title="Visualizar evento"><i class="mdi mdi-eye"></i></a>
-      <a href="http://localhost:4200/evento.html#topicos-discussao" class="yellow" title="Participar do fórum do evento"><i
+      <a [routerLink]="['detalhes-evento',event.Id]" routerLinkActive="router-link-active"  class="blue" title="Visualizar evento"><i class="mdi mdi-eye"></i></a>
+      <a routerLink='/eventos/{{event.AgendaEvento.Nome}}/{{event.Nome}}'  class="yellow" title="Participar do fórum do evento"><i
           class="mdi mdi-comment"></i></a>
     </div>
   </div>

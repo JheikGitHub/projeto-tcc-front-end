@@ -29,7 +29,7 @@ export class MeusCertificadosComponent implements OnInit {
   ngOnInit() {
     this.user = this.activated.snapshot.data['user'];
     this.spinner.show();
-    this.service.myEscriptionsEvent(this.user.Id).subscribe(
+    this.service.myPresenceEvent(this.user.Id).subscribe(
       (data: Evento[]) => { this.events = data, this.spinner.hide() },
       (err: HttpErrorResponse) => {
         if (err.status == 401) {

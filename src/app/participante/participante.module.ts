@@ -13,11 +13,14 @@ import { ParticipanteAlterarFotoComponent } from './alterar-foto/alterar-foto.co
 import { MinhasInscricoesComponent } from './minhas-inscricoes/minhas-inscricoes.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MeusCertificadosComponent } from './meus-certificados/meus-certificados.component';
+import { ParticipanteDetalhesEventoComponent } from './detalhes-evento/detalhes-evento.component';
+import { EventoModule } from '../evento/evento.module';
 
 @NgModule({
   imports: [
     CommonModule,
     UserModule,
+    EventoModule,
     NgxSpinnerModule,
     ParticipanteRoutingModule
   ],
@@ -29,7 +32,8 @@ import { MeusCertificadosComponent } from './meus-certificados/meus-certificados
     ParticipanteAlterarDadosComponent,
     ParticipanteAlterarFotoComponent,
     MinhasInscricoesComponent,
-    MeusCertificadosComponent
+    MeusCertificadosComponent,
+    ParticipanteDetalhesEventoComponent
   ],
   providers: [ParticipanteService]
 })

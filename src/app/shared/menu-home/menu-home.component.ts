@@ -18,11 +18,13 @@ export class MenuHomeComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    this.service.getUser().subscribe(
-      (usuario: User) => {
-        this.user = usuario;
-      },
-      (err) => { console.log('Usuário não logado') });
+    if (this.service.hasToken()) {
+      this.service.getUser().subscribe(
+        (usuario: User) => {
+          this.user = usuario;
+        },
+        (err) => { console.log('Usuário não logado') });
+    }
   }
 
   logout() {

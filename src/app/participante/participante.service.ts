@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { LoginService } from '../account/login/login.service';
 import { Participant } from './participante';
 import { map } from 'rxjs/operators';
+import { Subscribe } from '../evento/subscribe';
 
 
 const URL_API = 'http://localhost:51990';
@@ -68,9 +69,14 @@ export class ParticipanteService {
         )
     };
 
-    cancelSubscribe(idUser: number, idEvent: number) {
-        console.log('Usuário: ' + idUser + '| Evento: ' + idEvent);
-        // return this.http.post<>
+    cancelSubscribe(subcribe: Subscribe) {
+        return this.http.post(URL_API + "/api/usuario/cancelar-inscricao/", subcribe,
+            {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json',
+                    'Authorization': 'bearer ' + this.token.getToken()
+                })
+            })
     }
 
 }

@@ -1,0 +1,34 @@
+<app-menu-home></app-menu-home>
+<main class="page-agenda-evento">
+
+    <header class="img-agenda-evento">
+        <img src="http://localhost:51990/Imagens/Agenda/{{agenda?.PathImagem}}" alt="Imagem da agenda" class="img-efect-blur">
+        <img src="http://localhost:51990/Imagens/Agenda/{{agenda?.PathImagem}}" alt="Imagem da agenda" class="img-visible">
+    </header>
+    <div class="block-agenda-evento">
+        <div class="info-agenda-evento">
+            <h1 class="nome-agenda-evento">{{agenda?.Nome}}</h1>
+            <p class="descricao-agenda-evento">{{agenda?.Descricao}}</p>
+        </div>
+        <form [formGroup]="buscarEventos" class="search-agendas-eventos">
+            <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="buscar evento">
+            <button type="submit"><i class="mdi mdi-magnify"></i></button>
+        </form>
+        <p *ngIf="(eventosAgenda | filterEventosAgenda : parametroBusca).length === 0" class="mensagem information text-center">Nenhum resultado encontrado.</p>
+        <div class="eventos">
+            <a routerLink='/eventos/{{agenda.Nome}}/{{eventoAgenda.Nome}}' class="evento" *ngFor="let eventoAgenda of eventosAgenda | filterEventosAgenda : parametroBusca">
+                <figure class="img-evento">
+                    <img src="http://localhost:51990/Imagens/Eventos/{{eventoAgenda.PathImagem}}" class="img-efect-blur">
+                    <img src="http://localhost:51990/Imagens/Eventos/{{eventoAgenda.PathImagem}}" class="img-visible">
+                </figure>
+                <div class="tipo-evento">
+                    <span>{{eventoAgenda.TipoEvento}}</span>
+                </div>
+                {{eventoAgenda.Nome}}
+            </a>
+
+        </div>
+    </div>
+    <ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
+</main>
+<app-footer></app-footer>

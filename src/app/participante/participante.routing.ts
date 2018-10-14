@@ -10,6 +10,7 @@ import { ParticipanteAlterarFotoComponent } from './alterar-foto/alterar-foto.co
 import { ParticipanteAlterarDadosComponent } from './alterar-dados/alterar-dados.component';
 import { MinhasInscricoesComponent } from './minhas-inscricoes/minhas-inscricoes.component';
 import { MeusCertificadosComponent } from './meus-certificados/meus-certificados.component';
+import { ParticipanteDetalhesEventoComponent } from './detalhes-evento/detalhes-evento.component';
 
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [
       { path: 'alterar-senha', component: ParticipanteAlterarSenhaComponent },
       { path: 'alterar-foto', component: ParticipanteAlterarFotoComponent },
       { path: 'alterar-dados', component: ParticipanteAlterarDadosComponent, resolve: { user: GetUserResolve } },
+      { path: 'minhas-inscricoes/detalhes-evento/:id', component: ParticipanteDetalhesEventoComponent },
     ]
   },
 ];

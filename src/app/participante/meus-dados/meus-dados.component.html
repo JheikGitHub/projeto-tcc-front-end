@@ -1,13 +1,14 @@
 <h1 class="title-dashboard"><i class="mdi mdi-archive"></i>Meus Dados</h1>
-<a *ngIf="!participant?.IsAluno" [routerLink]="['/participante-dashboard/alterar-foto']" class="alterar-dados foto"><i
-        class="mdi mdi-account"></i>Alterar minha foto</a>
-
-<a [routerLink]="['/participante-dashboard/alterar-senha']"  class="alterar-dados senha"><i
-        class="mdi mdi-lock"></i>Alterar minha senha</a>
-
-<a *ngIf="!participant?.IsAluno" [routerLink]="['/participante-dashboard/alterar-dados']" class="link-editar-dados2"><i
-        class="mdi mdi-pencil"></i>Editar meus dados</a>
-
+<div *ngIf="!participant?.IsAluno">
+    <a [routerLink]="['/participante-dashboard/alterar-foto']" class="alterar-dados foto"><i class="mdi mdi-account"></i>Alterar
+        minha foto</a>
+</div>
+<a [routerLink]="['/participante-dashboard/alterar-senha']" class="alterar-dados senha"><i class="mdi mdi-lock"></i>Alterar
+    minha senha</a>
+<div *ngIf="!participant?.IsAluno">
+    <a  [routerLink]="['/participante-dashboard/alterar-dados']" class="link-editar-dados2"><i
+            class="mdi mdi-pencil"></i>Editar meus dados</a>
+</div>
 <dl class="page-details">
     <dt>Nome: </dt>
     <dd>{{participant?.Usuario.Nome}}</dd>

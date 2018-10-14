@@ -4,8 +4,8 @@
     <img src="/src/assets/img/Unai-Faculdade-CNEC-Unai-1.png" alt="Faculdade CNEC Unai" class="logo-faculdade">
     <h1 class="h1-home">Eventos Acadêmicos 2018</h1>
     <form [formGroup]="buscarAgendas" class="search-agendas-eventos">
-      <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="O que você procura?"><button
-        type="submit"><i class="mdi mdi-magnify"></i></button>
+      <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="O que você procura?">
+      <button type="submit"><i class="mdi mdi-magnify"></i></button>
       <p *ngIf="(agendas | filter : parametroBusca).length === 0" class="mensagem information text-center">Nenhum
         resultado encontrado.</p>
     </form>

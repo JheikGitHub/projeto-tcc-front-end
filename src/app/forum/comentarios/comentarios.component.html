@@ -1,0 +1,52 @@
+<a class="title-forum-debates" routerLink='../../'><i class="mdi mdi-arrow-left"></i>Fórum de debates</a>
+<h2 class="nome-topico-discussao">{{topicoDiscusao}}</h2>
+
+<form class="form-comentario" [formGroup]="comentar" (ngSubmit)="onSubmitComment()">
+    <textarea formControlName="meuComentario" placeholder="Comente aqui sobre o assunto" maxlength="500"></textarea>
+    <button class="btn btn-blue" type="submit" [disabled]="!comentar.valid">Enviar comentário</button>
+</form>
+
+<div class="info-debates">
+    <h3>Veja o que as pessoas estão falando sobre isso.</h3>
+    <h4>Total de comentários: {{comentarios?.length || '0' }}</h4>
+</div>
+
+<span class="mini-line"></span>
+
+<article class="comentarios">
+    <ng-template #List let-items>
+        <div class="comentario comentario-pai" *ngFor="let item of items">
+            <button class="btn-delete-comment" *ngIf="item.UsuarioId == user?.Id || user?.Perfil == 'Admin'" title="Excluir comentário"><i class="mdi mdi-delete"></i></button>
+            <span class="nome-autor">{{item.Usuario.Nome}}</span> <span class="data-hora">25/07/2018 - 13:47</span>
+            <figure>
+                <img src="http://localhost:51990/Imagens/Usuario/{{item.Usuario.PathFotoPerfil}}" title="{{item.Usuario.Nome}}">
+            </figure>
+            <p>{{item.Texto}}<span (click)="responderComentario(item)" onclick="openModal()" class="btn-resposta-comentario"><i class="mdi mdi-reply"></i> Responder</span></p>
+            <div class="reply">
+                <div class="comentario">
+                    <ng-container *ngTemplateOutlet="List; context:{ $implicit: item.items }"></ng-container>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <ng-container *ngTemplateOutlet="List; context:{ $implicit: comentarios | comentariosRespostas }"></ng-container>
+</article>
+
+<div id="modal" class="modal2">
+    <div class="modal-content modal-border">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="comentario">
+            <span class="nome-autor">{{comentarioResposta?.Usuario.Nome}}</span> <span class="data-hora">25/07/2018 - 13:47</span>
+            <figure>
+                <img src="http://localhost:51990/Imagens/Usuario/{{comentarioResposta?.Usuario.PathFotoPerfil}}" title="User {{comentarioResposta?.Id}}">
+            </figure>
+            <p>{{comentarioResposta?.Texto}}</p>
+        </div>
+
+        <form class="form-comentario" [formGroup]="responder" (ngSubmit)="onSubmitComment()">
+            <textarea formControlName="minhaResposta" placeholder="Resposta para {{comentarioResposta?.Usuario.Nome}}" maxlength="500"></textarea>
+            <button class="btn btn-blue" type="submit" [disabled]="!responder.valid"><i class="mdi mdi-reply"></i> Responder</button>
+        </form>
+
+    </div>
+</div>

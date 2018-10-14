@@ -1,0 +1,9 @@
+<h2 class="title-forum-debates">
+  <i class="mdi mdi-comment-multiple-outline">
+  </i> Fórum de debates</h2>
+
+<p *ngIf="topicosDiscussao.length < 1">
+  <i class="mdi mdi-information-outline">
+  </i> Esse evento não possui nenhum Tópico de Discussão.</p>
+
+<a routerLink='forum/{{topicoDiscussao.Nome}}' class="topico-discussao" *ngFor="let topicoDiscussao of topicosDiscussao">{{topicoDiscussao.Nome}}</a>

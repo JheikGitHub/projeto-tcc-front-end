@@ -8,6 +8,9 @@ import { AccountModule } from './account/account.module';
 import { AuthGuard } from './guarda-rotas/auth.guard';
 import { UsuarioGuard } from './guarda-rotas/usuario.guard';
 import { HomeModule } from './home/home.module';
+import { UrlSerializer } from '@angular/router';
+import { CustomUrlSerializer } from './customUrlSerialize';
+import { AgendaModule } from './agenda/agenda.module';
 
 @NgModule({
   declarations: [
@@ -17,10 +20,12 @@ import { HomeModule } from './home/home.module';
     BrowserModule,
     ErrorsModule,
     HomeModule,
+    AgendaModule,
     AccountModule,
     AppRoutingModule
   ],
   providers: [
+    { provide: UrlSerializer, useClass: CustomUrlSerializer },
     AuthGuard,
     UsuarioGuard
   ],
