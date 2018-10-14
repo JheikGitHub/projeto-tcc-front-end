@@ -33,8 +33,8 @@ export class UserService {
             });
     }
 
-    getUserCpf(cpf: object) {
-        return this.http.post(URL_API + "/api/usuario/busca-por-cpf/", cpf,
+    getUserCpf(cpf: EmailCpf) {
+        return this.http.post(URL_API + "/api/usuario/busca-por-cpf", cpf,
             {
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',
@@ -97,4 +97,8 @@ export class UserService {
 export interface MudarSenhaDTO {
     NovaSenha: string;
     ConfimarSenha: string;
+}
+
+export class EmailCpf {
+    cpf: string
 }

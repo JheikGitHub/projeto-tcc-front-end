@@ -2,18 +2,19 @@
 <a [routerLink]="['/funcionario-dashboard/criar-evento']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
     class="mdi mdi-plus-box"></i>Criar novo evento</a>
 
-<div action="" class="form-pesquisa">
-  <input type="text" name="paramentoBusca" id="parametoBusca" placeholder="Digite o nome ou tipo do evento"><button
-    type="submit"><i class="mdi mdi-magnify"></i></button>
-</div>
-
 <div class="lista-agendas-eventos">
+  <form [formGroup]="buscarEventos" class="search-agendas-eventos">
+    <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="buscar evento">
+    <button type="submit"><i class="mdi mdi-magnify"></i></button>
+  </form>
 
-  <div class="item-agenda-eventos" *ngFor="let evento of eventos">
+  <p *ngIf="(eventos | filterEventosAgenda : parametroBusca).length === 0" class="mensagem information text-center">Nenhum
+    resultado encontrado.</p>
+  <div class="item-agenda-eventos" *ngFor="let evento of eventos | filterEventosAgenda : parametroBusca">
     <figure>
       <img src="http://localhost:51990/Imagens/Eventos/{{evento.PathImagem}}" alt="Imagem da agenda">
     </figure>
-    <a class="nome-agenda" href="../../evento.html" title="Ver evento">{{evento.Nome}}</a>
+    <p class="nome-agenda">{{evento.Nome}}</p>
 
     <div class="link-opcoes">
       <a [routerLink]="['/funcionario-dashboard/confirmacao-presenca',evento.Id]" routerLinkActive="router-link-active"
@@ -27,3 +28,4 @@
       <a (click)="delete(evento.Id)" class="red" title="Deletar Evento"><i class="mdi mdi-delete-empty"></i></a>
     </div>
   </div>
+</div>

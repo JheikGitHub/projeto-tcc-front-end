@@ -6,13 +6,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterEventosAgendaPipe implements PipeTransform {
 
   transform(eventos: any[], parametroBusca: string): any[] {
+    
     if(!eventos) return [];
     if(!parametroBusca) return eventos;
 
-    parametroBusca = parametroBusca.toLowerCase();
-
     return eventos.filter(it => {
-      return it.Nome.toLowerCase().includes(parametroBusca) || it.TipoEvento.toLowerCase().includes(parametroBusca) ;
+      return it.Nome.toLowerCase().includes(parametroBusca.toLowerCase()) || it.TipoEvento.toLowerCase().includes(parametroBusca.toLowerCase()) ;
     })
 
   }

@@ -9,7 +9,7 @@
         <figure>
             <img src="http://localhost:51990/Imagens/Eventos/{{event.PathImagem}}" [alt]="event.Nome">
         </figure>
-        <a class="nome-agenda" href="../../evento.html" title="Ver evento">{{event.Nome}}</a>
+        <p class="nome-agenda">{{event.Nome}}</p>
         <div class="link-opcoes">
             <a class="red" (click)="gerarPdf(event.Id)" title="Visualizar em PDF"><i class="mdi mdi-file-pdf"></i></a>
             <a class="blue" (click)="downloadPdf(event.Id)" download title="Download do certificado"><i class="mdi mdi-download"></i></a>

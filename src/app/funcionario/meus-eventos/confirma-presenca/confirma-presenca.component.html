@@ -8,7 +8,7 @@
     <form action="" class="form-konoha form-presenca" [formGroup]="form" (ngSubmit)="onSubmit()">
 
         <label for="cpf">Digite o CPF do participante</label>
-        <input formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+        <input  formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
    
         <div *ngIf="submit && form.controls['cpf'].invalid || form.controls['cpf'].touched">
                 <app-message-erro *ngIf="form.get('cpf').errors?.required" text=" campo cpf é obrigátorio.">
@@ -17,7 +17,7 @@
                 </app-message-erro>
           </div>
      
-        <button [disabled]="!form.valid" class="btn-confirmar-presenca"><i class="mdi mdi-check"></i>Busca usuario</button>
+        <button class="btn btn-blue" [disabled]="!form.valid" class="btn-confirmar-presenca"><i class="mdi mdi-check"></i>Busca usuario</button>
     </form>
 
     <div class="particpante-check" *ngIf="mostraTemplate">

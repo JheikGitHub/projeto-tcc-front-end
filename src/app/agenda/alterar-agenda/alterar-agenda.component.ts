@@ -29,8 +29,6 @@ export class AlterarAgendaComponent implements OnInit {
     this.agenda = this.routeActivated.snapshot.data['agenda'];
 
     this.atualizaCampos();
-    console.log(this.form);
-
   }
 
   atualizaCampos() {

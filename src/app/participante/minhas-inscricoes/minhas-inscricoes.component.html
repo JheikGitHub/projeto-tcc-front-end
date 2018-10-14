@@ -11,7 +11,7 @@
     <figure>
       <img src="http://localhost:51990/Imagens/Eventos/{{event.PathImagem}}" [alt]="event.Nome">
     </figure>
-    <a class="nome-agenda" href="../../evento.html" title="Ver evento">{{event.Nome}}</a>
+    <p class="nome-agenda">{{event.Nome}}</p>
     <div class="link-opcoes">
       <a class="red" title="Cancelar minha inscrição neste evento" onclick="openModal()" (click)="cancelarInscricao(event)"><i
           class="mdi mdi-close"></i></a>

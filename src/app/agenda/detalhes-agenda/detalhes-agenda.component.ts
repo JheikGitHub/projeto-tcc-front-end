@@ -28,8 +28,6 @@ export class DetalhesAgendaComponent implements OnInit {
 
     this.route.params.subscribe(parans => this.IdAgenda = parans['id']);
 
-    console.log(this.IdAgenda);
-
     this.agendaSevice.getAgendaId(this.IdAgenda).subscribe(
       (data: Agenda) => {
         this.agenda = data

@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Evento } from '../../evento/evento';
 import { User } from '../../user/user';
 import { EventoService } from '../../evento/evento.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-meus-eventos',
@@ -12,8 +13,9 @@ import { EventoService } from '../../evento/evento.service';
   styleUrls: ['./meus-eventos.component.css']
 })
 export class FuncionarioMeusEventosComponent implements OnInit {
-  eventos: Evento[] = [];
-  user: User;
+  private eventos: Evento[] = [];
+  private user: User;
+  private buscarEventos = new FormControl('');
 
   constructor(
     private router: Router,

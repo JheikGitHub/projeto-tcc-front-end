@@ -15,6 +15,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FilterEventosAgendaPipe } from './filter.eventos.agenda.pipe';
 import { EventoComponent } from './evento/evento.component';
 import { ForumModule } from '../forum/forum.module';
+import { FilterAgendaPipe } from './filter.agenda.pipe';
 
 @NgModule({
   imports: [
@@ -34,9 +35,12 @@ import { ForumModule } from '../forum/forum.module';
     AlterarAgendaComponent,
     AgendaComponent,
     FilterEventosAgendaPipe,
+    FilterAgendaPipe,
     EventoComponent
   ],
   exports: [
+    FilterAgendaPipe,
+    FilterEventosAgendaPipe,
     CriarAgendaComponent,
     DetalhesAgendaComponent,
     AlterarAgendaComponent

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -11,13 +11,16 @@ import { FuncionarioDetalhesEventoComponent } from './detalhes-evento/detalhes-e
 import { FuncionarioAlterarEventoComponent } from './alterar-evento/alterar-evento.component';
 import { FuncionarioCriarEventoComponent } from './criar-evento/criar-evento.component';
 import { FuncionarioMeusEventosComponent } from './meus-eventos.component';
+import { AgendaModule } from 'src/app/agenda/agenda.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    FormsModule,
     ErrorsModule,
     EventoModule,
+    AgendaModule,
     NgxSpinnerModule,
     ReactiveFormsModule
   ],
