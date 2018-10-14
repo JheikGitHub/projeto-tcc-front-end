@@ -1,4 +1,4 @@
-export interface TopicoDiscussao{
+export class TopicoDiscussao{
     Id: number;
     Nome: string;
     Descricao: string;

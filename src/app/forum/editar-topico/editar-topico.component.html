@@ -1,0 +1,12 @@
+<form class="form-konoha form-responsive" [formGroup]="form" (ngSubmit)="onSubmit()">
+
+  <label for="nome" class="label-k">Nome do tópico de discussão</label>
+  <input formControlName="nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite o nome do tópico de discussão">
+
+  <label for="descricao" class="label-k">Descrição</label>
+  <textarea formControlName="descricao" name="descricao" id="descricao" class="text-area-k" placeholder="Discorra sobre o tópico de discussão"
+    maxlength="250"></textarea>
+
+  <button type="submit" class="btn btn-blue" [disabled]="form.invalid">Salvar</button>
+
+</form>

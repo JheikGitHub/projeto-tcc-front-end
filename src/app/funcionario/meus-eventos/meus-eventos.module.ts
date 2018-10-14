@@ -12,6 +12,7 @@ import { FuncionarioAlterarEventoComponent } from './alterar-evento/alterar-even
 import { FuncionarioCriarEventoComponent } from './criar-evento/criar-evento.component';
 import { FuncionarioMeusEventosComponent } from './meus-eventos.component';
 import { AgendaModule } from 'src/app/agenda/agenda.module';
+import { ForumFuncionarioModule } from '../forum-funcionario/forum-funcionario.module';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { AgendaModule } from 'src/app/agenda/agenda.module';
     FormsModule,
     ErrorsModule,
     EventoModule,
+    ForumFuncionarioModule,
     AgendaModule,
     NgxSpinnerModule,
     ReactiveFormsModule

@@ -1,0 +1,14 @@
+<h1 class="title-dashboard"><i class="mdi mdi-comment amarelo"></i>Tópicos de Discussão</h1>
+
+<a [routerLink]="['/funcionario-dashboard/meus-eventos']" routerLinkActive="router-link-active" class="link-voltar"><i
+    class="mdi mdi-arrow-left"></i>Voltar</a>
+    
+<h2 class="title-evento-tp-discussao"><i class="mdi mdi-star"></i> {{nomeEvento}}</h2>
+<a routerLink="/funcionario-dashboard/topicos/{{nomeEvento}}/criar-topico" routerLinkActive="router-link-active"  class="alterar-dados"><i class="mdi mdi-comment-plus-outline"></i>Criar novo
+  tópico de disicussão</a>
+
+  <app-forum 
+  [nomeEvento]="nomeEvento" 
+  rota="/funcionario-dashboard/meus-eventos"
+  rotaEditar="/funcionario-dashboard/topicos/{{nomeEvento}}/editar-topico/">
+</app-forum>

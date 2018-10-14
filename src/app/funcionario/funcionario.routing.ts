@@ -20,6 +20,11 @@ import { FuncionarioCriarAgendaComponent } from './minhas-agenda/criar-agenda/cr
 import { FuncionarioAlterarAgendaComponent } from './minhas-agenda/alterar-agenda/alterar-agenda.component';
 import { FuncionarioDetalhesAgendaComponent } from './minhas-agenda/detalhes-agenda/detalhes-agenda.component';
 import { BuscaAgendaResolve } from '../agenda/busca-agenda.resolve';
+import { ListaTopicosFuncionarioComponent } from './forum-funcionario/lista-topicos-funcionario/lista-topicos-funcionario.component';
+import { CriarTopicoFuncionarioComponent } from './forum-funcionario/criar-topico-funcionario/criar-topico-funcionario.component';
+import { EditarTopicoFuncionarioComponent } from './forum-funcionario/editar-topico-funcionario/editar-topico-funcionario.component';
+import { GetTopicoNomeResolve } from '../forum/getTopicoResolve';
+import { CometariosTopicoComponent } from './forum-funcionario/cometarios-topico/cometarios-topico.component';
 
 
 
@@ -36,9 +41,12 @@ const routes: Routes = [
       { path: 'alterar-senha', component: FuncionarioAlterarSenhaComponent },
       { path: 'alterar-foto', component: FuncionarioAlterarFotoComponent },
       { path: 'alterar-dados', component: FuncionarioAlterarDadosComponent, resolve: { user: GetUserResolve } },
+      { path: 'topicos/:nomeEvento/criar-topico', component: CriarTopicoFuncionarioComponent },
+      { path: 'topicos/:nomeEvento/editar-topico/:nomeTopico', component: EditarTopicoFuncionarioComponent, resolve: { nomeTopico: GetTopicoNomeResolve } },
       { path: 'editar-evento/:id', component: FuncionarioAlterarEventoComponent, resolve: { evento: BuscaEventoResolve } },
       { path: 'editar-agenda/:id', component: FuncionarioAlterarAgendaComponent, resolve: { agenda: BuscaAgendaResolve } },
       { path: 'confirmacao-presenca/:id', component: FuncionarioConfirmaPresencaComponent },
+      { path: 'topicos/:nomeEvento', component: ListaTopicosFuncionarioComponent },
       { path: 'meus-eventos/detalhes-evento/:id', component: FuncionarioDetalhesEventoComponent },
       { path: 'minhas-agendas/detalhes-agenda/:id', component: FuncionarioDetalhesAgendaComponent }
     ]

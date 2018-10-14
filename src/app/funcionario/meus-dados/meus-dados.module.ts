@@ -8,11 +8,13 @@ import { FuncionarioAlterarFotoComponent } from './alterar-foto/alterar-foto.com
 import { FuncionarioAlterarDadosComponent } from './alterar-dados/alterar-dados.component';
 import { FuncionarioAlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { FuncionarioMeusDadosComponent } from './meus-dados.component';
+import { ForumModule } from 'src/app/forum/forum.module';
 
 @NgModule({
   imports: [
     CommonModule,
     UserModule,
+    ForumModule,
     RouterModule
   ],
   declarations: [

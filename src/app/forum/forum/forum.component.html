@@ -1,0 +1,14 @@
+<p *ngIf="topicosDiscussao.length < 1">
+  <i class="mdi mdi-information-outline">
+  </i> Esse evento não possui nenhum Tópico de Discussão.</p>
+
+<div class="topicos-discussao">
+  <div class="topico" *ngFor="let topicoDiscussao of topicosDiscussao">
+
+    <a (click)="deleta(topicoDiscussao.Id)" class="mdi mdi-delete-empty" title="Excluir"></a>
+    <a routerLink="{{rotaEditar}}{{topicoDiscussao.Nome}}" routerLinkActive="router-link-active"  title="Editar"><i class="mdi mdi-pencil"></i></a>
+
+    <span>{{topicoDiscussao.Nome}}</span>
+
+  </div>
+</div>

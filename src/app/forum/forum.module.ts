@@ -6,18 +6,32 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ForumService } from './forun.service';
 import { RouterModule } from '@angular/router';
 import { ComentariosRespostasPipe } from './comentarios/comentarios-respotas.pipe';
+import { CriarTopicoComponent } from './criar-topico/criar-topico.component';
+import { EditarTopicoComponent } from './editar-topico/editar-topico.component';
+import { ForumComponent } from './forum/forum.component';
+import { GetTopicoNomeResolve } from './getTopicoResolve';
+import { ErrorsModule } from '../errors/errors.module';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
+    ErrorsModule,
     ReactiveFormsModule
   ],
   declarations: [
     ComentariosRespostasPipe,
     TopicosDiscussaoComponent,
-    ComentariosComponent
+    ComentariosComponent,
+    CriarTopicoComponent,
+    EditarTopicoComponent,
+    ForumComponent
   ],
-  providers: [ForumService]
+  exports: [
+    ForumComponent,
+    CriarTopicoComponent,
+    EditarTopicoComponent
+  ],
+  providers: [ForumService,GetTopicoNomeResolve]
 })
 export class ForumModule { }
