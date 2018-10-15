@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { User } from 'src/app/user/user';
 import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { Funcionario } from 'src/app/funcionario/funcionario';
-import { FuncionarioService } from 'src/app/funcionario/funcionario.service';
+import { ParticipanteService } from 'src/app/participante/participante.service';
+import { Participant } from 'src/app/participante/participante';
 
 @Component({
-  selector: 'app-criar-funcionario',
-  templateUrl: './criar-funcionario.component.html',
-  styleUrls: ['./criar-funcionario.component.css']
+  selector: 'app-criar-aluno',
+  templateUrl: './criar-aluno.component.html',
+  styleUrls: ['./criar-aluno.component.css']
 })
-export class CriarFuncionarioComponent implements OnInit {
+export class CriarAlunoComponent implements OnInit {
 
   private formFuncionario: FormGroup;
-  private funcionario: Funcionario = new Funcionario();
+  private participante: Participant = new Participant();
   private erro: string = '';
 
   constructor(
-    private service: FuncionarioService,
+    private service: ParticipanteService,
     private build: FormBuilder,
     private router: Router) { }
 
@@ -34,8 +34,8 @@ export class CriarFuncionarioComponent implements OnInit {
       cpf: ['', [Validators.required,
       Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
       genero: ['', Validators.required],
-      permissaoCriaAgenda: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      matricula: ['', [Validators.required, Validators.maxLength(11),Validators.minLength(11)]],
       fotoPerfil: ['']
     });
   }
@@ -54,32 +54,34 @@ export class CriarFuncionarioComponent implements OnInit {
   }
 
   pegaValoresInput() {
-    this.funcionario.Usuario = new User();
+    this.participante.Usuario = new User();
 
     var path = this.formFuncionario.get('fotoPerfil').value;
-    this.funcionario.Usuario.Nome = this.formFuncionario.get('nome').value;
-    this.funcionario.Usuario.DataNascimento = this.formFuncionario.get('dataNascimento').value;
-    this.funcionario.Usuario.Cpf = this.formFuncionario.get('cpf').value;
-    this.funcionario.Usuario.Genero = this.formFuncionario.get('genero').value;
-    this.funcionario.PermissaoCriarAgenda = this.formFuncionario.get('permissaoCriaAgenda').value;
-    this.funcionario.Usuario.Email = this.formFuncionario.get('email').value;
-    this.funcionario.Usuario.UserName = this.funcionario.Usuario.Email;
-    this.funcionario.Usuario.Senha = this.GeradorSenha();
+    this.participante.Usuario.Nome = this.formFuncionario.get('nome').value;
+    this.participante.Usuario.DataNascimento = this.formFuncionario.get('dataNascimento').value;
+    this.participante.Usuario.Cpf = this.formFuncionario.get('cpf').value;
+    this.participante.Usuario.Genero = this.formFuncionario.get('genero').value;
+    this.participante.Matricula = this.formFuncionario.get('matricula').value;
+    this.participante.Usuario.Email = this.formFuncionario.get('email').value;
+    this.participante.Usuario.UserName = this.participante.Usuario.Email;
+    this.participante.Usuario.Senha = this.GeradorSenha();
+    this.participante.CodCarteirinha = ("0" + this.formFuncionario.get('matricula').value);
 
     if (path.value != '')
-      this.funcionario.Usuario.PathFotoPerfil = path.value;
+      this.participante.Usuario.PathFotoPerfil = path.value;
     else
-      this.funcionario.Usuario.PathFotoPerfil = '';
-    this.funcionario.IsAdmin = false;
-    this.funcionario.Usuario.Perfil = "Funcionario";
+      this.participante.Usuario.PathFotoPerfil = '';
+
+    this.participante.IsAluno = true;
+    this.participante.Usuario.Perfil = "Aluno";
   }
 
   onSubmit() {
     this.pegaValoresInput();
 
-    this.service.adicionaFuncionario(this.funcionario).subscribe(
+     this.service.adicioanaParticipante(this.participante).subscribe(
       (data) => {
-        this.showMessage("Administrador cadastrado com sucesso");
+        this.showMessage("Aluno cadastrado com sucesso");
         setTimeout(() => {
           this.router.navigate(['/admin-dashboard/usuarios']);
         }, 5000);
@@ -90,7 +92,7 @@ export class CriarFuncionarioComponent implements OnInit {
           this.showMessage("Falha ao se registrar, Por favor Tente novamente mais tarde.");
         }, 5000);
       }
-    );
+    ); 
   }
 
   GeradorSenha() {
@@ -98,9 +100,7 @@ export class CriarFuncionarioComponent implements OnInit {
     var letters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
       'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Z', '-', '/', '@', '#', '&'];
     for (let index = 0; index < 6; index++) {
-
       let resul = letters[Math.floor(Math.random() * letters.length)];
-      console.log(resul);
       senha += resul;
     }
     return senha;

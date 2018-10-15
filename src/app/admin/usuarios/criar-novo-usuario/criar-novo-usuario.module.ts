@@ -6,6 +6,8 @@ import { CriarNovoUsuarioComponent } from './criar-novo-usuario.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ErrorsModule } from 'src/app/errors/errors.module';
+import { CriarAdminComponent } from './criar-admin/criar-admin.component';
+import { CriarAlunoComponent } from './criar-aluno/criar-aluno.component';
 
 @NgModule({
   imports: [
@@ -16,7 +18,9 @@ import { ErrorsModule } from 'src/app/errors/errors.module';
   ],
   declarations: [
     CriarNovoUsuarioComponent,
-    CriarFuncionarioComponent
+    CriarFuncionarioComponent,
+    CriarAdminComponent,
+    CriarAlunoComponent
   ]
 })
 export class CriarNovoUsuarioModule { }

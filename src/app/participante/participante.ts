@@ -5,6 +5,6 @@ export class Participant {
     Matricula: string;
     CodCarteirinha: string;
     IsAluno: boolean;
-    usuario: User;
+    Usuario: User;
 
 }

@@ -16,6 +16,15 @@ export class ParticipanteService {
         private token: LoginService) {
     }
 
+    adicioanaParticipante(participante: Participant) {
+        return this.http.post(URL_API + "/api/aluno/adiciona-participante", participante, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + this.token.getToken()
+            })
+        });
+    }
+
     buscaParticipanteLogado() {
         return this.http.get(URL_API + "/api/aluno/participante-logado/", {
             headers: new HttpHeaders({

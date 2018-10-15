@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User } from 'src/app/user/user';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { User } from 'src/app/user/user';
 import { Funcionario } from 'src/app/funcionario/funcionario';
 import { FuncionarioService } from 'src/app/funcionario/funcionario.service';
 
 @Component({
-  selector: 'app-criar-funcionario',
-  templateUrl: './criar-funcionario.component.html',
-  styleUrls: ['./criar-funcionario.component.css']
+  selector: 'app-criar-admin',
+  templateUrl: './criar-admin.component.html',
+  styleUrls: ['./criar-admin.component.css']
 })
-export class CriarFuncionarioComponent implements OnInit {
+export class CriarAdminComponent implements OnInit {
 
   private formFuncionario: FormGroup;
   private funcionario: Funcionario = new Funcionario();
@@ -34,7 +35,6 @@ export class CriarFuncionarioComponent implements OnInit {
       cpf: ['', [Validators.required,
       Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
       genero: ['', Validators.required],
-      permissaoCriaAgenda: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       fotoPerfil: ['']
     });
@@ -61,7 +61,6 @@ export class CriarFuncionarioComponent implements OnInit {
     this.funcionario.Usuario.DataNascimento = this.formFuncionario.get('dataNascimento').value;
     this.funcionario.Usuario.Cpf = this.formFuncionario.get('cpf').value;
     this.funcionario.Usuario.Genero = this.formFuncionario.get('genero').value;
-    this.funcionario.PermissaoCriarAgenda = this.formFuncionario.get('permissaoCriaAgenda').value;
     this.funcionario.Usuario.Email = this.formFuncionario.get('email').value;
     this.funcionario.Usuario.UserName = this.funcionario.Usuario.Email;
     this.funcionario.Usuario.Senha = this.GeradorSenha();
@@ -70,8 +69,10 @@ export class CriarFuncionarioComponent implements OnInit {
       this.funcionario.Usuario.PathFotoPerfil = path.value;
     else
       this.funcionario.Usuario.PathFotoPerfil = '';
-    this.funcionario.IsAdmin = false;
-    this.funcionario.Usuario.Perfil = "Funcionario";
+
+    this.funcionario.PermissaoCriarAgenda = true;
+    this.funcionario.IsAdmin = true;
+    this.funcionario.Usuario.Perfil = "Admin";
   }
 
   onSubmit() {
