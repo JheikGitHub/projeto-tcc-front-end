@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-criar-novo-usuario',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarNovoUsuarioComponent implements OnInit {
 
-  constructor() { }
+  private form: FormGroup
+  
+  private perfilUsuario: string;
+
+  constructor(build: FormBuilder) { }
 
   ngOnInit() {
+    this.form = new FormGroup({
+      perfil: new FormControl('')
+    });
+
+  }
+
+  pegaPerfil() {
+    this.perfilUsuario = this.form.get('perfil').value;
   }
 
 }

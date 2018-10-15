@@ -84,8 +84,11 @@ export class CriarContaComponent implements OnInit {
 
     this.service.createAccount(this.user).subscribe(
       (data) => {
-
-        this.router.navigate(['/participante-dashboard']);
+        this.showMessage("cadastro realizado com sucesso.")
+        setTimeout(() => {
+          this.router.navigate(['/participante-dashboard']);
+        }, 5000);
+        
       },
       (err: HttpErrorResponse) => {
         this.showMessage("Falha ao se registrar, Por favor Tente novamente mais tarde.");

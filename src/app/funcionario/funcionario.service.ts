@@ -14,6 +14,15 @@ export class FuncionarioService {
         private token: LoginService) {
     }
 
+    adicionaFuncionario(funcionario: Funcionario) {
+        return this.http.post(URL_API + "/api/funcionario/adiciona", funcionario, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + this.token.getToken()
+            })
+        });
+    }
+
     getAll() {
         return this.http.get<Funcionario[]>(URL_API + "/api/funcionario/busca-todos", {
             headers: new HttpHeaders({

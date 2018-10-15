@@ -5,5 +5,5 @@ export class Funcionario {
     IsAdmin: boolean;
     PermissaoCriarAgenda: boolean;
 
-    user: User
+    Usuario: User
 }

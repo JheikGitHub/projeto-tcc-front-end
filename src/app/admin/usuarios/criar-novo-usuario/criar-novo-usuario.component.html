@@ -2,8 +2,22 @@
 <a [routerLink]="['/admin-dashboard/usuarios']" routerLinkActive="router-link-active" class="link-voltar">
         <i class="mdi mdi-arrow-left"></i>Voltar</a>
 
-<p class="info info-blue info-create-account">
-        <span class="mdi mdi-close closebtn"></span>Por favor preencha todos os campos apresentados abaixo.</p>
+<form class="form-konoha form-responsive" [formGroup]="form">
+
+        <label>Perfil do usuário</label>
+        <div class="select-type-user">
+
+                <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="admin" value="admin">
+                <label for="admin">Admin</label>
+
+                <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="moderador" value="funcionario">
+                <label for="moderador">Moderador</label>
+
+                <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="aluno" value="usuario">
+                <label for="aluno">Aluno</label>
+
+        </div>
+</form>
 
 
-<app-criar-usuario rota="admin-dashboard/usuarios"></app-criar-usuario>
+<app-criar-funcionario *ngIf="perfilUsuario == 'funcionario'"></app-criar-funcionario>
