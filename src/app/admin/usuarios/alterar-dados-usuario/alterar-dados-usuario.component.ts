@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../../user/user';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/user/user';
+
 
 @Component({
   selector: 'app-alterar-dados-usuario',
@@ -10,11 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 export class AlterarDadosUsuarioComponent implements OnInit {
 
   private usuario: User;
-  
-  constructor(private routeActivated: ActivatedRoute) { }
+
+  constructor(
+    private routeActivated: ActivatedRoute) { }
 
   ngOnInit() {
     this.usuario = this.routeActivated.snapshot.data['user'];
+
   }
 
 }

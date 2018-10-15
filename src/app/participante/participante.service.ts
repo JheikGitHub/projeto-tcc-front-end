@@ -16,6 +16,15 @@ export class ParticipanteService {
         private token: LoginService) {
     }
 
+    alteraParticipante(participante: Participant) {
+        return this.http.patch(URL_API + "/api/aluno/altera/" + participante.Id, participante, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + this.token.getToken()
+            })
+        });
+    }
+
     adicioanaParticipante(participante: Participant) {
         return this.http.post(URL_API + "/api/aluno/adiciona-participante", participante, {
             headers: new HttpHeaders({
@@ -34,7 +43,7 @@ export class ParticipanteService {
         });
     }
 
-    buscaParticipante(id: number) {
+    buscaParticipante(id) {
         return this.http.get<Participant>(URL_API + "/api/aluno/busca-por-id/" + id, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',

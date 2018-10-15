@@ -35,6 +35,8 @@ import { EventoModule } from '../evento/evento.module';
     MeusCertificadosComponent,
     ParticipanteDetalhesEventoComponent
   ],
-  providers: [ParticipanteService]
+  providers: [
+    ParticipanteService
+  ]
 })
 export class ParticipanteModule { }

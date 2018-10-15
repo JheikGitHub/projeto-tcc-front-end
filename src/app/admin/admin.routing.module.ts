@@ -23,13 +23,12 @@ import { AdminDetalhesAgendaComponent } from './minhas-agenda/detalhes-agenda/de
 import { AdminUsuariosComponent } from './usuarios/usuarios.component';
 import { DetalhesDadosUsuarioComponent } from './usuarios/detalhes-dados-usuario/detalhes-dados-usuario.component';
 import { AlterarDadosUsuarioComponent } from './usuarios/alterar-dados-usuario/alterar-dados-usuario.component';
-import { GetUserIdResolve } from '../user/get-user-id.resolve';
 import { CriarNovoUsuarioComponent } from './usuarios/criar-novo-usuario/criar-novo-usuario.component';
 import { ListaTopicosAdminComponent } from './forum-admin/lista-topicos-admin/lista-topicos-admin.component';
 import { CriarTopicoAdminComponent } from './forum-admin/criar-topico-admin/criar-topico-admin.component';
 import { EditarTopicoAdminComponent } from './forum-admin/editar-topico-admin/editar-topico-admin.component';
 import { GetTopicoNomeResolve } from '../forum/getTopicoResolve';
-
+import { GetUserIdResolve } from '../user/get-user-id.resolve';
 
 const routes: Routes = [
     {

@@ -24,6 +24,6 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     AdminComponent,
     HomeAdminComponent
   ],
-  providers:[FuncionarioService]
+  providers: [FuncionarioService]
 })
 export class AdminModule { }

@@ -32,7 +32,7 @@ export class CriarContaComponent implements OnInit {
     this.form = this.formBuild.group({
       nome: ['', [Validators.required, Validators.maxLength(100)]],
       username: ['', [Validators.required, Validators.maxLength(100)]],
-      dataNascimento: ['', [Validators.required, Validators.required, Validators.pattern('[0-9]{2}[-|\/]{1}[0-9]{2}[-|\/]{1}[0-9]{4}')]],
+      dataNascimento: ['', [Validators.required, Validators.required]],
       cpf: ['', [Validators.required,
       Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
       genero: ['', Validators.required],

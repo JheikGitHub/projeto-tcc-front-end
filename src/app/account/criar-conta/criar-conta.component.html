@@ -36,15 +36,11 @@
       </div>
     
       <label for="dataNascimento" class="label-k">Data de Nascimento</label>
-      <input formControlName="dataNascimento" type="datetime" name="dataNascimento" id="dataNascimento" class="input-k"
+      <input formControlName="dataNascimento" type="date" name="dataNascimento" id="dataNascimento" class="input-k"
         placeholder="dia/mês/ano">
     
       <div *ngIf="submit && form.controls['dataNascimento'].invalid || form.controls['dataNascimento'].touched">
-    
         <app-message-erro *ngIf="form.get('dataNascimento').errors?.required" text="campo data de nascimento é obrigátorio."></app-message-erro>
-    
-        <app-message-erro *ngIf="form.get('dataNascimento').errors?.pattern" text="data inválida."></app-message-erro>
-    
       </div>
     
     

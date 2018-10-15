@@ -14,6 +14,24 @@ export class FuncionarioService {
         private token: LoginService) {
     }
 
+    alteraParticipante(funcionario: Funcionario) {
+        return this.http.patch(URL_API + "/api/funcionario/altera/" + funcionario.Usuario.Id, funcionario, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + this.token.getToken()
+            })
+        });
+    }
+
+    buscaFuncionario(id) {
+        return this.http.get<Funcionario>(URL_API + "/api/funcionario/busca-por-id/" + id, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'bearer ' + this.token.getToken()
+            })
+        });
+    }
+
     adicionaFuncionario(funcionario: Funcionario) {
         return this.http.post(URL_API + "/api/funcionario/adiciona", funcionario, {
             headers: new HttpHeaders({

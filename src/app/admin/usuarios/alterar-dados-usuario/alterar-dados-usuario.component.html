@@ -1,5 +1,12 @@
 <h1 class="title-dashboard"><i class="mdi mdi-book"></i>Editar usuário</h1>
-<a [routerLink]="['/admin-dashboard/usuarios']" routerLinkActive="router-link-active" class="link-voltar"><i
-        class="mdi mdi-arrow-left"></i>Voltar</a>
+<a [routerLink]="['/admin-dashboard/usuarios']" routerLinkActive="router-link-active" class="link-voltar"><i class="mdi mdi-arrow-left"></i>Voltar</a>
 
-        <app-alterar-dados [user]="usuario"></app-alterar-dados>
+<div *ngIf="usuario.Perfil == 'Aluno'">
+        <app-alterar-aluno [participante]="usuario"></app-alterar-aluno>
+</div>
+<div *ngIf="usuario.Perfil =='Admin'">
+        <app-alterar-admin [funcionario]="usuario"></app-alterar-admin>
+</div>
+<div *ngIf="usuario.Perfil =='Funcionario'">
+        <app-alterar-funcionario [funcionario]="usuario"></app-alterar-funcionario>
+</div>

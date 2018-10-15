@@ -15,7 +15,7 @@ export class ListaUsuariosComponent implements OnInit {
   hasMore: boolean = true;
   private users: User[] = [];
   pageSize: number = 1;
-  pageIndex: number = 2;
+  pageIndex: number = 5;
 
   constructor(
     private usuarioService: UserService,
