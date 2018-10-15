@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ErrorsModule } from '../../errors/errors.module';
 import { EventoModule } from '../../evento/evento.module';
+import { AgendaModule } from 'src/app/agenda/agenda.module';
+import { ForumAdminModule } from '../forum-admin/forum-admin.module';
 
 import { AdminAlterarEventoComponent } from './alterar-evento/alterar-evento.component';
 import { AdminConfirmaPresencaComponent } from './confirma-presenca/confirma-presenca.component';
@@ -18,6 +20,9 @@ import { AdminMeusEventosComponent } from './meus-eventos.component';
     CommonModule,
     RouterModule,
     ErrorsModule,
+    FormsModule,
+    AgendaModule,
+    ForumAdminModule,
     EventoModule,
     NgxSpinnerModule,
     ReactiveFormsModule

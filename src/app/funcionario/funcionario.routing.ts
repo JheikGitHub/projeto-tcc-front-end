@@ -24,7 +24,6 @@ import { ListaTopicosFuncionarioComponent } from './forum-funcionario/lista-topi
 import { CriarTopicoFuncionarioComponent } from './forum-funcionario/criar-topico-funcionario/criar-topico-funcionario.component';
 import { EditarTopicoFuncionarioComponent } from './forum-funcionario/editar-topico-funcionario/editar-topico-funcionario.component';
 import { GetTopicoNomeResolve } from '../forum/getTopicoResolve';
-import { CometariosTopicoComponent } from './forum-funcionario/cometarios-topico/cometarios-topico.component';
 
 
 

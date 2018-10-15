@@ -5,5 +5,116 @@
   <p class="info info-blue info-create-account"><span class="mdi mdi-close closebtn"></span>Por favor preencha todos
     os campos apresentados abaixo.</p>
 
-  <app-criar-usuario rota="participante-dashboard"></app-criar-usuario>
+    <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
+
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-konoha create-account">
+    
+      <label for="nome" class="label-k">Nome Completo</label>
+      <input formControlName="nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite seu nome completo">
+    
+      <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
+    
+        <app-message-erro *ngIf="form.get('nome').errors?.required" text="Campo nome é obrigátorio.">
+        </app-message-erro>
+    
+        <app-message-erro *ngIf="form.get('nome').errors?.maxlength" text="permitido até 100 caracteres.">
+        </app-message-erro>
+      </div>
+    
+    
+      <label for="username" class="label-k">Nome de Usuário</label>
+      <input formControlName="username" type="text" name="username" id="username" class="input-k" placeholder="Digite seu nome de usuario">
+    
+      <div *ngIf="submit && form.controls['username'].invalid || form.controls['username'].touched">
+    
+        <app-message-erro *ngIf="form.get('username').errors?.required" text="Campo nome é obrigátorio.">
+        </app-message-erro>
+    
+        <app-message-erro *ngIf="form.get('username').errors?.maxlength" text="permitido até 100 caracteres.">
+        </app-message-erro>
+      </div>
+    
+      <label for="dataNascimento" class="label-k">Data de Nascimento</label>
+      <input formControlName="dataNascimento" type="datetime" name="dataNascimento" id="dataNascimento" class="input-k"
+        placeholder="dia/mês/ano">
+    
+      <div *ngIf="submit && form.controls['dataNascimento'].invalid || form.controls['dataNascimento'].touched">
+    
+        <app-message-erro *ngIf="form.get('dataNascimento').errors?.required" text="campo data de nascimento é obrigátorio."></app-message-erro>
+    
+        <app-message-erro *ngIf="form.get('dataNascimento').errors?.pattern" text="data inválida."></app-message-erro>
+    
+      </div>
+    
+    
+      <label for="cpf" class="label-k">CPF</label>
+      <input formControlName="cpf" type="text" name="cpf" id="cpf" class="input-k" placeholder="000.000.000-00">
+    
+    
+      <div *ngIf="submit && form.controls['cpf'].invalid || form.controls['cpf'].touched">
+    
+        <app-message-erro *ngIf="form.get('cpf').errors?.required" text=" campo cpf é obrigátorio.">
+        </app-message-erro>
+        <app-message-erro *ngIf="form.get('cpf').errors?.pattern" text="cpf inválido.">
+        </app-message-erro>
+    
+      </div>
+    
+      <label class="label-k">Gênero</label>
+    
+      <div class="options-select">
+        <input formControlName="genero" type="radio" name="genero" id="men" value="M">
+        <label for="men" class="men">Masculino <i class="mdi mdi-gender-male"></i></label>
+    
+        <input formControlName="genero" type="radio" name="genero" id="woman" value="F">
+        <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
+      </div>
+    
+    
+      <div *ngIf="submit && form.controls['genero'].invalid || form.controls['genero'].touched">
+    
+        <app-message-erro *ngIf="form.get('genero').errors?.required" text="campo cpf é obrigátorio.">
+        </app-message-erro>
+    
+      </div>
+    
+    
+      <label for="email" class="label-k">Email</label>
+      <input formControlName="email" type="email" name="email" id="email" class="input-k" placeholder="email@address.com">
+    
+    
+      <div *ngIf="submit && form.controls['email'].invalid || form.controls['email'].touched">
+    
+        <app-message-erro *ngIf="form.get('email').errors?.required" text="campo e-mail é obrigátorio.">
+        </app-message-erro>
+        <app-message-erro *ngIf="form.get('email').errors?.email" text=" e-mail inválido.">
+        </app-message-erro>
+    
+      </div>
+    
+      <label for="senha">Senha</label>
+      <input formControlName="senha" type="password" name="senha" id="senha" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+    
+      <div *ngIf="submit && form.controls['senha'].invalid || form.controls['senha'].touched">
+        <app-message-erro *ngIf="form.get('senha').errors?.required" text="campo e-mail é obrigátorio.">
+        </app-message-erro>
+        <app-message-erro *ngIf="form.get('senha').errors?.minlength" text="e-mail inválido.">
+        </app-message-erro>
+      </div>
+    
+    
+      <label for="fotoPerfil">Selecionar foto perfil</label>
+    
+      <div class="preview-image">
+        <label for="fotoPerfil" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
+        <input (change)="onFileChange($event)" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
+        <img id="previewImage" />
+        <label for="fotoPerfil" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
+          outra imagem</label>
+      </div>
+    
+      <button type="submit" [disabled]="form.invalid" class="btn btn-blue">Criar minha conta</button>
+    
+    </form>
 </main>

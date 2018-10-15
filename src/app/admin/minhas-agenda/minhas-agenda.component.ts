@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AgendaService } from '../../agenda/agenda.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-minhas-agenda',
@@ -15,6 +16,7 @@ export class AdminMinhasAgendaComponent implements OnInit {
   private user: User;
   private agendas: Agenda[] = [];
   private message: string = '';
+  buscarEventos = new FormControl('');
 
   constructor(
     private router: Router,
@@ -47,7 +49,7 @@ export class AdminMinhasAgendaComponent implements OnInit {
       this.agendaService.deleteAgenda(idAgenda).subscribe(
         () => {
           alert('Agenda Excluida com sucesso!');
-          this.router.navigate(['/funcionario-dashboard/minhas-agendas']);
+          this.router.navigate(['/admin-dashboard']);
         },
         (err: HttpErrorResponse) => {
           if (err.status == 401)

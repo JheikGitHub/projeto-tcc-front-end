@@ -25,6 +25,10 @@ import { DetalhesDadosUsuarioComponent } from './usuarios/detalhes-dados-usuario
 import { AlterarDadosUsuarioComponent } from './usuarios/alterar-dados-usuario/alterar-dados-usuario.component';
 import { GetUserIdResolve } from '../user/get-user-id.resolve';
 import { CriarNovoUsuarioComponent } from './usuarios/criar-novo-usuario/criar-novo-usuario.component';
+import { ListaTopicosAdminComponent } from './forum-admin/lista-topicos-admin/lista-topicos-admin.component';
+import { CriarTopicoAdminComponent } from './forum-admin/criar-topico-admin/criar-topico-admin.component';
+import { EditarTopicoAdminComponent } from './forum-admin/editar-topico-admin/editar-topico-admin.component';
+import { GetTopicoNomeResolve } from '../forum/getTopicoResolve';
 
 
 const routes: Routes = [
@@ -49,6 +53,10 @@ const routes: Routes = [
             { path: 'alterar-dados', component: AdminAlterarDadosComponent, resolve: { user: GetUserResolve } },
             { path: 'editar-agenda/:id', component: AdminAlterarAgendaComponent, resolve: { agenda: BuscaAgendaResolve } },
             { path: 'editar-evento/:id', component: AdminAlterarEventoComponent, resolve: { evento: BuscaEventoResolve } },
+
+            { path: 'topicos/:nomeEvento', component: ListaTopicosAdminComponent },
+            { path: 'topicos/:nomeEvento/criar-topico', component: CriarTopicoAdminComponent },
+            { path: 'topicos/:nomeEvento/editar-topico/:nomeTopico', component: EditarTopicoAdminComponent, resolve: { nomeTopico: GetTopicoNomeResolve } },
 
             { path: 'meus-eventos/detalhes-evento/:id', component: AdminDetalhesEventoComponent },
             { path: 'minhas-agendas/detalhes-agenda/:id', component: AdminDetalhesAgendaComponent },

@@ -9,10 +9,13 @@ import { AdminMinhasAgendaComponent } from './minhas-agenda.component';
 import { AdminAlterarAgendaComponent } from './alterar-agenda/alterar-agenda.component';
 import { AdminCriarAgendaComponent } from './criar-agenda/criar-agenda.component';
 import { AdminDetalhesAgendaComponent } from './detalhes-agenda/detalhes-agenda.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    FormsModule,
     NgxSpinnerModule,
     AgendaModule,
     RouterModule

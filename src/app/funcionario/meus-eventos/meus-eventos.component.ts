@@ -41,7 +41,7 @@ export class FuncionarioMeusEventosComponent implements OnInit {
       this.eventService.deleteEvento(idEvento).subscribe(
         () => {
           alert('Agenda Excluida com sucesso!');
-          this.router.navigate(['/funcionario-dashboard/minhas-agendas']);
+          this.router.navigate(['/funcionario-dashboard']);
         },
         (err: HttpErrorResponse) => {
           if (err.status == 401) {
