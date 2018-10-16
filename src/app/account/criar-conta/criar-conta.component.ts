@@ -31,7 +31,6 @@ export class CriarContaComponent implements OnInit {
   iniciarValoresInput() {
     this.form = this.formBuild.group({
       nome: ['', [Validators.required, Validators.maxLength(100)]],
-      username: ['', [Validators.required, Validators.maxLength(100)]],
       dataNascimento: ['', [Validators.required, Validators.required]],
       cpf: ['', [Validators.required,
       Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
@@ -45,6 +44,8 @@ export class CriarContaComponent implements OnInit {
   onFileChange(event) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
+      console.log(event);
+
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
@@ -58,7 +59,7 @@ export class CriarContaComponent implements OnInit {
   pegaValoresInput() {
     var path = this.form.get('fotoPerfil').value;
     this.user.Nome = this.form.get('nome').value;
-    this.user.UserName = this.form.get('username').value;
+    this.user.UserName = this.form.get('email').value;
     this.user.DataNascimento = this.form.get('dataNascimento').value;
     this.user.Cpf = this.form.get('cpf').value;
     this.user.Genero = this.form.get('genero').value;
@@ -88,7 +89,7 @@ export class CriarContaComponent implements OnInit {
         setTimeout(() => {
           this.router.navigate(['/participante-dashboard']);
         }, 5000);
-        
+
       },
       (err: HttpErrorResponse) => {
         this.showMessage("Falha ao se registrar, Por favor Tente novamente mais tarde.");

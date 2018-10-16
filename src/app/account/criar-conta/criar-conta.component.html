@@ -22,19 +22,6 @@
         </app-message-erro>
       </div>
     
-    
-      <label for="username" class="label-k">Nome de Usuário</label>
-      <input formControlName="username" type="text" name="username" id="username" class="input-k" placeholder="Digite seu nome de usuario">
-    
-      <div *ngIf="submit && form.controls['username'].invalid || form.controls['username'].touched">
-    
-        <app-message-erro *ngIf="form.get('username').errors?.required" text="Campo nome é obrigátorio.">
-        </app-message-erro>
-    
-        <app-message-erro *ngIf="form.get('username').errors?.maxlength" text="permitido até 100 caracteres.">
-        </app-message-erro>
-      </div>
-    
       <label for="dataNascimento" class="label-k">Data de Nascimento</label>
       <input formControlName="dataNascimento" type="date" name="dataNascimento" id="dataNascimento" class="input-k"
         placeholder="dia/mês/ano">
