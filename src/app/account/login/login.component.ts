@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { UserAuthenticateDTO, LoginService } from './login.service';
 import { User } from '../../user/user';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { UserAuthenticateDTO, LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
           (data: User) => {
 
             this.service.setUser(data.UserName, data.Perfil);
-            this.spinner.hide();
 
             if (data.Perfil.toLowerCase() == "aluno") {
               this.route.navigate(['/participante-dashboard']);
@@ -51,6 +50,7 @@ export class LoginComponent implements OnInit {
             } else {
               this.route.navigate(['/admin-dashboard'])
             }
+            this.spinner.hide();
           },
           async (err: HttpErrorResponse) => {
             this.spinner.hide();
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
       },
       async (err: HttpErrorResponse) => {
         this.spinner.hide();
-          this.showMessage('Acesso negado. Verifique seu USERNAME e SENHA.')
+        this.showMessage('Acesso negado. Verifique seu USERNAME e SENHA.')
       }
     );
   }

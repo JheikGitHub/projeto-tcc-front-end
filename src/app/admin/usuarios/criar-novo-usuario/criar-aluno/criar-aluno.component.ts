@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { User } from 'src/app/user/user';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ParticipanteService } from 'src/app/participante/participante.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { User } from 'src/app/user/user';
 import { Participant } from 'src/app/participante/participante';
+import { ParticipanteService } from 'src/app/participante/participante.service';
 
 @Component({
   selector: 'app-criar-aluno',
@@ -35,7 +36,7 @@ export class CriarAlunoComponent implements OnInit {
       Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
       genero: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      matricula: ['', [Validators.required, Validators.maxLength(11),Validators.minLength(11)]],
+      matricula: ['', [Validators.required, Validators.maxLength(11), Validators.minLength(11)]],
       fotoPerfil: ['']
     });
   }
@@ -79,20 +80,19 @@ export class CriarAlunoComponent implements OnInit {
   onSubmit() {
     this.pegaValoresInput();
 
-     this.service.adicioanaParticipante(this.participante).subscribe(
+    this.service.adicioanaParticipante(this.participante).subscribe(
       (data) => {
-        this.showMessage("Aluno cadastrado com sucesso");
         setTimeout(() => {
-          this.router.navigate(['/admin-dashboard/usuarios']);
+          this.showMessage("Aluno cadastrado com sucesso");
         }, 5000);
-
+        this.router.navigate(['/admin-dashboard/usuarios']);
       },
       (err: HttpErrorResponse) => {
         setTimeout(() => {
           this.showMessage("Falha ao se registrar, Por favor Tente novamente mais tarde.");
         }, 5000);
       }
-    ); 
+    );
   }
 
   GeradorSenha() {

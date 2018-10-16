@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/user/user';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { CriarContaService } from './sign-in.service';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { User } from 'src/app/user/user';
+import { CriarContaService } from './sign-in.service';
 
 
 @Component({
@@ -86,16 +87,12 @@ export class CriarContaComponent implements OnInit {
     this.service.createAccount(this.user).subscribe(
       (data) => {
         this.showMessage("cadastro realizado com sucesso.")
-        setTimeout(() => {
-          this.router.navigate(['/participante-dashboard']);
-        }, 5000);
-
+        this.router.navigate(['/participante-dashboard']);
       },
       (err: HttpErrorResponse) => {
         this.showMessage("Falha ao se registrar, Por favor Tente novamente mais tarde.");
       }
     );
-
   }
 
   showMessage(msg: string) {

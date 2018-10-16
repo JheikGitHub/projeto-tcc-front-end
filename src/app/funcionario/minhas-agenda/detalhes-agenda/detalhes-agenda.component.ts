@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Agenda } from '../../../agenda/agenda';
 import { ActivatedRoute } from '@angular/router';
+
+import { Agenda } from '../../../agenda/agenda';
 import { AgendaService } from '../../../agenda/agenda.service';
 
 @Component({

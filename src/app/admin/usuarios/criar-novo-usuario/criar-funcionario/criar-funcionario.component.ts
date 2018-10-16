@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { User } from 'src/app/user/user';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import { User } from 'src/app/user/user';
 import { Funcionario } from 'src/app/funcionario/funcionario';
 import { FuncionarioService } from 'src/app/funcionario/funcionario.service';
 
@@ -79,11 +80,10 @@ export class CriarFuncionarioComponent implements OnInit {
 
     this.service.adicionaFuncionario(this.funcionario).subscribe(
       (data) => {
-        this.showMessage("Administrador cadastrado com sucesso");
         setTimeout(() => {
-          this.router.navigate(['/admin-dashboard/usuarios']);
+          this.showMessage("Administrador cadastrado com sucesso");
         }, 5000);
-
+        this.router.navigate(['/admin-dashboard/usuarios']);
       },
       (err: HttpErrorResponse) => {
         setTimeout(() => {

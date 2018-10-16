@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { User } from '../user';
-import { MudarSenhaDTO, UserService } from '../user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+
+import { User } from '../user';
+import { MudarSenhaDTO, UserService } from '../user.service';
 
 @Component({
   selector: 'app-alterar-senha',

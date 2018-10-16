@@ -1,9 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Funcionario } from 'src/app/funcionario/funcionario';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { FuncionarioService } from 'src/app/funcionario/funcionario.service';
 import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 
@@ -55,11 +54,10 @@ export class AlterarFuncionarioComponent implements OnInit {
 
     this.service.setUserChange(this.funcionario).subscribe(
       (data) => {
-        this.showMessage("Funcionario alterado com sucesso");
         setTimeout(() => {
-          this.router.navigate(['/admin-dashboard/usuarios']);
+          this.showMessage("Funcionario alterado com sucesso");
         }, 5000);
-
+        this.router.navigate(['/admin-dashboard/usuarios']);
       },
       (err: HttpErrorResponse) => {
         setTimeout(() => {

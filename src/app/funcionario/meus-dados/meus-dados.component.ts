@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../user/user';
 import { ActivatedRoute } from '@angular/router';
+
+import { User } from '../../user/user';
 
 @Component({
   selector: 'app-meus-dados',

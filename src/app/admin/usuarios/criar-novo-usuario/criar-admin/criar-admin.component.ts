@@ -80,11 +80,10 @@ export class CriarAdminComponent implements OnInit {
 
     this.service.adicionaFuncionario(this.funcionario).subscribe(
       (data) => {
-        this.showMessage("Administrador cadastrado com sucesso");
         setTimeout(() => {
-          this.router.navigate(['/admin-dashboard/usuarios']);
+          this.showMessage("Administrador cadastrado com sucesso");
         }, 5000);
-
+        this.router.navigate(['/admin-dashboard/usuarios']);
       },
       (err: HttpErrorResponse) => {
         setTimeout(() => {

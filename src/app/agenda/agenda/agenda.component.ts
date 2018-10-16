@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AgendaService } from '../agenda.service';
 
@@ -27,7 +28,7 @@ export class AgendaComponent implements OnInit {
     this.service.getEventosAgenda(this.route.snapshot.params['nome-agenda']).subscribe(evento => {
       this.eventosAgenda = evento;
       this.spinner.hide();
-    }, (err) => {console.log(err);})
+    }, (err) => { console.log(err); })
 
   }
 

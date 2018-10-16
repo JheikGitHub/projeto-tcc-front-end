@@ -1,9 +1,9 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-usuarios',
@@ -19,7 +19,7 @@ export class ListaUsuariosComponent implements OnInit {
 
   constructor(
     private usuarioService: UserService,
-    private router:Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.usuarioService.getAllUser(this.pageSize, this.pageIndex).subscribe(
@@ -61,7 +61,7 @@ export class ListaUsuariosComponent implements OnInit {
       );
 
     }
-    
+
   }
 
 }

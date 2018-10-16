@@ -3,15 +3,15 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { LoginComponent } from './login/login.component';
-import { AccountRoutingModule } from './account.routing';
-import { LoginService } from './login/login.service';
-import { CriarContaComponent } from './criar-conta/criar-conta.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { CriarContaService } from './criar-conta/sign-in.service';
+import { UserModule } from '../user/user.module';
+import { LoginService } from './login/login.service';
 import { ErrorsModule } from '../errors/errors.module';
 import { SharedModule } from '../shared/shared.module';
-import { UserModule } from '../user/user.module';
+import { AccountRoutingModule } from './account.routing';
+import { LoginComponent } from './login/login.component';
+import { CriarContaService } from './criar-conta/sign-in.service';
+import { CriarContaComponent } from './criar-conta/criar-conta.component';
 
 @NgModule({
   imports: [

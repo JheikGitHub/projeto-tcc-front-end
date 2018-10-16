@@ -1,7 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
@@ -53,11 +53,10 @@ export class AlterarAlunoComponent implements OnInit {
 
     this.service.setUserChange(this.participante).subscribe(
       (data) => {
-        this.showMessage("Aluno alterado com sucesso");
         setTimeout(() => {
-          this.router.navigate(['/admin-dashboard/usuarios']);
+          this.showMessage("Aluno alterado com sucesso");
         }, 5000);
-
+        this.router.navigate(['/admin-dashboard/usuarios']);
       },
       (err: HttpErrorResponse) => {
         setTimeout(() => {

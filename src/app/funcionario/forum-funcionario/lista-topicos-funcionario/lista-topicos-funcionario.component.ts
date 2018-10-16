@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { TopicoDiscussao } from 'src/app/forum/topicos-discussao/topico-discussao';
 import { ForumService } from 'src/app/forum/forun.service';
+import { TopicoDiscussao } from 'src/app/forum/topicos-discussao/topico-discussao';
 
 @Component({
   selector: 'app-lista-topicos-funcionario',

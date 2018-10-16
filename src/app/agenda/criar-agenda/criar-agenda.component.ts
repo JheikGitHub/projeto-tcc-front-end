@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
-import { User } from '../../user/user';
 import { Agenda } from '../agenda';
+import { User } from '../../user/user';
 import { AgendaService } from '../agenda.service';
 
 @Component({

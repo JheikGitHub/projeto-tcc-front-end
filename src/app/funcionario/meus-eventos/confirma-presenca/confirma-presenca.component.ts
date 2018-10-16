@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-
-import { ActivatedRoute, Router } from '@angular/router';
-import { NgxSpinnerService } from 'ngx-spinner';
 import { HttpErrorResponse } from '@angular/common/http';
-import { ConfirmacaoPresenca, FuncionarioService } from '../../funcionario.service';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { User } from '../../../user/user';
-import { EmailCpf } from '../../../user/email-recuperar-senha/email-recupera-senha.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { UserService } from '../../../user/user.service';
+import { ConfirmacaoPresenca, FuncionarioService } from '../../funcionario.service';
+import { EmailCpf } from '../../../user/email-recuperar-senha/email-recupera-senha.service';
 
 
 @Component({

@@ -4,18 +4,18 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
-import { BuscaAgendaResolve } from './busca-agenda.resolve';
-import { CriarAgendaComponent } from './criar-agenda/criar-agenda.component';
-import { DetalhesAgendaComponent } from './detalhes-agenda/detalhes-agenda.component';
-import { AlterarAgendaComponent } from './alterar-agenda/alterar-agenda.component';
-import { ErrorsModule } from '../errors/errors.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { AgendaComponent } from './agenda/agenda.component';
-import { SharedModule } from '../shared/shared.module';
-import { FilterEventosAgendaPipe } from './filter.eventos.agenda.pipe';
-import { EventoComponent } from './evento/evento.component';
 import { ForumModule } from '../forum/forum.module';
+import { ErrorsModule } from '../errors/errors.module';
+import { SharedModule } from '../shared/shared.module';
 import { FilterAgendaPipe } from './filter.agenda.pipe';
+import { AgendaComponent } from './agenda/agenda.component';
+import { BuscaAgendaResolve } from './busca-agenda.resolve';
+import { EventoComponent } from './evento/evento.component';
+import { FilterEventosAgendaPipe } from './filter.eventos.agenda.pipe';
+import { CriarAgendaComponent } from './criar-agenda/criar-agenda.component';
+import { AlterarAgendaComponent } from './alterar-agenda/alterar-agenda.component';
+import { DetalhesAgendaComponent } from './detalhes-agenda/detalhes-agenda.component';
 
 @NgModule({
   imports: [

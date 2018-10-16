@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeParticipanteComponent } from './home-participante/home-participante.component';
-import { ParticipanteComponent } from './participante.component';
 import { GetUserResolve } from '../user/get-user.resolve';
+import { ParticipanteComponent } from './participante.component';
 import { participanteMeusDadosComponent } from './meus-dados/meus-dados.component';
-import { ParticipanteAlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { ParticipanteAlterarFotoComponent } from './alterar-foto/alterar-foto.component';
+import { ParticipanteAlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 import { ParticipanteAlterarDadosComponent } from './alterar-dados/alterar-dados.component';
 import { MinhasInscricoesComponent } from './minhas-inscricoes/minhas-inscricoes.component';
 import { MeusCertificadosComponent } from './meus-certificados/meus-certificados.component';
+import { HomeParticipanteComponent } from './home-participante/home-participante.component';
 import { ParticipanteDetalhesEventoComponent } from './detalhes-evento/detalhes-evento.component';
-
-
 
 const routes: Routes = [
   {

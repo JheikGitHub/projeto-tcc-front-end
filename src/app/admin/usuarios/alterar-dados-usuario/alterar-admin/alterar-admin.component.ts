@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Component, OnInit, Input } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { User } from 'src/app/user/user';
 import { UserService } from 'src/app/user/user.service';
 
@@ -52,10 +53,10 @@ export class AlterarAdminComponent implements OnInit {
 
     this.service.setUserChange(this.funcionario).subscribe(
       (data) => {
-        this.showMessage("Administrador alterado com sucesso");
         setTimeout(() => {
-          this.router.navigate(['/admin-dashboard/usuarios']);
+          this.showMessage("Administrador alterado com sucesso");
         }, 5000);
+        this.router.navigate(['/admin-dashboard/usuarios']);
 
       },
       (err: HttpErrorResponse) => {

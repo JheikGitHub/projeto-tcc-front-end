@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Agenda } from '../agenda';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -82,7 +82,5 @@ export class AlterarAgendaComponent implements OnInit {
         }
       }
     );
-
   }
-
 }

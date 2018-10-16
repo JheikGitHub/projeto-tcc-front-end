@@ -11,7 +11,7 @@
     <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <input formControlName="username" type="text" name="username" id="username" placeholder="Username" autofocus />
+        <input formControlName="username" type="text" name="username" id="username" placeholder="Email" autofocus />
 
         <input formControlName="password" type="password" name="senha" id="senha" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;" />
 
