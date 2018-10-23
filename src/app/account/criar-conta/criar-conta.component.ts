@@ -15,10 +15,9 @@ import { CriarContaService } from './sign-in.service';
 export class CriarContaComponent implements OnInit {
 
   private user: User = new User();
-
+  private messageErro: string = '';
+  private msgAlert: string = '';
   private form: FormGroup;
-  private submit: boolean = false;
-  private erro: string = '';
 
   constructor(
     private formBuild: FormBuilder,
@@ -40,6 +39,76 @@ export class CriarContaComponent implements OnInit {
       senha: ['', [Validators.required, Validators.minLength(6)]],
       fotoPerfil: ['']
     });
+  }
+
+  validaCampos() {
+    this.messageErro = '';
+
+    if (this.form.controls['nome'].status == "INVALID") {
+      if (this.form.controls['nome'].errors.required) {
+        this.messageErro = "O campo nome é obrigátorio."
+        return;
+      } else if (this.form.controls['nome'].errors.maxlength) {
+        this.messageErro = "O campo nome é permitido até 100 caracteres.."
+        return;
+      }
+    }
+
+    if (this.form.controls['dataNascimento'].status == "INVALID") {
+      if (this.form.controls['dataNascimento'].errors.required) {
+        this.messageErro = "O campo data de nascimento é obrigátorio."
+        return;
+      }
+      else if (this.form.controls['dataNascimento'].errors.pattern) {
+        this.messageErro = "Data de nascimento inválida."
+        return;
+      }
+      return;
+    }
+
+    if (this.form.controls['cpf'].status == "INVALID") {
+      if (this.form.controls['cpf'].errors.required) {
+        this.messageErro = "O campo Cpf é obrigátorio."
+        return;
+      }
+      else if (this.form.controls['cpf'].errors.pattern) {
+        this.messageErro = "Cpf inválido."
+        return;
+      }
+      return;
+    }
+
+    if (this.form.controls['genero'].status == "INVALID") {
+      if (this.form.controls['genero'].errors.required) {
+        this.messageErro = "O campo gênero é obrigátorio."
+        return;
+      }
+      return;
+    }
+
+    if (this.form.controls['email'].status == "INVALID") {
+      if (this.form.controls['email'].errors.required) {
+        this.messageErro = "O campo E-mail é obrigátorio."
+        return;
+      }
+      else if (this.form.controls['email'].errors.pattern) {
+        this.messageErro = "E-mail inválido."
+        return;
+      }
+      return;
+    }
+
+    if (this.form.controls['senha'].status == "INVALID") {
+      if (this.form.controls['senha'].errors.required) {
+        this.messageErro = "O campo Senha é obrigátorio."
+        return;
+      }
+      else if (this.form.controls['senha'].errors.minlength) {
+        this.messageErro = "Senha deve conter no mnímo 6 caracteres."
+        return;
+      }
+      return;
+    }
   }
 
   onFileChange(event) {
@@ -76,9 +145,9 @@ export class CriarContaComponent implements OnInit {
   }
 
   onSubmit() {
-    this.submit = true;
 
     if (this.form.invalid) {
+      this.validaCampos();
       return;
     }
 
@@ -96,9 +165,9 @@ export class CriarContaComponent implements OnInit {
   }
 
   showMessage(msg: string) {
-    this.erro = msg
+    this.msgAlert = msg
     setTimeout(() => {
-      this.erro = ''
+      this.msgAlert = ''
     }, 7000);
   }
 }

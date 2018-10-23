@@ -1,7 +1,8 @@
+<p class="mensagem warning animation">{{messageErro}}</p>
 
 <form class="form-konoha form-responsive" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-    <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
+  <!--   <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
       <app-message-erro *ngIf="form.get('nome').errors?.required" text=" campo nome é obrigátorio.">
       </app-message-erro>
       <app-message-erro *ngIf="form.get('nome').errors?.maxlength" text="limite de caracteres 100.">
@@ -25,7 +26,7 @@
     <div *ngIf="submit && form.controls['imagem'].invalid || form.controls['imagem'].touched">
       <app-message-erro *ngIf="form.get('imagem').errors?.required" text=" imagem do evento é obrigátorio.">
       </app-message-erro>
-    </div>
+    </div> -->
   
     <label for="nome" class="label-k">Nome da agenda de eventos</label>
     <input formControlName="nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite o nome da agenda">

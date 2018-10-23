@@ -16,6 +16,7 @@ export class AlterarAgendaComponent implements OnInit {
 
   private form: FormGroup;
   private agenda: Agenda = new Agenda();
+  private messageErro: string = '';
 
   constructor(
     private routeActivated: ActivatedRoute,
@@ -64,7 +65,38 @@ export class AlterarAgendaComponent implements OnInit {
     this.agenda.PathImagem = path.value;
   }
 
+  validaCampos() {
+    this.messageErro = '';
+    if (this.form.get('nome').status == "INVALID") {
+      if (this.form.controls['nome'].errors.required) {
+        this.messageErro = 'Campo nome é obrigatório.';
+        return;
+      }
+      if (this.form.controls['nome'].errors.maxlength) {
+        this.messageErro = 'Campo nome suporta até 100 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('descricao').status == "INVALID") {
+      if (this.form.controls['descricao'].errors.required) {
+        this.messageErro = 'Campo descricao é obrigatório.';
+        return;
+      }
+      if (this.form.controls['descricao'].errors.maxlength) {
+        this.messageErro = 'Campo descricao suporta até 500 caracteres.';
+        return;
+      }
+    }
+
+  }
+  
   onSubmit() {
+
+    if(this.form.invalid){
+      this.validaCampos();
+      return
+    }
     this.pegaValorDosInput();
 
     this.AgendaService.EditAgenda(this.agenda.Id, this.agenda).subscribe(

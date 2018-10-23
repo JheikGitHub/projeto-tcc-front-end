@@ -47,8 +47,73 @@ export class AlterarFuncionarioComponent implements OnInit {
     this.funcionario.UserName = this.funcionario.Email;
   }
 
+  validaCampos() {
+    this.erro = '';
+
+    if (this.formFuncionario.controls['nome'].status == "INVALID") {
+      if (this.formFuncionario.controls['nome'].errors.required) {
+        this.erro = "O campo nome é obrigátorio."
+        return;
+      } else if (this.formFuncionario.controls['nome'].errors.maxlength) {
+        this.erro = "O campo nome é permitido até 100 caracteres.."
+        return;
+      }
+    }
+
+    if (this.formFuncionario.controls['cpf'].status == "INVALID") {
+      if (this.formFuncionario.controls['cpf'].errors.required) {
+        this.erro = "O campo Cpf é obrigátorio."
+        return;
+      }
+      else if (this.formFuncionario.controls['cpf'].errors.pattern) {
+        this.erro = "Cpf inválido."
+        return;
+      }
+      return;
+    }
+
+    if (this.formFuncionario.controls['dataNascimento'].status == "INVALID") {
+      if (this.formFuncionario.controls['dataNascimento'].errors.required) {
+        this.erro = "O campo data de nascimento é obrigátorio."
+        return;
+      }
+    }
+
+    if (this.formFuncionario.controls['genero'].status == "INVALID") {
+      if (this.formFuncionario.controls['genero'].errors.required) {
+        this.erro = "O campo gênero é obrigátorio."
+        return;
+      }
+      return;
+    }
+
+    if (this.formFuncionario.controls['permissaoCriaAgenda'].status == "INVALID") {
+      if (this.formFuncionario.controls['permissaoCriaAgenda'].errors.required) {
+        this.erro = "O campo permissao para criar agenda é obrigátorio."
+        return;
+      }
+      return;
+    }
+
+    if (this.formFuncionario.controls['email'].status == "INVALID") {
+      if (this.formFuncionario.controls['email'].errors.required) {
+        this.erro = "O campo E-mail é obrigátorio."
+        return;
+      }
+      else if (this.formFuncionario.controls['email'].errors.pattern) {
+        this.erro = "E-mail inválido."
+        return;
+      }
+      return;
+    }
+  }
+  
   onSubmit() {
-    console.log(this.funcionario);
+
+    if (this.formFuncionario.invalid) {
+      this.validaCampos();
+      return;
+    }
 
     this.pegaValoresInput();
 

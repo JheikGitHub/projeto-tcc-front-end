@@ -1,16 +1,18 @@
-<p class="mensagem warning animation">{{messageErro}}</p>
-<p class="mensagem information" *ngIf="form.invalid">Informe sua nova senha com 6 a 15 digitos.</p>
+<p>Informe sua nova senha com 6 a 15 digitos.</p>
 
-<form action="" class="form-konoha alterar-senha" [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="!msgAlert">
+<p class="mensagem warning animation">{{messageErro}}</p>
+<p *ngIf="msgAlert">As senha nao se coincidem</p>
+
+<form action="" class="form-konoha alterar-senha" [formGroup]="form" (ngSubmit)="onSubmit()">
 
     <label for="NovaSenha">Nova senha</label>
     <input formControlName="NovaSenha" type="password" name="NovaSenha" id="NovaSenha" placeholder="●●●●●●" maxlength="15">
 
     <label for="ConfirmarSenha">Confirmar senha</label>
-    <input formControlName="ConfirmarSenha" type="password" name="ConfirmarSenha" id="ConfirmarSenha" placeholder="●●●●●●" maxlength="15">
+    <input formControlName="ConfirmarSenha" type="password" name="ConfirmarSenha" id="ConfirmarSenha" placeholder="●●●●●●"
+        maxlength="15">
 
-
-    <button [disabled]="form.invalid" class="btn btn-blue">Alterar senha</button>
+    <button class="btn btn-blue">Alterar senha</button>
 </form>
 
-<p class="alert-float success" *ngIf="msgAlert"><i class="mdi mdi-check-circle-outline"></i><i class="mdi mdi-close" onclick="this.parentElement.style.display='none';"></i>{{ msgAlert }}</p>
+<p class="alert-float success">{{msgAlert}}</p>

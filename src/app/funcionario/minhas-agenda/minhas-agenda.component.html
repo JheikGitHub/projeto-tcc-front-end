@@ -1,5 +1,6 @@
 <h1 class="title-dashboard"><i class="mdi mdi-book"></i>Agendas de Eventos</h1>
-<a [routerLink]="['/funcionario-dashboard/criar-agenda']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
+
+<a *ngIf="funcionario.PermissaoCriarAgenda"  [routerLink]="['/funcionario-dashboard/criar-agenda']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
     class="mdi mdi-book-plus"></i>Criar nova agenda</a>
 
 <ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
@@ -27,11 +28,11 @@
       <a [routerLink]="['detalhes-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="aqua" title="Detalhar Agenda">
         <i class="mdi mdi-view-list"></i>
       </a>
-      <a [routerLink]="['/funcionario-dashboard/editar-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="blue"
+      <a *ngIf="funcionario.PermissaoCriarAgenda" [routerLink]="['/funcionario-dashboard/editar-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="blue"
         title="Editar agenda">
         <i class="mdi mdi-pencil"></i>
       </a>
-      <a (click)="deleteAgenda(agenda.Id)" class="red" title="Deletar Agenda">
+      <a *ngIf="funcionario.PermissaoCriarAgenda" (click)="deleteAgenda(agenda.Id)" class="red" title="Deletar Agenda">
         <i class="mdi mdi-delete-empty"></i>
       </a>
     </div>

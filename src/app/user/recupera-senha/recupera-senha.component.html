@@ -14,7 +14,7 @@
   
   <form class="form-konoha create-account" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-      <div *ngIf="submit && (form.controls['NovaSenha'].invalid || form.controls['NovaSenha'].touched)">
+   <!--    <div *ngIf="submit && (form.controls['NovaSenha'].invalid || form.controls['NovaSenha'].touched)">
           <app-message-erro *ngIf="form.get('NovaSenha').errors?.required" text=" campo senha é obrigátorio.">
           </app-message-erro>
           <app-message-erro *ngIf="form.get('NovaSenha').errors?.minlength" text="senha deve conter no minimo 6 caracteres.">
@@ -30,8 +30,9 @@
 
       <div *ngIf="form.get('NovaSenha').value != form.get('ConfimarSenha').value">
           <p> senha não se coincidem.</p>
-      </div>
-      <label for="NovaSenha">Qual sua nova senha</label>
+      </div> -->
+
+      <label for="NovaSenha">Nova senha</label>
       <input formControlName="NovaSenha" type="password" name="NovaSenha" id="NovaSenha" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
 
       <label for="ConfimarSenha">Confirmar nova senha</label>

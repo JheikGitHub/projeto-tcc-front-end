@@ -14,9 +14,10 @@ import { LoginService } from '../../account/login/login.service';
 })
 export class AlterarDadosComponent implements OnInit {
 
-  form: FormGroup;
+  private form: FormGroup;
+  private messageErro: string = '';
   @Input() user: User;
-  msgAlert: string = null;
+  private msgAlert: string = null;
 
 
   constructor(
@@ -34,8 +35,68 @@ export class AlterarDadosComponent implements OnInit {
       Genero: [this.user.Genero, Validators.required]
     });
   }
+
+  validacaoCampos() {
+    this.messageErro = '';
+
+    if (this.form.controls['Nome'].status == "INVALID") {
+      if (this.form.controls['Nome'].errors.required) {
+        this.messageErro = "O campo nome é obrigátorio."
+        return;
+      } else if (this.form.controls['Nome'].errors.maxlength) {
+        this.messageErro = "O campo nome é permitido até 100 caracteres.."
+        return;
+      }
+    }
+
+    if (this.form.controls['UserName'].status == "INVALID") {
+      if (this.form.controls['UserName'].errors.required) {
+        this.messageErro = "O campo nome de usuário é obrigátorio."
+        return;
+      }
+      else if (this.form.controls['UserName'].errors.maxlength) {
+        this.messageErro = "O campo nome de usuário é permitido até 100 caracteres.."
+        return;
+      }
+      return;
+    }
+
+    if (this.form.controls['DataNascimento'].status == "INVALID") {
+      if (this.form.controls['DataNascimento'].errors.required) {
+        this.messageErro = "O campo data de nascimento é obrigátorio."
+        return;
+      }
+      else if (this.form.controls['DataNascimento'].errors.pattern) {
+        this.messageErro = "Data de nascimento inválida."
+        return;
+      }
+      return;
+    }
+
+    if (this.form.controls['Cpf'].status == "INVALID") {
+      if (this.form.controls['Cpf'].errors.required) {
+        this.messageErro = "O campo Cpf é obrigátorio."
+        return;
+      }
+      else if (this.form.controls['Cpf'].errors.pattern) {
+        this.messageErro = "Cpf inválido."
+        return;
+      }
+      return;
+    }
+
+    if (this.form.controls['Genero'].status == "INVALID") {
+      if (this.form.controls['Genero'].errors.required) {
+        this.messageErro = "O campo gênero é obrigátorio."
+        return;
+      }
+      return;
+    }
+  }
+
   onSubmit() {
     if (this.form.invalid) {
+      this.validacaoCampos();
       return;
     }
     this.user.Nome = this.form.get('Nome').value;

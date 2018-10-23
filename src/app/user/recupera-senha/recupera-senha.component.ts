@@ -33,12 +33,38 @@ export class RecuperaSenhaComponent implements OnInit {
     });
   }
 
+  validaCampos() {
+    this.erro = '';
+
+    if (this.passwordsEquals(this.form)) {
+      this.erro = "As senhas não se coincidem";
+    }
+
+    if (this.form.controls['NovaSenha'].status == "INVALID") {
+      if (this.form.controls['NovaSenha'].errors.required) {
+        this.erro = "O campo nova senha é obrigátorio."
+        return;
+      }
+    }
+    if (this.form.controls['ConfimarSenha'].status == "INVALID") {
+      if (this.form.controls['ConfimarSenha'].errors.required) {
+        this.erro = "O campo confirmar senha é obrigátorio."
+        return;
+      }
+    }
+  }
+
+  private passwordsEquals(f: FormGroup) {
+    return f.get('NovaSenha').value === f.get('ConfimarSenha').value ? false : true;
+  }
+
   onSubmit() {
     this.submit = true;
 
-    if (this.form.invalid)
+    if (this.form.invalid) {
+      this.validaCampos();
       return;
-
+    }
     this.Senha.novaSenha = this.form.get('NovaSenha').value;
     this.Senha.confimarSenha = this.form.get('ConfimarSenha').value;
 

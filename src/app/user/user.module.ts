@@ -14,7 +14,6 @@ import { AlterarDadosComponent } from './alterar-dados/alterar-dados.component';
 import { AlterarFotoComponent } from './alterar-foto/alterar-foto.component';
 import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 import { SharedModule } from '../shared/shared.module';
-import { CriarUsuarioComponent } from './criar-usuario/criar-usuario.component';
 import { DetalhesUsuarioComponent } from './detalhes-usuario/detalhes-usuario.component';
 import { GetUserIdResolve } from './get-user-id.resolve';
 
@@ -34,7 +33,6 @@ import { GetUserIdResolve } from './get-user-id.resolve';
     AlterarDadosComponent,
     AlterarFotoComponent,
     ListaUsuariosComponent,
-    CriarUsuarioComponent,
     DetalhesUsuarioComponent
   ],
   exports: [
@@ -44,7 +42,6 @@ import { GetUserIdResolve } from './get-user-id.resolve';
     AlterarFotoComponent,
     AlterarDadosComponent,
     ListaUsuariosComponent,
-    CriarUsuarioComponent,
     DetalhesUsuarioComponent
   ],
   providers: [

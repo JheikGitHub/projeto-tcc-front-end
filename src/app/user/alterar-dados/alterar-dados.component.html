@@ -1,6 +1,8 @@
+<p class="mensagem warning animation">{{messageErro}}</p>
+
 <form class="form-konoha editar-dados" [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <div *ngIf="form.controls['Nome'].invalid || form.controls['Nome'].touched">
+  <!-- <div *ngIf="form.controls['Nome'].invalid || form.controls['Nome'].touched">
     <app-message-erro *ngIf="form.get('Nome').errors?.required" text="Campo nome é obrigatório.">
     </app-message-erro>
     <app-message-erro *ngIf="form.get('Nome').errors?.maxlength" text="permitido até 100 caracteres.">
@@ -31,7 +33,7 @@
   <div *ngIf="form.controls['Genero'].invalid || form.controls['Genero'].touched">
     <app-message-erro *ngIf="form.get('Genero').errors?.required" text="Escolha de um gênero é obrigatório.">
     </app-message-erro>
-  </div>
+  </div> -->
 
   <label for="nome" class="label-k">Nome Completo</label>
   <input formControlName="Nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite seu nome completo">

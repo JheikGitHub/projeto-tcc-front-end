@@ -12,14 +12,14 @@
   <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
 
   <form action="" [formGroup]="form" (ngSubmit)="onSubmit()">
-<h1>
-    <div *ngIf="form.controls['cpf'].invalid || form.controls['cpf'].touched">
+
+    <!-- <div *ngIf="form.controls['cpf'].invalid || form.controls['cpf'].touched">
       <app-message-erro *ngIf="form.get('cpf').errors?.required" text="campo cpf é obrigatório.">
       </app-message-erro>
       <app-message-erro *ngIf="form.get('cpf').errors?.pattern" text="cpf inválido.">
       </app-message-erro>
     </div>
-  </h1>
+     -->
     <input formControlName="cpf" type="text" placeholder="Digite seu número de CPF">
 
     <button type="submit" class="btn btn-blue">Enviar nova senha por email</button>

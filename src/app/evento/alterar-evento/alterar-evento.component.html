@@ -1,4 +1,5 @@
 
+<p class="mensagem warning animation">{{messageErro}}</p>
 
 <form class="criar-evento" [formGroup]="form" (ngSubmit)="onSubmit()">
 
@@ -34,7 +35,7 @@
 
     <div class="tab form-konoha">
 
-        <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
+       <!--  <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
             <app-message-erro *ngIf="form.get('nome').errors?.required" text=" campo nome é obrigátorio.">
             </app-message-erro>
             <app-message-erro *ngIf="form.get('nome').errors?.maxlength" text="limite de caracteres 100.">
@@ -94,7 +95,7 @@
             <app-message-erro *ngIf="form.get('tipoEvento').errors?.maxlength" text="limite de caracteres 50.">
             </app-message-erro>
         </div>
-
+ -->
 
         <label for="nome" class="label-k">Nome do evento*</label>
         <input formControlName="nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite o nome do evento">

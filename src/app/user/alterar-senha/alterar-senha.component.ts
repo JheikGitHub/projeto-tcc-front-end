@@ -13,11 +13,11 @@ import { MudarSenhaDTO, UserService } from '../user.service';
 })
 export class AlterarSenhaComponent implements OnInit {
 
-  form: FormGroup;
-  submit: boolean = false;
-  user: User;
-  senha: MudarSenhaDTO = { ConfimarSenha: '', NovaSenha: '' };
-  msgAlert: string = null;
+  private form: FormGroup;
+  private user: User;
+  private messageErro: string = ''
+  private senha: MudarSenhaDTO = { ConfimarSenha: '', NovaSenha: '' };
+  private msgAlert: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -38,13 +38,29 @@ export class AlterarSenhaComponent implements OnInit {
     this.form = new FormGroup({
       'NovaSenha': new FormControl('', [Validators.required, Validators.minLength(6)]),
       'ConfirmarSenha': new FormControl('', [Validators.required, Validators.minLength(6)])
-    }, this.passwordsEquals);
+    });
   }
 
   onSubmit() {
-    this.submit = true;
+    this.messageErro = '';
 
     if (this.form.invalid) {
+      if (this.passwordsEquals(this.form)) {
+        this.messageErro = "As senhas não se coincidem";
+      }
+
+      if (this.form.controls['NovaSenha'].status == "INVALID") {
+        if (this.form.controls['NovaSenha'].errors.required) {
+          this.messageErro = "O campo nova senha é obrigátorio."
+          return;
+        }
+      }
+      if (this.form.controls['ConfirmarSenha'].status == "INVALID") {
+        if (this.form.controls['ConfirmarSenha'].errors.required) {
+          this.messageErro = "O campo confirmar senha é obrigátorio."
+          return;
+        }
+      }
       return;
     }
 
@@ -70,7 +86,7 @@ export class AlterarSenhaComponent implements OnInit {
   }
 
   private passwordsEquals(f: FormGroup) {
-    return f.get('NovaSenha').value === f.get('ConfirmarSenha').value ? null : { 'mismatch': true };
+    return f.get('NovaSenha').value === f.get('ConfirmarSenha').value ? false : true;
   }
 
 }

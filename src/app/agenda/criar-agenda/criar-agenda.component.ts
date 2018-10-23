@@ -16,6 +16,7 @@ export class CriarAgendaComponent implements OnInit {
 
   private form: FormGroup;
   private user: User;
+  private messageErro: string = '';
   private agenda: Agenda = new Agenda();
 
   constructor(
@@ -37,6 +38,32 @@ export class CriarAgendaComponent implements OnInit {
       descricao: new FormControl('', [Validators.required, Validators.maxLength(500)]),
       imagem: new FormControl(null, Validators.required)
     })
+  }
+
+  validaCampos() {
+    this.messageErro = '';
+    if (this.form.get('nome').status == "INVALID") {
+      if (this.form.controls['nome'].errors.required) {
+        this.messageErro = 'Campo nome é obrigatório.';
+        return;
+      }
+      if (this.form.controls['nome'].errors.maxlength) {
+        this.messageErro = 'Campo nome suporta até 100 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('descricao').status == "INVALID") {
+      if (this.form.controls['descricao'].errors.required) {
+        this.messageErro = 'Campo descricao é obrigatório.';
+        return;
+      }
+      if (this.form.controls['descricao'].errors.maxlength) {
+        this.messageErro = 'Campo descricao suporta até 500 caracteres.';
+        return;
+      }
+    }
+
   }
 
   onFileChange(event) {
@@ -68,6 +95,11 @@ export class CriarAgendaComponent implements OnInit {
 
   onSubmit() {
 
+    if(this.form.invalid){
+      this.validaCampos();
+      return
+    }
+    
     this.pegaValorDosInput();
 
     this.AgendaService.createAgenda(this.agenda).subscribe(

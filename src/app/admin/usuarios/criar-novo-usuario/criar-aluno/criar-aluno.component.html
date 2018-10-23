@@ -5,42 +5,17 @@
   <label for="nome">Nome</label>
   <input formControlName="nome" type="text" id="nome" name="nome" placeholder="Digite o nome do aluno">
 
-  <div *ngIf="formFuncionario.controls['nome'].invalid && formFuncionario.controls['nome'].touched">
-    <app-message-erro *ngIf="formFuncionario.get('nome').errors?.required" text="Campo nome é obrigátorio.">
-    </app-message-erro>
-    <app-message-erro *ngIf="formFuncionario.get('nome').errors?.maxlength" text="permitido até 100 caracteres.">
-    </app-message-erro>
-  </div>
-
 
   <label for="cpf">CPF</label>
   <input formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
-  <div *ngIf=" formFuncionario.controls['cpf'].invalid && formFuncionario.controls['cpf'].touched">
-    <app-message-erro *ngIf="formFuncionario.get('cpf').errors?.required" text=" campo cpf é obrigátorio.">
-    </app-message-erro>
-    <app-message-erro *ngIf="formFuncionario.get('cpf').errors?.pattern" text="cpf inválido.">
-    </app-message-erro>
-  </div>
 
 
   <label for="dtNasc">Data de nascimento</label>
   <input formControlName="dataNascimento" type="date" id="dtNasc" name="dtNasc" placeholder="dia/mês/ano">
 
-  <div *ngIf="formFuncionario.controls['dataNascimento'].invalid && formFuncionario.controls['dataNascimento'].touched">
-    <app-message-erro *ngIf="formFuncionario.get('dataNascimento').errors?.required" text="campo data de nascimento é obrigátorio."></app-message-erro>
-  </div>
 
   <label for="email">Email</label>
   <input formControlName="email" type="text" id="email" name="email" placeholder="Digite o email do aluno">
-
-  <div *ngIf="formFuncionario.controls['email'].invalid && formFuncionario.controls['email'].touched">
-
-    <app-message-erro *ngIf="formFuncionario.get('email').errors?.required" text="campo e-mail é obrigátorio.">
-    </app-message-erro>
-    <app-message-erro *ngIf="formFuncionario.get('email').errors?.email" text=" e-mail inválido.">
-    </app-message-erro>
-
-  </div>
 
   <label class="label-k">Gênero</label>
 
@@ -52,22 +27,8 @@
     <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
   </div>
 
-  <div *ngIf="formFuncionario.controls['genero'].invalid && formFuncionario.controls['genero'].touched">
-
-    <app-message-erro *ngIf="formFuncionario.get('genero').errors?.required" text="campo obrigátorio.">
-    </app-message-erro>
-
-  </div>
-
   <label for="matricula">Matricula</label>
   <input formControlName="matricula" type="text" id="matricula" name="matricula" maxlength="15" placeholder="Digite matricula do aluno">
-
-  <div *ngIf="formFuncionario.controls['matricula'].invalid && formFuncionario.controls['matricula'].touched">
-    <app-message-erro *ngIf="formFuncionario.get('matricula').errors?.required" text="Campo matricula é obrigátorio.">
-    </app-message-erro>
-    <app-message-erro *ngIf="formFuncionario.get('matricula').errors?.maxlength" text="carteira estudantil possuir 11 caracteres.">
-    </app-message-erro>
-  </div>
 
   <label for="fotoPerfil">Foto Perfil</label>
   <div class="preview-image">
@@ -78,6 +39,6 @@
       outra imagem</label>
   </div>
 
-  <button type="submit" class="btn btn-blue" [disabled]="formFuncionario.invalid">Salvar</button>
+  <button type="submit" class="btn btn-blue">Salvar</button>
 
 </form>

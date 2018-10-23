@@ -25,15 +25,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.formsBuild.group({
-      username: ['', [Validators.required, Validators.minLength(6)]],
+      username: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onSubmit() {
+    this.spinner.show();
+    
     this.user.username = this.form.get('username').value;
     this.user.password = this.form.get('password').value;
-    this.spinner.show();
 
     this.service.authenticate(this.user).subscribe(
       (data: any) => {

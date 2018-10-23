@@ -28,14 +28,26 @@ export class EmailRecuperarSenhaComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
 
-    if (this.form.invalid)
-      return
+    if (this.form.invalid) {
+      this.erro = '';
+
+      if (this.form.controls['cpf'].status == "INVALID") {
+
+        if (this.form.controls['cpf'].errors.required) {
+          this.erro = "O campo Cpf é obrigátorio."
+          return;
+        }
+        else if (this.form.controls['cpf'].errors.pattern) {
+          this.erro = "Cpf inválido."
+          return;
+        }
+      }
+    }
 
     this.emailCpf.cpf = this.form.get('cpf').value;
 
-    this.service.email(this.emailCpf).subscribe(
+  /*   this.service.email(this.emailCpf).subscribe(
       () => {
         this.showMessage("verifique seu e-mail. Nâo foi possivel alterar senha, Por favor  tente mais tarde.");
       },
@@ -48,7 +60,7 @@ export class EmailRecuperarSenhaComponent implements OnInit {
           this.showMessage("Erro ao tenta enviar o email. Por favor tente novamente");
         }
       }
-    );
+    ); */
   }
 
 

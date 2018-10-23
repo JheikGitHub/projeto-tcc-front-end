@@ -1,11 +1,11 @@
+import { FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
-import { Evento } from '../../evento/evento';
 import { User } from '../../user/user';
+import { Evento } from '../../evento/evento';
 import { EventoService } from '../../evento/evento.service';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-meus-eventos',
@@ -15,11 +15,13 @@ import { FormControl } from '@angular/forms';
 export class FuncionarioMeusEventosComponent implements OnInit {
   private eventos: Evento[] = [];
   private user: User;
+ 
   private buscarEventos = new FormControl('');
 
   constructor(
     private router: Router,
     private eventService: EventoService,
+  
     private routeActivated: ActivatedRoute, ) { }
 
   ngOnInit() {

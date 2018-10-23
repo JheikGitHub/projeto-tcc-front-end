@@ -23,6 +23,7 @@ export class CriarEventoComponent implements OnInit {
   funcionarios: Funcionario[] = [];
   evento: Evento = new Evento();
   lista: Funcionario[] = [];
+  private messageErro: string = '';
   fileToUpload: File = null;
 
   constructor(
@@ -81,6 +82,79 @@ export class CriarEventoComponent implements OnInit {
     });
   }
 
+  validaCampos() {
+    this.messageErro = '';
+    if (this.form.get('nome').status == "INVALID") {
+      if (this.form.controls['nome'].errors.required) {
+        this.messageErro = 'Campo nome é obrigatório.';
+        return;
+      }
+      if (this.form.controls['nome'].errors.maxlength) {
+        this.messageErro = 'Campo nome suporta até 100 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('local').status == "INVALID") {
+      if (this.form.controls['local'].errors.required) {
+        this.messageErro = 'Campo local é obrigatório.';
+        return;
+      }
+      if (this.form.controls['local'].errors.maxlength) {
+        this.messageErro = 'Campo local suporta até 100 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('tipoEvento').status == "INVALID") {
+      if (this.form.controls['tipoEvento'].errors.required) {
+        this.messageErro = 'Campo tipo de evento é obrigatório.';
+        return;
+      }
+      if (this.form.controls['tipoEvento'].errors.maxlength) {
+        this.messageErro = 'Campo tipo do evento suporta até 50 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('quantidadeVagas').status == "INVALID") {
+      if (this.form.controls['quantidadeVagas'].errors.required) {
+        this.messageErro = 'Campo quantidade de vagas é obrigatório.';
+        return;
+      }
+    }
+
+    if (this.form.get('cargaHoraria').status == "INVALID") {
+      if (this.form.controls['cargaHoraria'].errors.required) {
+        this.messageErro = 'Campo carga horária é obrigatório.';
+        return;
+      }
+    }
+
+    if (this.form.get('apresentador').status == "INVALID") {
+      if (this.form.controls['apresentador'].errors.required) {
+        this.messageErro = 'Campo apresentador é obrigatório.';
+        return;
+      }
+      if (this.form.controls['apresentador'].errors.maxlength) {
+        this.messageErro = 'Campo apresentador suporta até 300 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('descricao').status == "INVALID") {
+      if (this.form.controls['descricao'].errors.required) {
+        this.messageErro = 'Campo descricao é obrigatório.';
+        return;
+      }
+      if (this.form.controls['descricao'].errors.maxlength) {
+        this.messageErro = 'Campo descricao suporta até 500 caracteres.';
+        return;
+      }
+    }
+
+  }
+
   onFileChange(event) {
     let reader = new FileReader();
     if (event.target.files && event.target.files.length > 0) {
@@ -120,8 +194,10 @@ export class CriarEventoComponent implements OnInit {
 
   onSubmit() {
 
-    if (this.form.invalid)
+    if (this.form.invalid){
+      this.validaCampos();
       return;
+    }
 
     this.atualizaEvento();
 

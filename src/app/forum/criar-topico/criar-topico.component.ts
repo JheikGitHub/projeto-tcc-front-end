@@ -15,7 +15,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class CriarTopicoComponent implements OnInit {
 
   private form: FormGroup;
-
+  private erro: string = '';
   private evento: Evento = new Evento();
 
   @Input() nomeEvento: string = '';
@@ -43,7 +43,36 @@ export class CriarTopicoComponent implements OnInit {
     })
   }
 
+  validaCampos() {
+    this.erro = '';
+
+    if (this.form.controls['nome'].status == "INVALID") {
+      if (this.form.controls['nome'].errors.required) {
+        this.erro = "O campo nome do tópico é obrigátorio."
+        return;
+      } else if (this.form.controls['nome'].errors.maxlength) {
+        this.erro = "O campo nome do tópico é permitido até 100 caracteres."
+        return;
+      }
+    }
+
+    if (this.form.controls['descricao'].status == "INVALID") {
+      if (this.form.controls['descricao'].errors.required) {
+        this.erro = "O campo descrição é obrigátorio."
+        return;
+      } else if (this.form.controls['descricao'].errors.maxlength) {
+        this.erro = "O campo descrição é permitido até 300 caracteres."
+        return;
+      }
+    }
+  }
+
   onSubmit() {
+    if (this.form.invalid) {
+      this.validaCampos();
+      return;
+    }
+
     let topico: TopicoDiscussao = new TopicoDiscussao();
 
     topico.Nome = this.form.get('nome').value;

@@ -18,12 +18,13 @@ import { AgendaService } from '../../agenda/agenda.service';
 })
 export class AlterarEventoComponent implements OnInit {
 
-  form: FormGroup;
-  agendas: Agenda[] = [];
-  funcionarios: Funcionario[] = [];
-  evento: Evento = new Evento();
-  lista: Funcionario[] = [];
-  fileToUpload: File = null;
+  private form: FormGroup;
+  private agendas: Agenda[] = [];
+  private funcionarios: Funcionario[] = [];
+  private evento: Evento = new Evento();
+  private lista: Funcionario[] = [];
+  private messageErro: string = '';
+  private fileToUpload: File = null;
 
   constructor(
     private script: ScriptService,
@@ -119,11 +120,85 @@ export class AlterarEventoComponent implements OnInit {
     this.evento.funcionario = this.lista;
   }
 
+  validaCampos() {
+    this.messageErro = '';
+    if (this.form.get('nome').status == "INVALID") {
+      if (this.form.controls['nome'].errors.required) {
+        this.messageErro = 'Campo nome é obrigatório.';
+        return;
+      }
+      if (this.form.controls['nome'].errors.maxlength) {
+        this.messageErro = 'Campo nome suporta até 100 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('local').status == "INVALID") {
+      if (this.form.controls['local'].errors.required) {
+        this.messageErro = 'Campo local é obrigatório.';
+        return;
+      }
+      if (this.form.controls['local'].errors.maxlength) {
+        this.messageErro = 'Campo local suporta até 100 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('tipoEvento').status == "INVALID") {
+      if (this.form.controls['tipoEvento'].errors.required) {
+        this.messageErro = 'Campo tipo de evento é obrigatório.';
+        return;
+      }
+      if (this.form.controls['tipoEvento'].errors.maxlength) {
+        this.messageErro = 'Campo tipo do evento suporta até 50 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('quantidadeVagas').status == "INVALID") {
+      if (this.form.controls['quantidadeVagas'].errors.required) {
+        this.messageErro = 'Campo quantidade de vagas é obrigatório.';
+        return;
+      }
+    }
+
+    if (this.form.get('cargaHoraria').status == "INVALID") {
+      if (this.form.controls['cargaHoraria'].errors.required) {
+        this.messageErro = 'Campo carga horária é obrigatório.';
+        return;
+      }
+    }
+
+    if (this.form.get('apresentador').status == "INVALID") {
+      if (this.form.controls['apresentador'].errors.required) {
+        this.messageErro = 'Campo apresentador é obrigatório.';
+        return;
+      }
+      if (this.form.controls['apresentador'].errors.maxlength) {
+        this.messageErro = 'Campo apresentador suporta até 300 caracteres.';
+        return;
+      }
+    }
+
+    if (this.form.get('descricao').status == "INVALID") {
+      if (this.form.controls['descricao'].errors.required) {
+        this.messageErro = 'Campo descricao é obrigatório.';
+        return;
+      }
+      if (this.form.controls['descricao'].errors.maxlength) {
+        this.messageErro = 'Campo descricao suporta até 500 caracteres.';
+        return;
+      }
+    }
+
+  }
+
   onSubmit() {
 
-    if (this.form.invalid)
+    if (this.form.invalid){
+      this.validaCampos();
       return;
-
+    }
     this.atualizaEvento();
 
     this.eventoService.editarEvento(this.evento).subscribe(
@@ -134,7 +209,7 @@ export class AlterarEventoComponent implements OnInit {
           this.router.navigate(["/login"])
         }
         else {
-         alert("Falha ao alterar agenda. Por favor tente novamente");
+          alert("Falha ao alterar agenda. Por favor tente novamente");
         }
       }
     );
