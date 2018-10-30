@@ -1116,7 +1116,6 @@ footer .mdi-xing {
 
 .tab {
     transform: scale(0);
-    overflow: hidden;
     position: absolute;
     width: 100%;
 }
@@ -1190,16 +1189,16 @@ footer .mdi-xing {
     display: none;
 }
 
-.select-agenda label::after {
-    content: "" !important;
-}
-
-.select-agenda label {
+.select-agenda .agenda-item {
     display: inline-block;
     margin: 15px 5px;
     width: 45%;
     max-width: 600px;
     vertical-align: text-top;
+}
+
+.select-agenda label::after {
+    content: "" !important;
 }
 
 .select-agenda label figure {

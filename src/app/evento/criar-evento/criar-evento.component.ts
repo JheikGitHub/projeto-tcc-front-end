@@ -78,7 +78,8 @@ export class CriarEventoComponent implements OnInit {
       cargaHoraria: ['', Validators.required],
       quantidadeVagas: ['', Validators.required],
       tipoEvento: ['', [Validators.required, Validators.maxLength(50)]],
-      imagem: [null, Validators.required]
+      imagem: [null, Validators.required],
+      agendaEventoId: ['', [Validators.required]]
     });
   }
 
@@ -168,10 +169,6 @@ export class CriarEventoComponent implements OnInit {
     }
   }
 
-  pegaAgendaId(idAgenda) {
-    this.evento.AgendaEventoId = idAgenda;
-  }
-
   atualizaEvento() {
 
     var hrInicio = this.form.get('diaEvento').value + " " + this.form.get('dataInicio').value;
@@ -188,7 +185,8 @@ export class CriarEventoComponent implements OnInit {
     this.evento.TipoEvento = this.form.get('tipoEvento').value;
     var path = this.form.get('imagem').value;
     this.evento.PathImagem = path.value;
-
+    this.evento.AgendaEventoId = this.form.get('agendaEventoId').value;
+    
     this.evento.funcionario = this.lista;
   }
 
@@ -211,7 +209,7 @@ export class CriarEventoComponent implements OnInit {
             this.router.navigate(["/login"])
           }
           else {
-           alert("Erro ao tenta cadastra usuário. Por favor tente novamente");
+           alert("Erro ao tentar cadastrar evento. Por favor tente novamente");
           }
         }
     );

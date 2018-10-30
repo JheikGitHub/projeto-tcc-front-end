@@ -13,11 +13,11 @@ export class UsuarioGuard implements CanActivateChild {
         let usuario: any;
         usuario = JSON.parse(this.token.getPerfil());
 
-        if (usuario.perfil.toLowerCase() == "aluno" && state.url.includes('/participante-dashboard')) {
+        if (usuario.perfil.toLowerCase() == "participante" && state.url.includes('/participante-dashboard')) {
             return true;
         }
 
-        if (usuario.perfil.toLowerCase() == "funcionario" && state.url.includes('/funcionario-dashboard')) {
+        if (usuario.perfil.toLowerCase() == "moderador" && state.url.includes('/funcionario-dashboard')) {
             return true;
         }
 

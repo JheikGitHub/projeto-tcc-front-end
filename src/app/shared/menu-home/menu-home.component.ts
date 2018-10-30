@@ -30,6 +30,6 @@ export class MenuHomeComponent implements OnInit {
   logout() {
     this.service.removeToken();
     this.service.removeUser();
-    this.router.navigate(['/login'])
+    this.user = null
   }
 }

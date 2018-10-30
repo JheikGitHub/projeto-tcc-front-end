@@ -19,22 +19,22 @@
         </div>
     </div>
 
-    <div class="select-agenda tab">
-        <div *ngFor="let agenda of agendas">
-            <input type="radio" name="agenda" id="agenda1" value="agenda1" (change)="pegaAgendaId(agenda.Id)">
-            <label for="agenda" onclick="nextPrev(1)">
-                <figure [title]="agenda.Nome">
-                    <img src="http://localhost:51990/Imagens/Agenda/{{agenda?.PathImagem}}">
+    <div class="tab select-agenda">
+        <div *ngFor="let agenda of agendas" class="agenda-item">
+            <input type="radio" formControlName="agendaEventoId" id="agenda{{agenda.Id}}" value="{{agenda.Id}}">
+            <label for="agenda{{agenda.Id}}" onclick="nextPrev(1)">
+            <figure [title]="agenda.Nome">
+                <img src="http://localhost:51990/Imagens/Agenda/{{agenda?.PathImagem}}">
                     <figcaption>
                         <i class="mdi mdi-check"></i>
                     </figcaption>
-                </figure>
-                {{ agenda.Nome }}
+            </figure>
+            {{ agenda.Nome }}
             </label>
         </div>
     </div>
 
-    <div class="tab form-konoha">
+    <div class="tab form-konoha form-responsive">
 
         <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
             <app-message-erro *ngIf="form.get('nome').errors?.required" text=" campo nome é obrigátorio.">
@@ -113,8 +113,7 @@
         </div>
 
         <label for="apresentador" class="label-k">Apresentador*</label>
-        <input formControlName="apresentador" type="text" name="apresentador" id="apresentador" class="input-k"
-            placeholder="quem ira apresenta o evento?">
+        <input formControlName="apresentador" type="text" name="apresentador" id="apresentador" class="input-k" placeholder="quem ira apresenta o evento?">
 
         <label for="cargaHoraria" class="label-k">Carga horária*</label>
         <input formControlName="cargaHoraria" type="number" name="cargaHoraria" id="cargaHoraria" class="input-k">
@@ -126,8 +125,7 @@
         <input formControlName="tipoEvento" type="text" name="tipoEvento" id="tipoEvento" class="input-k" placeholder="ex: paletra, workshop, seminario etc">
 
         <label for="descricao" class="label-k">Descreva o evento*</label>
-        <textarea formControlName="descricao" name="descricao" id="descricao" class="text-area-k" placeholder="Discorra sobre o evento"
-            maxlength="500"></textarea>
+        <textarea formControlName="descricao" name="descricao" id="descricao" class="text-area-k" placeholder="Discorra sobre o evento" maxlength="500"></textarea>
     </div>
 
     <div class="tab form-konoha form-responsive">
@@ -137,11 +135,10 @@
             </app-message-erro>
         </div>
 
-        <label for="fotoPerfil">Imagem do evento*</label>
+        <label for="imagem">Imagem do evento*</label>
         <div class="preview-image">
             <label for="imagem" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
-            <input (change)="onFileChange($event)" formControlName="imagem" #fileInput type="file" name="imagem" id="imagem"
-                onchange="loadFile()">
+            <input (change)="onFileChange($event)" formControlName="imagem" #fileInput type="file" name="imagem" id="imagem" onchange="loadFile()">
             <img id="previewImage" />
             <label for="imagem" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
                 outra imagem</label>
@@ -158,7 +155,7 @@
                 <input type="checkbox" id="m{{item.Id}}" (click)="adicionarFuncionario(item)" (onchange)="setModerador('item.Id')">
                 <label for="m{{item.Id}}">
                     <figure>
-                        <img src="" alt="">
+                        <img src="http://localhost:51990/imagens/usuario/{{item.Usuario.PathFotoPerfil}}" alt="{{item.Usuario.Nome}}">
                         <figcaption>
                             <i class="mdi mdi-check"></i>
                         </figcaption>
