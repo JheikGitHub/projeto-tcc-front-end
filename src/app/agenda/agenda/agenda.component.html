@@ -14,19 +14,17 @@
             <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="buscar evento">
             <button type="submit"><i class="mdi mdi-magnify"></i></button>
         </form>
-        <p *ngIf="(eventosAgenda | filterEventosAgenda : parametroBusca).length === 0" 
-        class="mensagem information text-center">Nenhum resultado encontrado.</p>
+        <p *ngIf="(eventosAgenda | filterEventosAgenda : parametroBusca).length === 0" class="mensagem information text-center">Nenhum resultado encontrado.</p>
         <div class="eventos">
-            <a routerLink='/eventos/{{agenda.Nome}}/{{eventoAgenda.Nome}}' class="evento" 
-            *ngFor="let eventoAgenda of eventosAgenda | filterEventosAgenda : parametroBusca">
+            <a routerLink='/eventos/{{agenda.Nome}}/{{eventoAgenda?.Nome}}' class="evento" *ngFor="let eventoAgenda of eventosAgenda | filterEventosAgenda : parametroBusca">
                 <figure class="img-evento">
-                    <img src="http://localhost:51990/Imagens/Eventos/{{eventoAgenda.PathImagem}}" class="img-efect-blur">
-                    <img src="http://localhost:51990/Imagens/Eventos/{{eventoAgenda.PathImagem}}" class="img-visible">
+                    <img src="http://localhost:51990/Imagens/Eventos/{{eventoAgenda?.PathImagem}}" class="img-efect-blur">
+                    <img src="http://localhost:51990/Imagens/Eventos/{{eventoAgenda?.PathImagem}}" class="img-visible">
                 </figure>
                 <div class="tipo-evento">
-                    <span>{{eventoAgenda.TipoEvento}}</span>
+                    <span>{{eventoAgenda?.TipoEvento}}</span>
                 </div>
-                {{eventoAgenda.Nome}}
+                {{eventoAgenda?.Nome}}
             </a>
 
         </div>

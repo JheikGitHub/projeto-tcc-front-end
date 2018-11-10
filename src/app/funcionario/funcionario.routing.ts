@@ -33,7 +33,7 @@ const routes: Routes = [
       { path: '', component: HomeFuncionarioComponent },
       { path: 'meus-dados', component: FuncionarioMeusDadosComponent, resolve: { user: GetUserResolve } },
       { path: 'meus-eventos', component: FuncionarioMeusEventosComponent, resolve: { user: GetUserResolve } },
-      { path: 'minhas-agendas', component: FuncionarioMinhasAgendaComponent, resolve: { user: GetUserResolve } },
+      { path: 'agendas-de-eventos', component: FuncionarioMinhasAgendaComponent, resolve: { user: GetUserResolve } },
 
       { path: 'criar-evento', component: FuncionarioCriarEventoComponent },
       { path: 'criar-agenda', component: FuncionarioCriarAgendaComponent, resolve: { user: GetUserResolve } },
@@ -53,7 +53,7 @@ const routes: Routes = [
       { path: 'topicos/:nomeEvento', component: ListaTopicosFuncionarioComponent },
 
       { path: 'meus-eventos/detalhes-evento/:id', component: FuncionarioDetalhesEventoComponent },
-      { path: 'minhas-agendas/detalhes-agenda/:id', component: FuncionarioDetalhesAgendaComponent }
+      { path: 'agendas-de-eventos/detalhes-agenda/:id', component: FuncionarioDetalhesAgendaComponent, resolve: { user: GetUserResolve } }
     ]
   }
 ];

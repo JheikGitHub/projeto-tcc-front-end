@@ -1,41 +1,38 @@
 <h1 class="title-dashboard"><i class="mdi mdi-book"></i>Agendas de Eventos</h1>
 
-<a *ngIf="funcionario.PermissaoCriarAgenda"  [routerLink]="['/funcionario-dashboard/criar-agenda']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
+<a *ngIf="funcionario.PermissaoCriarAgenda" [routerLink]="['/funcionario-dashboard/criar-agenda']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
     class="mdi mdi-book-plus"></i>Criar nova agenda</a>
 
 <ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
 
-<form [formGroup]="buscarEventos" class="search-agendas-eventos">
-  <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="buscar agenda">
-  <button type="submit"><i class="mdi mdi-magnify"></i></button>
+<form [formGroup]="buscarEventos" class="form-pesquisa">
+    <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="Digite o nome de umagenda de eventos">
+    <button type="submit"><i class="mdi mdi-magnify"></i></button>
 </form>
-<p *ngIf="(agendas | filterAgenda : parametroBusca).length === 0" class="mensagem information text-center">Nenhum
-  resultado encontrado.</p>
+
+<p *ngIf="(agendas | filterAgenda : parametroBusca).length === 0" class="mensagem information text-center">Nenhum resultado encontrado.</p>
+
+<p *ngIf="message" class="alert-float success">{{message}}</p>
+
 <div class="lista-agendas-eventos">
-
-  {{message}}
-
-  <div class="item-agenda-eventos" *ngFor="let agenda of agendas | filterAgenda : parametroBusca">
-    <figure>
-      <img src="http://localhost:51990/Imagens\Agenda/{{agenda.PathImagem}}" alt="Imagem da agenda">
-    </figure>
-    <p class="nome-agenda">{{ agenda.Nome }} </p>
-    <div class="link-opcoes">
-      <a [routerLink]="['/funcionario-dashboard/criar-evento']" routerLinkActive="router-link-active" class="green"
-        title="Criar evento na agenda">
-        <i class="mdi mdi-plus"></i>
-      </a>
-      <a [routerLink]="['detalhes-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="aqua" title="Detalhar Agenda">
-        <i class="mdi mdi-view-list"></i>
-      </a>
-      <a *ngIf="funcionario.PermissaoCriarAgenda" [routerLink]="['/funcionario-dashboard/editar-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="blue"
-        title="Editar agenda">
-        <i class="mdi mdi-pencil"></i>
-      </a>
-      <a *ngIf="funcionario.PermissaoCriarAgenda" (click)="deleteAgenda(agenda.Id)" class="red" title="Deletar Agenda">
-        <i class="mdi mdi-delete-empty"></i>
-      </a>
+    <div class="item-agenda-eventos" *ngFor="let agenda of agendas | filterAgenda : parametroBusca">
+        <figure>
+            <img src="http://localhost:51990/Imagens\Agenda/{{agenda.PathImagem}}" alt="Imagem da agenda">
+        </figure>
+        <p class="nome-agenda">{{ agenda.Nome }} </p>
+        <div class="link-opcoes">
+            <a [routerLink]="['/funcionario-dashboard/criar-evento']" routerLinkActive="router-link-active" class="green" title="Criar evento na agenda">
+                <i class="mdi mdi-plus"></i>
+            </a>
+            <a [routerLink]="['detalhes-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="aqua" title="Detalhar Agenda">
+                <i class="mdi mdi-view-list"></i>
+            </a>
+            <a *ngIf="funcionario.PermissaoCriarAgenda" [routerLink]="['/funcionario-dashboard/editar-agenda/',agenda.Id]" routerLinkActive="router-link-active" class="blue" title="Editar agenda">
+                <i class="mdi mdi-pencil"></i>
+            </a>
+            <a *ngIf="funcionario.PermissaoCriarAgenda" (click)="deleteAgenda(agenda.Id)" class="red" title="Deletar Agenda">
+                <i class="mdi mdi-delete-empty"></i>
+            </a>
+        </div>
     </div>
-  </div>
-
 </div>

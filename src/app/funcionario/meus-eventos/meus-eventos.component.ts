@@ -7,6 +7,7 @@ import { User } from '../../user/user';
 import { Evento } from '../../evento/evento';
 import { EventoService } from '../../evento/evento.service';
 import { CancelamentoEvento } from 'src/app/evento/cancelamento-evento';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-meus-eventos',
@@ -31,10 +32,11 @@ export class FuncionarioMeusEventosComponent implements OnInit {
   constructor(
     private router: Router,
     private eventService: EventoService,
-  
+    private sppiner: NgxSpinnerService,
     private routeActivated: ActivatedRoute, ) { }
 
   ngOnInit() {
+    this.sppiner.show()
     this.user = this.routeActivated.snapshot.data['user'];
     this.getEventosModerador()
   }
@@ -43,6 +45,7 @@ export class FuncionarioMeusEventosComponent implements OnInit {
     this.eventService.getEventsFuncionario(this.user.Id).subscribe(
       (data) => {
         this.eventos = data
+        this.sppiner.hide()
       },
       (err: HttpErrorResponse) => {
         console.log(err);
@@ -61,8 +64,8 @@ export class FuncionarioMeusEventosComponent implements OnInit {
   confirmDelete(){
      this.eventService.deleteEvento(this.idEventoSelecionadao).subscribe(
         () => {
-          this.getEventosModerador()
           this.message = 'Evento excluído com Sucesso'
+          this.getEventosModerador()
           setTimeout(() => {
             this.message = ''
           }, 5000);       
@@ -92,8 +95,8 @@ export class FuncionarioMeusEventosComponent implements OnInit {
    
     this.eventService.cancelarEvento(this.eventoCancel).subscribe(
       () => {
-        this.getEventosModerador()
         this.message = 'Evento cancelado com Sucesso'
+        this.getEventosModerador()
         setTimeout(() => {
           this.message = ''
         }, 5000);       

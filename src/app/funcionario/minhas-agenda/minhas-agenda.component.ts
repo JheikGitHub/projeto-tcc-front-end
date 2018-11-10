@@ -32,7 +32,7 @@ export class FuncionarioMinhasAgendaComponent implements OnInit {
 
   ngOnInit() {
     this.sppiner.show(),
-      this.user = this.routeActivated.snapshot.data['user'];
+    this.user = this.routeActivated.snapshot.data['user'];
 
     this.funcionarioService.buscaFuncionario(this.user.Id).subscribe(
       (data) => {
@@ -44,7 +44,7 @@ export class FuncionarioMinhasAgendaComponent implements OnInit {
       }
     );
 
-    this.agendaService.agendasFuncionario(this.user.Id).subscribe(
+    this.agendaService.getAllAgendas().subscribe(
       (data: Agenda[]) => {
         this.agendas = data
         this.sppiner.hide();

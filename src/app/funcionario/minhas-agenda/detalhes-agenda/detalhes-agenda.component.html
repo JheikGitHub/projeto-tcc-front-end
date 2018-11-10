@@ -1,8 +1,7 @@
 <h1 class="title-dashboard"><i class="mdi mdi-book"></i>Agenda - Detalhes</h1>
 
-<a class="link-voltar" [routerLink]="['/funcionario-dashboard/minhas-agendas']" routerLinkActive="router-link-active"><i
-        class="mdi mdi-arrow-left"></i>Voltar</a>
+<a class="link-voltar" [routerLink]="['/funcionario-dashboard/agendas-de-eventos']" routerLinkActive="router-link-active"><i class="mdi mdi-arrow-left"></i>Voltar</a>
 
-<a routerLink="/funcionario-dashboard/editar-agenda/{{agenda.Id}}" class="link-editar-dados"><i class="mdi mdi-pencil"></i>Editar agenda</a>
+<a *ngIf="funcionario.PermissaoCriarAgenda" routerLink="/funcionario-dashboard/editar-agenda/{{agenda.Id}}" class="link-editar-dados"><i class="mdi mdi-pencil"></i>Editar agenda</a>
 
 <app-detalhes-agenda></app-detalhes-agenda>

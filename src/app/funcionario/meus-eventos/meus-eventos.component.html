@@ -2,6 +2,8 @@
 <a [routerLink]="['/funcionario-dashboard/criar-evento']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
     class="mdi mdi-plus-box"></i>Criar novo evento</a>
 
+<ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
+
 <form [formGroup]="buscarEventos" class="form-pesquisa">
     <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="Digite o nome ou tipo do evento">
     <button type="submit"><i class="mdi mdi-magnify"></i></button>
