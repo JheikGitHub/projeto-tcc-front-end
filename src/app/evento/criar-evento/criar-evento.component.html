@@ -1,6 +1,6 @@
 <p class="mensagem warning animation">{{messageErro}}</p>
 
-<form class="criar-evento" [formGroup]="form" (ngSubmit)="onSubmit()">
+<form class="criar-evento" [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="message">
 
     <div class="info">
         <button type="button" id="prevBtn" onclick="nextPrev(-1)" class="btn-ctrl previous">
@@ -36,96 +36,58 @@
 
     <div class="tab form-konoha form-responsive">
 
-        <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
+        <!-- <div *ngIf="submit && form.controls['nome'].invalid || form.controls['nome'].touched">
             <app-message-erro *ngIf="form.get('nome').errors?.required" text=" campo nome é obrigátorio.">
             </app-message-erro>
             <app-message-erro *ngIf="form.get('nome').errors?.maxlength" text="limite de caracteres 100.">
             </app-message-erro>
-        </div>
-        <div *ngIf="submit && form.controls['local'].invalid || form.controls['local'].touched">
-            <app-message-erro *ngIf="form.get('local').errors?.required" text=" campo cpf é obrigátorio.">
-            </app-message-erro>
-            <app-message-erro *ngIf="form.get('local').errors?.maxlength" text="limite de caracteres 100.">
-            </app-message-erro>
-        </div>
-        <div *ngIf="submit && form.controls['diaEvento'].invalid || form.controls['diaEvento'].touched">
-            <app-message-erro *ngIf="form.get('diaEvento').errors?.required" text=" campo dia do evento é obrigátorio.">
-            </app-message-erro>
-        </div>
-        <div *ngIf="submit && form.controls['dataInicio'].invalid || form.controls['dataInicio'].touched">
-            <app-message-erro *ngIf="form.get('dataInicio').errors?.required" text=" campo data de inicio é obrigátorio.">
-            </app-message-erro>
-            <app-message-erro *ngIf="form.get('dataInicio').errors?.pattern" text="data inicial  inválida.">
-            </app-message-erro>
-        </div>
-        <div *ngIf="submit && form.controls['dataEncerramento'].invalid || form.controls['dataEncerramento'].touched">
-            <app-message-erro *ngIf="form.get('dataEncerramento').errors?.required" text=" campo data encerramento é obrigátorio.">
-            </app-message-erro>
-            <app-message-erro *ngIf="form.get('dataEncerramento').errors?.pattern" text="data de encerramento é inválida.">
-            </app-message-erro>
-        </div>
-        <div *ngIf="submit && form.controls['descricao'].invalid || form.controls['descricao'].touched">
-            <app-message-erro *ngIf="form.get('descricao').errors?.required" text=" campo descrição é obrigátorio.">
-            </app-message-erro>
-            <app-message-erro *ngIf="form.get('descricao').errors?.maxlength" text="limite de caracteres 500.">
-            </app-message-erro>
-        </div>
-
-        <div *ngIf="submit && form.controls['apresentador'].invalid || form.controls['apresentador'].touched">
-            <app-message-erro *ngIf="form.get('apresentador').errors?.required" text=" campo nome do apresentador é obrigátorio.">
-            </app-message-erro>
-            <app-message-erro *ngIf="form.get('apresentador').errors?.maxlength" text="limite de caracteres 300.">
-            </app-message-erro>
-        </div>
-
-        <div *ngIf="submit && form.controls['cargaHoraria'].invalid || form.controls['cargaHoraria'].touched">
-            <app-message-erro *ngIf="form.get('cargaHoraria').errors?.required" text=" campo carga horaria é obrigátorio.">
-            </app-message-erro>
-        </div>
-
-        <div *ngIf="submit && form.controls['quantidadeVagas'].invalid || form.controls['quantidadeVagas'].touched">
-            <app-message-erro *ngIf="form.get('quantidadeVagas').errors?.required" text=" campo quantidade de vagas é obrigátorio.">
-            </app-message-erro>
-        </div>
-
-        <div *ngIf="submit && form.controls['tipoEvento'].invalid || form.controls['tipoEvento'].touched">
-            <app-message-erro *ngIf="form.get('tipoEvento').errors?.required" text=" campo tipo do evento é obrigátorio.">
-            </app-message-erro>
-            <app-message-erro *ngIf="form.get('tipoEvento').errors?.maxlength" text="limite de caracteres 50.">
-            </app-message-erro>
-        </div>
+        </div> -->
 
 
-        <label for="nome" class="label-k">Nome do evento*</label>
-        <input formControlName="nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite o nome do evento">
+        <label for="nome" class="label-k">Nome do evento</label>
+        <div class="text-left">
+            <input formControlName="nome" type="text" name="nome" id="nome" class="input-k" placeholder="Digite o nome do evento" maxlength="150">
+            <i class="mdi mdi-spin mdi-loading" *ngIf="form.get('nome').status === 'PENDING'"></i>
+            <app-message-erro *ngIf="form.get('nome').hasError('pattern')" text="Nome de evento inválido"></app-message-erro>
+            <app-message-erro *ngIf="form.get('nome').hasError('existeEsseNome')" text="Nome de evento já existente nessa agenda"></app-message-erro>
+        </div>
 
-        <label for="local" class="label-k">Local do evento*</label>
-        <input formControlName="local" type="text" name="local" id="local" class="input-k" placeholder="Digite o local do evento">
+        <label for="descricao" class="label-k">Descreva o evento</label>
+        <textarea formControlName="descricao" name="descricao" id="descricao" class="text-area-k" placeholder="Discorra sobre o evento" maxlength="350"></textarea>
 
-        <label for="data" class="label-k">Data do evento*</label>
+        <label for="local" class="label-k">Local do evento</label>
+        <input formControlName="local" type="text" name="local" id="local" class="input-k" placeholder="Digite o local do evento" maxlength="100">
+
+        <label for="data" class="label-k">Data do evento</label>
         <input formControlName="diaEvento" type="date" name="data" id="data" class="input-k" placeholder="dia/mês/ano">
 
-        <label>Duração do evento*</label>
+        <label>Duração do evento</label>
         <div class="duracao-evento">
             <input formControlName="dataInicio" type="time" name="horaInicio" id="horaInicio">
             <span>ás</span>
             <input formControlName="dataEncerramento" type="time" name="horaEncerramento" id="horaEncerramento">
         </div>
 
-        <label for="apresentador" class="label-k">Apresentador*</label>
-        <input formControlName="apresentador" type="text" name="apresentador" id="apresentador" class="input-k" placeholder="quem ira apresenta o evento?">
+        <label for="apresentador" class="label-k">Apresentador(es)</label>
+        <input formControlName="apresentador" type="text" name="apresentador" id="apresentador" class="input-k" placeholder="Apresentador(es) do evento" maxlength="300">
 
-        <label for="cargaHoraria" class="label-k">Carga horária*</label>
-        <input formControlName="cargaHoraria" type="number" name="cargaHoraria" id="cargaHoraria" class="input-k">
+        <label for="cargaHoraria" class="label-k">Carga horária</label>
+        <input formControlName="cargaHoraria" type="number" name="cargaHoraria" id="cargaHoraria" min="1" class="input-k">
 
-        <label for="quantidadeVagas" class="label-k">Quantidade de vagas*</label>
-        <input formControlName="quantidadeVagas" type="number" name="quantidadeVagas" id="quantidadeVagas" class="input-k">
+        <label for="quantidadeVagas" class="label-k">Quantidade de vagas</label>
+        <input formControlName="quantidadeVagas" type="number" name="quantidadeVagas" id="quantidadeVagas" min="1" class="input-k">
 
-        <label for="tipoEvento" class="label-k">Qual tipo do evento*</label>
-        <input formControlName="tipoEvento" type="text" name="tipoEvento" id="tipoEvento" class="input-k" placeholder="ex: paletra, workshop, seminario etc">
-
-        <label for="descricao" class="label-k">Descreva o evento*</label>
-        <textarea formControlName="descricao" name="descricao" id="descricao" class="text-area-k" placeholder="Discorra sobre o evento" maxlength="500"></textarea>
+        <label for="tipoEvento" class="label-k">Qual tipo do evento</label>
+        <select formControlName="tipoEvento" name="tipoEvento" id="tipoEvento">
+            <option value="" disabled selected>Selecione o tipo do evento</option>
+            <option value="Conferência">Conferência</option>
+            <option value="Mesa Redonda">Mesa Redonda</option>
+            <option value="Oficina">Oficina</option>
+            <option value="Palestra">Palestra</option>
+            <option value="Seminário">Seminário</option>
+            <option value="Simpósio">Simpósio</option>
+            <option value="Workshop">Workshop</option>
+        </select>
     </div>
 
     <div class="tab form-konoha form-responsive">
@@ -135,24 +97,21 @@
             </app-message-erro>
         </div>
 
-        <label for="imagem">Imagem do evento*</label>
+        <label for="imagem">Imagem do evento</label>
         <div class="preview-image">
             <label for="imagem" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
             <input (change)="onFileChange($event)" formControlName="imagem" #fileInput type="file" name="imagem" id="imagem" onchange="loadFile()">
             <img id="previewImage" />
-            <label for="imagem" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
-                outra imagem</label>
-            <span id="info-image-preview"><i class="mdi mdi-information-variant"></i>Recomendamos uma imagem de
-                tamanho:
-                1200x975 pixels</span>
-
+            <label for="imagem" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar outra imagem</label>
+            <span id="info-image-preview"><i class="mdi mdi-information-variant"></i>Recomendamos uma imagem de tamanho: 1200x975 pixels</span>
         </div>
+
     </div>
 
     <div class="tab">
         <div class="select-moderadores">
             <div *ngFor="let item of funcionarios" style="display: inline-block">
-                <input type="checkbox" id="m{{item.Id}}" (click)="adicionarFuncionario(item)" (onchange)="setModerador('item.Id')">
+                <input type="checkbox" id="m{{item.Id}}" (change)="setModerador(item)">
                 <label for="m{{item.Id}}">
                     <figure>
                         <img src="http://localhost:51990/imagens/usuario/{{item.Usuario.PathFotoPerfil}}" alt="{{item.Usuario.Nome}}">
@@ -165,11 +124,11 @@
             </div>
         </div>
 
-        <select name="moderadores" id="moderadores" multiple class="todos-moderadores">
-            <option *ngFor="let item of funcionarios">{{item.Usuario.Nome}}</option>
-        </select>
+        <button type="submit" [disabled]="form.invalid || moderadoresEvento.length < 1" class="btn btn-blue ">Criar evento</button>
 
-        <button [disabled]="form.invalid" type="submit " class="btn btn-blue ">Salvar evento</button>
     </div>
 
 </form>
+
+
+<p *ngIf="message" class="alert-float success"><i class="mdi mdi-check-circle-outline"></i><i class="mdi mdi-close" onclick="this.parentElement.style.display='none';"></i>{{message}}</p>

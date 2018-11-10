@@ -121,7 +121,8 @@
     font-size: 35px;
     border: 0;
     background: none;
-    color: #333
+    color: #333;
+    cursor: pointer;
 }
 
 .btn-menu .mdi-xing {
@@ -974,6 +975,12 @@ footer .mdi-xing {
     color: #eee
 }
 
+.item-agenda-eventos .orange:hover,
+.item-agenda-eventos .orange:focus {
+    background-color: darkorange;
+    color: #eee
+}
+
 .btn-criar-agenda {
     color: #333;
     padding: 10px 15px;
@@ -1122,6 +1129,7 @@ footer .mdi-xing {
 
 .criar-evento {
     position: relative;
+    min-height: 105vh;
 }
 
 .criar-evento button {
@@ -2100,6 +2108,25 @@ main {
     transition: all .5s;
 }
 
+.form-konoha select {
+    padding-bottom: 5px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 16px;
+    color: #333;
+}
+
+.form-konha select:focus,
+.form-konha select:hover {
+    border-bottom: 1px solid #2196F3;
+    transition: all .5s;
+    outline: 0
+}
+
+option[value=""][disabled] {
+    display: none;
+}
+
 .form-konoha label {
     font-size: 16px
 }
@@ -2143,6 +2170,14 @@ main {
 
 .text-center {
     text-align: center
+}
+
+.text-left {
+    text-align: left
+}
+
+.text-right {
+    text-align: right
 }
 
 
@@ -2578,6 +2613,15 @@ p {
     width: 75%;
     max-width: 600px;
     position: fixed;
+}
+
+.modal-content .text-center figure {
+    margin-bottom: 18px;
+}
+
+.modal-content .text-center figure figcaption {
+    font-weight: 700;
+    font-size: 18px;
 }
 
 

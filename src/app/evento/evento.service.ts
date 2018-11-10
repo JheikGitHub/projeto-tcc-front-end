@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginService } from '../account/login/login.service';
 import { Evento } from './evento';
+import { EventoVerificacaoNome } from './evento-verificacao-nome';
+import { CancelamentoEvento } from './cancelamento-evento';
 
 const URL_API = 'http://localhost:51990';
 
@@ -83,6 +85,14 @@ export class EventoService {
         })
       }
     );
+  }
+
+  verificarNomeEventoExistente(evento: EventoVerificacaoNome){
+    return this.http.post(URL_API + '/api/evento/verificar-nome-evento', evento)
+  }
+
+  cancelarEvento(evento: CancelamentoEvento) {
+    return this.http.post(URL_API + "/api/evento/cancelar-evento/", evento);
   }
 
 }

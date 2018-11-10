@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, VERSION } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -9,7 +9,10 @@ import { FuncionarioService } from '../../funcionario/funcionario.service';
 import { Evento } from '../evento';
 import { AgendaService } from '../../agenda/agenda.service';
 import { EventoService } from '../evento.service';
-import { ScriptService } from '../../../script.service';
+import { map } from 'rxjs/operators';
+import { EventoVerificacaoNome } from '../evento-verificacao-nome';
+
+declare function showTab(n):any
 
 @Component({
   selector: 'app-criar-evento',
@@ -22,12 +25,13 @@ export class CriarEventoComponent implements OnInit {
   agendas: Agenda[] = [];
   funcionarios: Funcionario[] = [];
   evento: Evento = new Evento();
-  lista: Funcionario[] = [];
+  eventoVerificacaoNome: EventoVerificacaoNome = new EventoVerificacaoNome()
   private messageErro: string = '';
+  private message: string = ''
   fileToUpload: File = null;
+  moderadoresEvento: Funcionario[] = [];
 
   constructor(
-    private script: ScriptService,
     private agendaService: AgendaService,
     private funcionarioService: FuncionarioService,
     private eventoService: EventoService,
@@ -36,21 +40,17 @@ export class CriarEventoComponent implements OnInit {
 
 
   ngOnInit() {
-
-    this.script.load('konohajs').then(data => {
-      console.log('script loaded ', data);
-    }).catch(error => console.log(error));
-
     this.agendaService.getAllAgendas().subscribe(
       (data: Agenda[]) => {
         this.agendas = data;
+        showTab(0)
       },
       (err) => {
         console.log(err);
       }
     );
 
-    this.atualizaCampos();
+    this.inicializarFormulario();
 
     this.funcionarioService.getAll().subscribe(
       (data: Funcionario[]) => {
@@ -60,20 +60,17 @@ export class CriarEventoComponent implements OnInit {
         console.log(err);
       }
     );
+
   }
 
-  adicionarFuncionario(funcionario) {
-    this.lista.push(funcionario);
-  }
-
-  atualizaCampos() {
+  inicializarFormulario() {
     this.form = this.formBuild.group({
-      nome: ['', [Validators.required, Validators.maxLength(100)]],
+      nome: ['', [Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Z0-9 ]*$'), this.noWhitespaceValidator], [this.validarNomeEvento.bind(this)]],
       local: ['', [Validators.required, Validators.maxLength(100)]],
       diaEvento: ['', [Validators.required]],
       dataInicio: ['', [Validators.required, Validators.pattern('[0-9]{2}[:|\/]{1}[0-9]{2}')]],
       dataEncerramento: ['', [Validators.required, Validators.pattern('[0-9]{2}[:|\/]{1}[0-9]{2}')]],
-      descricao: ['', [Validators.required, Validators.maxLength(500)]],
+      descricao: ['', [Validators.required, Validators.maxLength(500), this.noWhitespaceValidator]],
       apresentador: ['', [Validators.required, Validators.maxLength(300)]],
       cargaHoraria: ['', Validators.required],
       quantidadeVagas: ['', Validators.required],
@@ -162,14 +159,12 @@ export class CriarEventoComponent implements OnInit {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.form.get('imagem').setValue({
-          value: reader.result.toString().split(',')[1]
-        })
+        this.evento.PathImagem = reader.result.toString().split(',')[1]
       }
     }
   }
 
-  atualizaEvento() {
+  preencherDadosEvento() {
 
     var hrInicio = this.form.get('diaEvento').value + " " + this.form.get('dataInicio').value;
     var hrEncerramento = this.form.get('diaEvento').value + " " + this.form.get('dataEncerramento').value;
@@ -183,37 +178,60 @@ export class CriarEventoComponent implements OnInit {
     this.evento.CargaHoraria = this.form.get('cargaHoraria').value;
     this.evento.NumeroVagas = this.form.get('quantidadeVagas').value;
     this.evento.TipoEvento = this.form.get('tipoEvento').value;
-    var path = this.form.get('imagem').value;
-    this.evento.PathImagem = path.value;
     this.evento.AgendaEventoId = this.form.get('agendaEventoId').value;
-    
-    this.evento.funcionario = this.lista;
+
+    this.evento.funcionario = this.moderadoresEvento
   }
 
   onSubmit() {
 
     if (this.form.invalid){
       this.validaCampos();
-      return;
-    }
+       return;
+   }
 
-    this.atualizaEvento();
+    this.preencherDadosEvento();
 
     this.eventoService.adicionaEvento(this.evento).subscribe(
-      () => { 
-        alert("Evento salvo com sucesso!"); 
-        this.router.navigate(['/funcionario-dashboard/meus-eventos']) },
-        (err: HttpErrorResponse) => {
-          if (err.status == 401) {
-            alert("Usuario não logado");
-            this.router.navigate(["/login"])
-          }
-          else {
-           alert("Erro ao tentar cadastrar evento. Por favor tente novamente");
-          }
+      () => {
+        this.message = 'Evento criado com sucesso'
+        setTimeout(() => {
+          this.router.navigate(['/funcionario-dashboard/meus-eventos'])
+        }, 5000);
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status == 401) {
+          alert("Usuario não logado");
+          this.router.navigate(["/login"])
         }
+        else {
+          alert("Erro ao tentar cadastrar evento. Por favor tente novamente");
+        }
+      }
     );
 
+  }
+
+  setModerador(moderador) {
+    if (this.moderadoresEvento.indexOf(moderador) > -1)
+      this.moderadoresEvento = this.moderadoresEvento.filter(m => m !== moderador)
+    else
+      this.moderadoresEvento.push(moderador)
+  }
+
+  validarNomeEvento(formControl: FormControl) {
+    this.eventoVerificacaoNome.NomeEvento = formControl.value
+    this.eventoVerificacaoNome.IdAgenda = this.form.get('agendaEventoId').value;
+
+    return this.eventoService.verificarNomeEventoExistente(this.eventoVerificacaoNome).pipe(map(
+      nomeExistente => nomeExistente ? { existeEsseNome: true } : null
+    ))
+  }
+
+  noWhitespaceValidator(control: FormControl) {
+    let isWhitespace = (control.value || '').trim().length === 0;
+    let isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true }
   }
 
 }

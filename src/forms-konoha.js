@@ -1,10 +1,10 @@
 /* Form steps */
 
 var currentTab = 0;
-var info = document.getElementById('info')
-showTab(currentTab);
 
 function showTab(n) {
+    var info = document.getElementById('info')
+
     var x = document.getElementsByClassName("tab ");
     x[n].style.transition = "all .4s "
     x[n].style.transform = "scale(1) ";

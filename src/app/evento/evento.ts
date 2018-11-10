@@ -16,6 +16,7 @@ export class Evento {
     PathImagem: string;
     TipoEvento: string;
     AgendaEventoId: number;
+    Cancelado: boolean
 
     AgendaEvento: Agenda;
 

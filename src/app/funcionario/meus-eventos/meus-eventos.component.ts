@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { User } from '../../user/user';
 import { Evento } from '../../evento/evento';
 import { EventoService } from '../../evento/evento.service';
+import { CancelamentoEvento } from 'src/app/evento/cancelamento-evento';
 
 @Component({
   selector: 'app-meus-eventos',
@@ -15,7 +16,16 @@ import { EventoService } from '../../evento/evento.service';
 export class FuncionarioMeusEventosComponent implements OnInit {
   private eventos: Evento[] = [];
   private user: User;
- 
+  private eventoCancel: CancelamentoEvento = new CancelamentoEvento()
+
+  nomeEventoSelecionado: string = ''
+  imagemEventoSelecionado: string = ''
+  idEventoSelecionadao : number
+  acaoUsuario: string = ''
+  isDelete: boolean = false
+
+  message: string = ''
+
   private buscarEventos = new FormControl('');
 
   constructor(
@@ -26,7 +36,10 @@ export class FuncionarioMeusEventosComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.routeActivated.snapshot.data['user'];
+    this.getEventosModerador()
+  }
 
+  getEventosModerador(){
     this.eventService.getEventsFuncionario(this.user.Id).subscribe(
       (data) => {
         this.eventos = data
@@ -37,13 +50,22 @@ export class FuncionarioMeusEventosComponent implements OnInit {
     );
   }
 
-  delete(idEvento: number) {
-    let respota = confirm("Deseja realmente excluir esse evento?")
-    if (respota) {
-      this.eventService.deleteEvento(idEvento).subscribe(
+  delete(evento: Evento) {
+    this.nomeEventoSelecionado = evento.Nome
+    this.imagemEventoSelecionado = evento.PathImagem
+    this.idEventoSelecionadao = evento.Id
+    this.isDelete = true
+    this.acaoUsuario = 'Confirma a exclusão desse evento?'
+  }
+
+  confirmDelete(){
+     this.eventService.deleteEvento(this.idEventoSelecionadao).subscribe(
         () => {
-          alert('Agenda Excluida com sucesso!');
-          this.router.navigate(['/funcionario-dashboard']);
+          this.getEventosModerador()
+          this.message = 'Evento excluído com Sucesso'
+          setTimeout(() => {
+            this.message = ''
+          }, 5000);       
         },
         (err: HttpErrorResponse) => {
           if (err.status == 401) {
@@ -51,10 +73,38 @@ export class FuncionarioMeusEventosComponent implements OnInit {
             this.router.navigate(['/login'])
           }
           else
-            alert("Falha ao alterar a senha.");
-        }
-      );
-
-    }
+            alert("Falha ao excluir o evento.");
+      })
   }
+
+
+  cancel(evento: Evento){
+    this.nomeEventoSelecionado = evento.Nome
+    this.imagemEventoSelecionado = evento.PathImagem
+    this.idEventoSelecionadao = evento.Id
+    this.isDelete = false
+    this.acaoUsuario = 'Confirma o cancelamento desse evento?'
+  }
+
+  confirmCancel(){
+    this.eventoCancel.EventoId = this.idEventoSelecionadao
+    this.eventoCancel.Descricao = "Ocorreram imprevistos e, infelizmente, tivemos que cancelar o evento. Recomendamos que você busque outros eventos no KONOHA."
+   
+    this.eventService.cancelarEvento(this.eventoCancel).subscribe(
+      () => {
+        this.getEventosModerador()
+        this.message = 'Evento cancelado com Sucesso'
+        setTimeout(() => {
+          this.message = ''
+        }, 5000);       
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status == 401) {
+          this.router.navigate(['/login'])
+        }
+        else
+          alert("Falha ao cancelar o evento.");
+        })
+  }
+
 }

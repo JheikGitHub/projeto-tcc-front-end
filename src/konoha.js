@@ -105,3 +105,56 @@ var cancelUpload = () => {
 
     let cancelUpload = document.getElementById('cancelUpload').style.display = 'none'
 }
+
+
+/* Form steps */
+
+var currentTab = 0;
+
+function showTab(n) {
+    var info = document.getElementById('info')
+    var x = document.getElementsByClassName("tab ");
+
+    x[n].style.transition = "all .4s "
+    x[n].style.transform = "scale(1) ";
+
+    if (n == (x.length - 1))
+        document.getElementById("nextBtn").style.display = "none ";
+    else
+        document.getElementById("nextBtn").style.display = "inline "
+    if (n == 0) {
+        document.getElementById("prevBtn").style.display = "none ";
+        document.getElementById("nextBtn").style.display = "none ";
+    } else
+        document.getElementById("prevBtn").style.display = "inline ";
+
+
+    if (n == 0)
+        info.innerHTML = 'Selecione a agenda deste evento'
+    if (n == 1)
+        info.innerHTML = 'Preencha os dados do evento'
+    if (n == 2)
+        info.innerHTML = 'Defina a imagem do evento'
+    if (n == 3)
+        info.innerHTML = 'Selecione os moderadores do evento'
+
+
+    fixStepIndicator(n)
+}
+
+function nextPrev(n) {
+    var x = document.getElementsByClassName("tab ");
+    x[currentTab].style.transition = "all .5s "
+    x[currentTab].style.transform = "scale(0) ";
+    currentTab = currentTab + n;
+
+    showTab(currentTab);
+}
+
+function fixStepIndicator(n) {
+    var i, x = document.getElementsByClassName("step ");
+    for (i = 0; i < x.length; i++) {
+        x[i].className = x[i].className.replace(" active ", " ");
+    }
+    x[n].className += " active ";
+}
