@@ -9,6 +9,7 @@ import { AgendaComponent } from './agenda/agenda/agenda.component';
 import { EventoComponent } from './agenda/evento/evento.component';
 import { TopicosDiscussaoComponent } from './forum/topicos-discussao/topicos-discussao.component';
 import { ComentariosComponent } from './forum/comentarios/comentarios.component';
+import { ValidacaoCertificadoComponent } from './validacao-certificado/validacao-certificado/validacao-certificado.component';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
         ]
     },
 
+    {path: 'validar-certificado', component: ValidacaoCertificadoComponent},
 
     {
         path: 'admin-dashboard',

@@ -11,7 +11,7 @@
             <p class="descricao-agenda-evento">{{agenda?.Descricao}}</p>
         </div>
         <form [formGroup]="buscarEventos" class="search-agendas-eventos">
-            <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="buscar evento">
+            <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="O que você procura?">
             <button type="submit"><i class="mdi mdi-magnify"></i></button>
         </form>
         <p *ngIf="(eventosAgenda | filterEventosAgenda : parametroBusca).length === 0" class="mensagem information text-center">Nenhum resultado encontrado.</p>

@@ -11,6 +11,7 @@ import { HomeModule } from './home/home.module';
 import { UrlSerializer } from '@angular/router';
 import { CustomUrlSerializer } from './customUrlSerialize';
 import { AgendaModule } from './agenda/agenda.module';
+import { ValidacaoCertificadoModule } from './validacao-certificado/validacao-certificado.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AgendaModule } from './agenda/agenda.module';
     HomeModule,
     AgendaModule,
     AccountModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ValidacaoCertificadoModule
   ],
   providers: [
     { provide: UrlSerializer, useClass: CustomUrlSerializer },

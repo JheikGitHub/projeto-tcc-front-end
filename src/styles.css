@@ -645,15 +645,16 @@ footer .mdi-xing {
 }
 
 .resultado-vaidacao-ok {
-    border-left: 3px solid #4CAF50;
-    color: #4CAF50;
-    background-color: rgba(76, 175, 79, .1)
+    border-left: 3px solid #2196F3;
+    color: #2196F3;
+    background-color: rgba(0, 128, 187, 0.1)
 }
 
 .resultado-vaidacao-ok a {
     color: inherit;
-    border-bottom: 1px solid #4CAF50;
+    border-bottom: 1px solid #2196F3;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .resultado-vaidacao-ok a i {
@@ -661,9 +662,9 @@ footer .mdi-xing {
 }
 
 .resultado-validacao-falso {
-    border-left: 3px solid #f44336;
-    color: #f44336;
-    background-color: rgba(244, 67, 54, .1)
+    border-left: 3px solid #FF5733;
+    color: #FF5733;
+    background-color: rgba(255, 87, 51, .1)
 }
 
 
@@ -3095,4 +3096,11 @@ button:disabled {
 button:disabled:hover {
     background-color: #eee;
     color: #333;
+}
+
+
+/*NGX Spinner*/
+
+.black-overlay {
+    position: fixed !important
 }

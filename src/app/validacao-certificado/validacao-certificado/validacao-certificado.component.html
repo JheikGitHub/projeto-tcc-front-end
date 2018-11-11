@@ -1,0 +1,16 @@
+<app-menu-voltar></app-menu-voltar>
+
+<div class="box-recuperar-senha">
+    <div class="info-recuperar-senha">
+        <i class="mdi mdi-check"></i>
+        <h1>Validar Certificado</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <input type="text" class="text-center" formControlName="codigo" placeholder="Digite o código do certificado" id="codigoCertificado">
+        <button type="submit" [disabled]="form.invalid">Validar certificado</button>
+    </form>
+
+    <div class="msg-validacao resultado-vaidacao-ok" *ngIf="certificadoValido">{{certificadoValido}} <a (click)="gerarPdf()">Visualizar <i class="mdi mdi-file-pdf"></i></a></div>
+
+    <div class="msg-validacao resultado-validacao-falso" *ngIf="certificadoInvalido">Atestamos que o certificado de código: <b>{{this.form.get('codigo').value}}</b> é inválido.</div>
+</div>
