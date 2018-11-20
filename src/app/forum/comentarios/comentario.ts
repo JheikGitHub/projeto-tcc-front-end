@@ -1,8 +1,8 @@
-export interface Comentario {
-    
+export class Comentario { 
     Id: number
     Texto: string
-    TopicoIDiscucaoId: number
+    TopicoId: number
+    DataHoraPublicacao: string
     UsuarioId: number
     ParentId: number
 }

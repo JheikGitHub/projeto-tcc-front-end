@@ -16,6 +16,7 @@ export class AdminMinhasAgendaComponent implements OnInit {
   private user: User;
   private agendas: Agenda[] = [];
   private message: string = '';
+  agendaSelecionada
   buscarEventos = new FormControl('');
 
   constructor(
@@ -29,7 +30,7 @@ export class AdminMinhasAgendaComponent implements OnInit {
     this.sppiner.show(),
       this.user = this.routeActivated.snapshot.data['user'];
 
-    this.agendaService.agendasFuncionario(this.user.Id).subscribe(
+    this.agendaService.getAllAgendas().subscribe(
       (data: Agenda[]) => {
         this.agendas = data
         this.sppiner.hide();
@@ -61,6 +62,11 @@ export class AdminMinhasAgendaComponent implements OnInit {
       );
 
     }
+  }
+
+  exlcuirAgenda(agenda){
+    console.log(agenda);
+    this.agendaSelecionada = agenda 
   }
 
 

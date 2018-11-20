@@ -1,25 +1,20 @@
-<h1 class="title-dashboard"><i class="mdi mdi-book"></i>Criar usuário</h1>
+<h1 class="title-dashboard"><i class="mdi mdi-account-plus dark-blue"></i>Cadastrar usuário</h1>
 <a [routerLink]="['/admin-dashboard/usuarios']" routerLinkActive="router-link-active" class="link-voltar">
-        <i class="mdi mdi-arrow-left"></i>Voltar</a>
+    <i class="mdi mdi-arrow-left"></i>Voltar</a>
 
 <form class="form-konoha form-responsive" [formGroup]="form">
-
-        <label>Perfil do usuário</label>
-        <div class="select-type-user">
-
-                <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="admin" value="admin">
-                <label for="admin">Admin</label>
-
-                <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="moderador" value="funcionario">
-                <label for="moderador">Moderador</label>
-
-                <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="aluno" value="usuario">
-                <label for="aluno">Aluno</label>
-
-        </div>
+    <label style="min-width: 145.98px">Perfil do usuário</label>
+    <div class="select-type-user">
+        <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="admin" value="admin">
+        <label for="admin">Admin</label>
+        <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="moderador" value="moderador">
+        <label for="moderador">Moderador</label>
+        <input (change)="pegaPerfil()" formControlName="perfil" type="radio" id="aluno" value="participante">
+        <label for="aluno">Aluno</label>
+    </div>
 </form>
 
 
-<app-criar-funcionario *ngIf="perfilUsuario == 'funcionario'"></app-criar-funcionario>
+<app-criar-funcionario *ngIf="perfilUsuario == 'moderador'"></app-criar-funcionario>
 <app-criar-admin *ngIf="perfilUsuario == 'admin'"></app-criar-admin>
-<app-criar-aluno *ngIf="perfilUsuario == 'usuario'"></app-criar-aluno>
+<app-criar-aluno *ngIf="perfilUsuario == 'participante'"></app-criar-aluno>

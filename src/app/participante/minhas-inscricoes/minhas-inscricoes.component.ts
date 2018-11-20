@@ -37,7 +37,8 @@ export class MinhasInscricoesComponent implements OnInit {
     this.spinner.show();
     this.service.myEscriptionsEvent(this.user.Id).subscribe(
       (data: Evento[]) => {
-        this.events = data, this.spinner.hide();
+        this.events = data
+        this.spinner.hide();
       },
       (error: HttpErrorResponse) => {
 

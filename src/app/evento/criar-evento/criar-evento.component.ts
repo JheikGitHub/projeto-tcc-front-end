@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 import { EventoVerificacaoNome } from '../evento-verificacao-nome';
 
 declare function showTab(n):any
+declare function resetCurrentTab():any
 
 @Component({
   selector: 'app-criar-evento',
@@ -40,6 +41,7 @@ export class CriarEventoComponent implements OnInit {
 
 
   ngOnInit() {
+    resetCurrentTab()
     this.agendaService.getAllAgendas().subscribe(
       (data: Agenda[]) => {
         this.agendas = data;

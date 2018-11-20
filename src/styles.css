@@ -982,6 +982,20 @@ footer .mdi-xing {
     color: #eee
 }
 
+.cancelar-inscricao {
+    color: #333;
+    font-size: 18px;
+    padding: 7px 10px;
+    cursor: pointer;
+    transition: all .4s
+}
+
+.cancelar-inscricao:hover {
+    color: #fff;
+    background-color: #ff9800;
+    border: 0
+}
+
 .btn-criar-agenda {
     color: #333;
     padding: 10px 15px;
@@ -1399,6 +1413,7 @@ footer .mdi-xing {
     transition: all .5s;
     text-align: center;
     display: inline-block;
+    margin-right: 5px;
 }
 
 .state-user label {

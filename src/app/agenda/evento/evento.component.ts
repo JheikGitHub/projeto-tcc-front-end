@@ -35,8 +35,6 @@ export class EventoComponent implements OnInit {
         this.spinner.show();
 
         this.mostarEvento()
-
-        this.spinner.hide()
     }
 
     buscaTodosModeradoresEvento() {
@@ -55,6 +53,7 @@ export class EventoComponent implements OnInit {
             this.idEvento = this.evento.Id
             this.buscaTodosModeradoresEvento()
             this.mostarUsuarioLogado()
+            this.spinner.hide()
         })
     }
 

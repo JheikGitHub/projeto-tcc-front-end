@@ -17,14 +17,14 @@ export class MenuHomeComponent implements OnInit {
     private service: LoginService,
     private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(){
     if (this.service.hasToken()) {
       this.service.getUser().subscribe(
         (usuario: User) => {
           this.user = usuario;
         },
-        (err) => { console.log('Usuário não logado') });
-    }
+        (err) => { console.log('Usuário não logado')
+   });}
   }
 
   logout() {

@@ -1,48 +1,50 @@
 <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
 
-<form class="form-konoha form-responsive" (ngSubmit)="onSubmit()" [formGroup]="formFuncionario">
+<form class="form-konoha form-responsive" (ngSubmit)="onSubmit()" [formGroup]="formFuncionario" style="margin-top: 0">
 
-  <label for="nome">Nome</label>
-  <input formControlName="nome" type="text" id="nome" name="nome" placeholder="Digite o nome do usuário">
+    <label for="nome">Nome</label>
+    <input formControlName="nome" type="text" id="nome" name="nome" placeholder="Digite o nome do usuário">
 
-  <label for="cpf">CPF</label>
-  <input formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+    <label for="cpf">CPF</label>
+    <input formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
 
-  <label for="dtNasc">Data de nascimento</label>
-  <input formControlName="dataNascimento" type="date" id="dtNasc" name="dtNasc" placeholder="dia/mês/ano">
+    <label for="dtNasc">Data de nascimento</label>
+    <input formControlName="dataNascimento" type="date" id="dtNasc" name="dtNasc" placeholder="dia/mês/ano">
 
-  <label for="email">Email</label>
-  <input formControlName="email" type="text" id="email" name="email" placeholder="Digite o email do usuário">
+    <label for="email">E-mail</label>
+    <input formControlName="email" type="text" id="email" name="email" placeholder="Digite o email do usuário">
 
-  <label class="label-k">Gênero</label>
+    <label class="label-k">Gênero</label>
 
-  <div class="options-select">
-    <input formControlName="genero" type="radio" name="genero" id="men" value="M">
-    <label for="men" class="men">Masculino <i class="mdi mdi-gender-male"></i></label>
+    <div class="options-select">
+        <input formControlName="genero" type="radio" name="genero" id="men" value="M">
+        <label for="men" class="men">Masculino <i class="mdi mdi-gender-male"></i></label>
 
-    <input formControlName="genero" type="radio" name="genero" id="woman" value="F">
-    <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
-  </div>
+        <input formControlName="genero" type="radio" name="genero" id="woman" value="F">
+        <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
+    </div>
 
-  <label class="label-k">Permissão para criar Agenda</label>
-
-  <div class="options-select">
-    <input formControlName="permissaoCriaAgenda" type="radio" name="permissaoCriaAgenda" id="true" value="true">
-    <label for="true" class="men">Sim</label>
-
-    <input formControlName="permissaoCriaAgenda" type="radio" name="permissaoCriaAgenda" id="false" value="false">
-    <label for="false" class="woman">Não </label>
-  </div>
-
-  <label for="fotoPerfil">Foto Perfil</label>
-  <div class="preview-image">
-    <label for="fotoPerfil" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
-    <input (change)="onFileChange($event)" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
-    <img id="previewImage" />
-    <label for="fotoPerfil" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
+    <label for="fotoPerfil">Foto 3x4</label>
+    <div class="preview-image">
+        <label for="fotoPerfil" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
+        <input (change)="onFileChange($event)" formControlName="fotoPerfil" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
+        <img id="previewImage" />
+        <label for="fotoPerfil" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
       outra imagem</label>
-  </div>
+    </div>
 
-  <button type="submit" class="btn btn-blue">Salvar</button>
+    <label class="label-k">Gestor de Agendas</label>
+
+    <div class="state-user">
+        <input formControlName="permissaoCriaAgenda" type="checkbox" name="permissaoCriaAgenda" id="permissaoCriaAgenda">
+        <label for="permissaoCriaAgenda" class="yes">SIM</label>
+        <label for="permissaoCriaAgenda" class="no">NÃO</label>
+    </div>
+
+
+
+    <button type="submit" *ngIf="!msgSuccess" [disabled]="formFuncionario.invalid" class="btn btn-blue">Cadastrar</button>
 
 </form>
+
+<p *ngIf="msgSuccess" class="alert-float success"><i class="mdi mdi-check-circle-outline"></i><i class="mdi mdi-close" onclick="this.parentElement.style.display='none';"></i>{{msgSuccess}}</p>

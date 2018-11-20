@@ -16,7 +16,8 @@ export class CriarAdminComponent implements OnInit {
 
   private formFuncionario: FormGroup;
   private funcionario: Funcionario = new Funcionario();
-  private erro: string = '';
+  private erro: string = ''
+  private msgSuccess: string = ''
 
   constructor(
     private service: FuncionarioService,
@@ -25,18 +26,18 @@ export class CriarAdminComponent implements OnInit {
 
   ngOnInit() {
     this.iniciarValoresInput();
-
+    this.funcionario.Usuario = new User();
   }
 
   iniciarValoresInput() {
     this.formFuncionario = this.build.group({
       nome: ['', [Validators.required, Validators.maxLength(100)]],
-      dataNascimento: ['', [Validators.required, Validators.required]],
-      cpf: ['', [Validators.required,
-      Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
-      genero: ['', Validators.required],
+      dataNascimento: ['', [Validators.required]],
+      cpf: ['', [Validators.required, Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
+      genero: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      fotoPerfil: ['']
+      permissaoCriaAgenda: [false, [Validators.required]],
+      fotoPerfil: [null, [Validators.required]]
     });
   }
 
@@ -46,17 +47,12 @@ export class CriarAdminComponent implements OnInit {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.formFuncionario.get('fotoPerfil').setValue({
-          value: reader.result.toString().split(',')[1]
-        })
+        this.funcionario.Usuario.PathFotoPerfil = reader.result.toString().split(',')[1]
       }
     }
   }
 
   pegaValoresInput() {
-    this.funcionario.Usuario = new User();
-
-    var path = this.formFuncionario.get('fotoPerfil').value;
     this.funcionario.Usuario.Nome = this.formFuncionario.get('nome').value;
     this.funcionario.Usuario.DataNascimento = this.formFuncionario.get('dataNascimento').value;
     this.funcionario.Usuario.Cpf = this.formFuncionario.get('cpf').value;
@@ -64,13 +60,7 @@ export class CriarAdminComponent implements OnInit {
     this.funcionario.Usuario.Email = this.formFuncionario.get('email').value;
     this.funcionario.Usuario.UserName = this.funcionario.Usuario.Email;
     this.funcionario.Usuario.Senha = this.GeradorSenha();
-
-    if (path.value != '')
-      this.funcionario.Usuario.PathFotoPerfil = path.value;
-    else
-      this.funcionario.Usuario.PathFotoPerfil = '';
-
-    this.funcionario.PermissaoCriarAgenda = true;
+    this.funcionario.PermissaoCriarAgenda = this.formFuncionario.get('permissaoCriaAgenda').value;
     this.funcionario.IsAdmin = true;
     this.funcionario.Usuario.Perfil = "Admin";
   }
@@ -130,24 +120,22 @@ export class CriarAdminComponent implements OnInit {
   
   onSubmit() {
 
-    if (this.formFuncionario.invalid) {
+   if (this.formFuncionario.invalid) {
       this.validaCampos();
       return;
     }
 
     this.pegaValoresInput();
 
-    this.service.adicionaFuncionario(this.funcionario).subscribe(
-      (data) => {
+     this.service.adicionaFuncionario(this.funcionario).subscribe(
+      () => {
+        this.msgSuccess = "Usuário cadastrado com sucesso"
         setTimeout(() => {
-          this.showMessage("Administrador cadastrado com sucesso");
-        }, 5000);
-        this.router.navigate(['/admin-dashboard/usuarios']);
+          this.router.navigate(['/admin-dashboard/usuarios']);
+        }, 7000);
       },
       (err: HttpErrorResponse) => {
-        setTimeout(() => {
-          this.showMessage("Falha ao se registrar, Por favor Tente novamente mais tarde.");
-        }, 5000);
+        alert("Falha ao se registrar, Por favor Tente novamente mais tarde.")
       }
     );
   }
@@ -155,11 +143,9 @@ export class CriarAdminComponent implements OnInit {
   GeradorSenha() {
     let senha: string = '';
     var letters = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J',
-      'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Z', '-', '/', '@', '#', '&'];
+      'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'X', 'Z'];
     for (let index = 0; index < 6; index++) {
-
       let resul = letters[Math.floor(Math.random() * letters.length)];
-      console.log(resul);
       senha += resul;
     }
     return senha;
@@ -171,5 +157,5 @@ export class CriarAdminComponent implements OnInit {
       this.erro = ''
     }, 7000);
   }
-
+  
 }

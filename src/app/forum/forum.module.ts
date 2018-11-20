@@ -11,13 +11,15 @@ import { EditarTopicoComponent } from './editar-topico/editar-topico.component';
 import { ForumComponent } from './forum/forum.component';
 import { GetTopicoNomeResolve } from './getTopicoResolve';
 import { ErrorsModule } from '../errors/errors.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   imports: [
     CommonModule,
     RouterModule,
     ErrorsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxSpinnerModule
   ],
   declarations: [
     ComentariosRespostasPipe,

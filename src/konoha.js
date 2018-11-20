@@ -144,6 +144,7 @@ function showTab(n) {
 
 function nextPrev(n) {
     var x = document.getElementsByClassName("tab ");
+
     x[currentTab].style.transition = "all .5s "
     x[currentTab].style.transform = "scale(0) ";
     currentTab = currentTab + n;
@@ -157,4 +158,8 @@ function fixStepIndicator(n) {
         x[i].className = x[i].className.replace(" active ", " ");
     }
     x[n].className += " active ";
+}
+
+function resetCurrentTab() {
+    currentTab = 0
 }

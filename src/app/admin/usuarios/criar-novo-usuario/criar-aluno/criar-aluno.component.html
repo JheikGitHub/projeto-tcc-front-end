@@ -1,44 +1,43 @@
 <p class="mensagem warning animation text-center" *ngIf="erro">{{erro}}</p>
 
-<form class="form-konoha form-responsive" (ngSubmit)="onSubmit()" [formGroup]="formFuncionario">
+<form class="form-konoha form-responsive" (ngSubmit)="onSubmit()" [formGroup]="formFuncionario" style="margin-top: 0">
 
-  <label for="nome">Nome</label>
-  <input formControlName="nome" type="text" id="nome" name="nome" placeholder="Digite o nome do aluno">
-
-
-  <label for="cpf">CPF</label>
-  <input formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
+    <label for="nome">Nome</label>
+    <input formControlName="nome" type="text" id="nome" name="nome" placeholder="Digite o nome do aluno">
 
 
-  <label for="dtNasc">Data de nascimento</label>
-  <input formControlName="dataNascimento" type="date" id="dtNasc" name="dtNasc" placeholder="dia/mês/ano">
+    <label for="cpf">CPF</label>
+    <input formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
 
 
-  <label for="email">Email</label>
-  <input formControlName="email" type="text" id="email" name="email" placeholder="Digite o email do aluno">
+    <label for="dtNasc">Data de nascimento</label>
+    <input formControlName="dataNascimento" type="date" id="dtNasc" name="dtNasc" placeholder="dia/mês/ano">
 
-  <label class="label-k">Gênero</label>
 
-  <div class="options-select">
-    <input formControlName="genero" type="radio" name="genero" id="men" value="M">
-    <label for="men" class="men">Masculino <i class="mdi mdi-gender-male"></i></label>
+    <label for="email">E-mail</label>
+    <input formControlName="email" type="text" id="email" name="email" placeholder="Digite o email do aluno">
 
-    <input formControlName="genero" type="radio" name="genero" id="woman" value="F">
-    <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
-  </div>
+    <label for="matricula">Matricula</label>
+    <input formControlName="matricula" type="text" id="matricula" name="matricula" maxlength="15" placeholder="Digite matricula do aluno">
 
-  <label for="matricula">Matricula</label>
-  <input formControlName="matricula" type="text" id="matricula" name="matricula" maxlength="15" placeholder="Digite matricula do aluno">
+    <label class="label-k">Gênero</label>
+    <div class="options-select">
+        <input formControlName="genero" type="radio" name="genero" id="men" value="M">
+        <label for="men" class="men">Masculino <i class="mdi mdi-gender-male"></i></label>
 
-  <label for="fotoPerfil">Foto Perfil</label>
-  <div class="preview-image">
-    <label for="fotoPerfil" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
-    <input (change)="onFileChange($event)" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
-    <img id="previewImage" />
-    <label for="fotoPerfil" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
+        <input formControlName="genero" type="radio" name="genero" id="woman" value="F">
+        <label for="woman" class="woman">Feminino <i class="mdi mdi-gender-female"></i></label>
+    </div>
+
+    <label for="fotoPerfil">Foto 3x4</label>
+    <div class="preview-image">
+        <label for="fotoPerfil" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
+        <input (change)="onFileChange($event)" formControlName="fotoPerfil" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
+        <img id="previewImage" />
+        <label for="fotoPerfil" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
       outra imagem</label>
-  </div>
+    </div>
 
-  <button type="submit" class="btn btn-blue">Salvar</button>
+    <button type="submit" class="btn btn-blue">Cadastrar</button>
 
 </form>

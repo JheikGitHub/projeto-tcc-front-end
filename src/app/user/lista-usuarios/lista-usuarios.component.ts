@@ -48,7 +48,6 @@ export class ListaUsuariosComponent implements OnInit {
       this.usuarioService.excluiUsuario(idUsuario).subscribe(
         () => {
           alert('Usuário excluido com sucesso!');
-          this.router.navigate(['/admin-dashboard']);
         },
         (err: HttpErrorResponse) => {
           if (err.status == 401) {
