@@ -946,6 +946,12 @@ footer .mdi-xing {
     color: #fff
 }
 
+.item-agenda-eventos .green2:hover,
+.item-agenda-eventos .green2:focus {
+    background-color: rgb(129, 0, 204);
+    color: #fff
+}
+
 .item-agenda-eventos .blue:hover,
 .item-agenda-eventos .blue:focus {
     background-color: #2196F3;

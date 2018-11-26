@@ -1,4 +1,3 @@
-
 <dl class="page-details">
     <dt>Nome do Evento: </dt>
     <dd>{{event?.Nome}}</dd>
@@ -7,17 +6,17 @@
     <dt>Data/Hora: </dt>
     <dd>{{event?.DataInicio | date:'dd/MM/yyyy hh:mm'}} horas</dd>
     <dt>Carga horária: </dt>
-    <dd>{{event?.CargaHoraria}} h</dd>
+    <dd>{{event?.CargaHoraria}}h</dd>
     <dt>Numero de vagas: </dt>
     <dd>{{event?.NumeroVagas}}</dd>
     <dt>Numero de inscritos: </dt>
     <dd>{{inscritos}}</dd>
-  
     <dt>Moderadores do evento:</dt>
-    <dd class="moderadores" *ngFor="let funcionario of event.Funcionario">
-      <figure><img src="http://localhost:51990/Imagens/Usuario/{{funcionario.Usuario.PathFotoPerfil}}" [title]="funcionario.Usuario.Nome"></figure>
+    <dd class="moderadores">
+        <figure *ngFor="let funcionario of event.Funcionario"><img src="http://localhost:51990/Imagens/Usuario/{{funcionario.Usuario.PathFotoPerfil}}" [title]="funcionario.Usuario.Nome"></figure>
     </dd>
-  
     <dt>Imagem do evento:</dt>
-    <dl><img src="http://localhost:51990/Imagens/Eventos/{{event.PathImagem}}"></dl>
-  </dl>
+
+    <dd><img src="http://localhost:51990/Imagens/Eventos/{{event.PathImagem}}"></dd>
+
+</dl>

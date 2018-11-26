@@ -1,14 +1,32 @@
 <p *ngIf="topicosDiscussao.length < 1">
-  <i class="mdi mdi-information-outline">
+    <i class="mdi mdi-information-outline">
   </i> Esse evento não possui nenhum Tópico de Discussão.</p>
 
 <div class="topicos-discussao">
-  <div class="topico" *ngFor="let topicoDiscussao of topicosDiscussao">
+    <div class="topico" *ngFor="let topicoDiscussao of topicosDiscussao">
 
-    <a (click)="deleta(topicoDiscussao.Id)" class="mdi mdi-delete-empty" title="Excluir"></a>
-    <a routerLink="{{rotaEditar}}{{topicoDiscussao.Nome}}" routerLinkActive="router-link-active"  title="Editar"><i class="mdi mdi-pencil"></i></a>
+        <a href="../../evento-coments-topico-discussao.html#debates" title="Ver comentários"><i class="mdi mdi-eye"></i></a>
+        <a (click)="deleta(topicoDiscussao.Id)" class="mdi mdi-delete-empty" title="Excluir" onclick="openModal()"></a>
+        <a (click)="deleta(topicoDiscussao.Id)" class="mdi mdi-view-list" title="Excluir"></a>
+        <a routerLink="{{rotaEditar}}{{topicoDiscussao.Nome}}" routerLinkActive="router-link-active" title="Editar"><i class="mdi mdi-pencil"></i></a>
 
-    <span>{{topicoDiscussao.Nome}}</span>
+        <span>{{topicoDiscussao.Nome}}</span>
 
-  </div>
+    </div>
+</div>
+
+<div id="modal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="text-center">
+            <p>Tópico de discussão: Você se considera um empreendedor?</p>
+
+            <p><i class="mdi mdi-information-outline"></i>Confirma a exclusão desse tópico de discussão?</p>
+
+            <button class="btn-modal yes">Sim</button><button class="btn-modal no" onclick="closeModal()">Não</button>
+        </div>
+    </div>
+
 </div>

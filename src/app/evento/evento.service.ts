@@ -5,6 +5,7 @@ import { LoginService } from '../account/login/login.service';
 import { Evento } from './evento';
 import { EventoVerificacaoNome } from './evento-verificacao-nome';
 import { CancelamentoEvento } from './cancelamento-evento';
+import { Participant } from '../participante/participante';
 
 const URL_API = 'http://localhost:51990';
 
@@ -93,6 +94,10 @@ export class EventoService {
 
   cancelarEvento(evento: CancelamentoEvento) {
     return this.http.post(URL_API + "/api/evento/cancelar-evento/", evento);
+  }
+
+  listarInscritosEvento(idEvento: number){
+    return this.http.get<Participant[]>(URL_API + '/api/evento/participantes-inscritos-no-evento/' + idEvento)
   }
 
 }

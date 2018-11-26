@@ -97,7 +97,7 @@ export class ComentariosComponent implements OnInit {
   }
 
   isModeradorEvento(){
-    return false
+    return true
   }
 
   excluirComentario(comentario){

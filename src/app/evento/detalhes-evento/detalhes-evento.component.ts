@@ -31,6 +31,8 @@ export class DetalhesEventoComponent implements OnInit {
     this.service.detailsEvent(this.IdEvent).subscribe(
       (data: Evento) => {
         this.event = data
+        console.log(this.event);
+        
      },
       (err: HttpErrorResponse) => {
 

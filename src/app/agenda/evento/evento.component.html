@@ -11,13 +11,14 @@
         </div>
         <div class="detalhes-evento-agenda">
             <div class="time-local-agenda-evento">
-                <p class="data-evento"><i class="mdi mdi-calendar-today"></i><span>Dia:</span> {{evento?.DataInicio | date: 'dd/MM/yyyy'}}</p>
+                <p class="data-evento"><i class="mdi mdi-calendar-today"></i><span>Data:</span> {{evento?.DataInicio | date: 'dd/MM/yyyy'}}</p>
                 <p class="hora-evento"><i class="mdi mdi-clock-outline"></i><span>Hora:</span> {{evento?.DataInicio | date:"HH:mm"}} - {{evento?.DataInicio | date:"HH:mm"}}</p>
                 <p class="local-evento"><i class="mdi mdi-map-marker-radius"></i><span>Local:</span> {{evento?.Local}}</p>
+                <p class="local-evento"><i class="mdi mdi-account-star"></i><span>Apresentador:</span> {{evento?.Apresentador}}</p>
             </div>
             <div class="moderadores">
                 <p>Moderadores do Evento</p>
-                <figure *ngFor="let funcionario of funcionarios" >
+                <figure *ngFor="let funcionario of funcionarios">
                     <img src="http://localhost:51990/Imagens/Usuario/{{funcionario?.PathFotoPerfil}}" [title]="funcionario.Nome">
                 </figure>
             </div>
