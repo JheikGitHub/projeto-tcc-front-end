@@ -13,6 +13,7 @@ import { FuncionarioCriarEventoComponent } from './criar-evento/criar-evento.com
 import { FuncionarioMeusEventosComponent } from './meus-eventos.component';
 import { AgendaModule } from 'src/app/agenda/agenda.module';
 import { ForumFuncionarioModule } from '../forum-funcionario/forum-funcionario.module';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { ForumFuncionarioModule } from '../forum-funcionario/forum-funcionario.m
     ForumFuncionarioModule,
     AgendaModule,
     NgxSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QRCodeModule
   ],
   declarations: [
     FuncionarioMeusEventosComponent,

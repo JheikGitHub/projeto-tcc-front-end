@@ -30,6 +30,7 @@ export class FuncionarioMeusEventosComponent implements OnInit {
   nomeEventoSelecionado: string = ''
   imagemEventoSelecionado: string = ''
   idEventoSelecionadao: number
+  idForQrCode: string = null
   acaoUsuario: string = ''
   isDelete: boolean = false
   message: string = ''
@@ -120,6 +121,15 @@ export class FuncionarioMeusEventosComponent implements OnInit {
       })
   }
 
+
+  qrCodeEvento(evento){
+    this.nomeEventoSelecionado = evento.Nome
+    this.idForQrCode = (evento.Id).toString();
+    console.log(this.idForQrCode )
+  }
+
+
+  /*-------------------- Gerar Lista de Inscritos ------------------------*/
   linhas = []
   colunas = [
     { title: "Nome", dataKey: "nome" },

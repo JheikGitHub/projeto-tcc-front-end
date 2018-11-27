@@ -21,7 +21,7 @@
         <div class="link-opcoes" *ngIf="!evento.Cancelado">
             <a (click)="gerarListaInscritos(evento)" onclick="viewPdf()" routerLinkActive="router-link-active" class="green2" title="Listar inscritos"><i class="mdi mdi-account-group"></i></a>
             <a [routerLink]="['/funcionario-dashboard/confirmacao-presenca',evento.Id]" routerLinkActive="router-link-active" class="green" title="Confirmar presenças"><i class="mdi mdi-account-multiple-check"></i></a>
-            <a class="gray" title="Qr Code do Evento" onclick="openModalQrCode()"><i class="mdi mdi-qrcode"></i></a>
+            <a class="gray" title="Qr Code do Evento" onclick="openModalQrCode()" (click)="qrCodeEvento(evento)"><i class="mdi mdi-qrcode"></i></a>
             <a [routerLink]="['/funcionario-dashboard/topicos',evento.Nome]" routerLinkActive="router-link-active" class="yellow" title="Tópicos de discussão"><i class="mdi mdi-comment"></i></a>
             <a [routerLink]="['detalhes-evento/',evento.Id]" routerLinkActive="router-link-active" class="aqua" title="Detalhar Evento"><i class="mdi mdi-view-list"></i></a>
             <a [routerLink]="['/funcionario-dashboard/editar-evento/',evento.Id]" routerLinkActive="router-link-active" class="blue" title="Editar Evento"><i class="mdi mdi-pencil"></i></a>
@@ -39,7 +39,7 @@
 <div id="modalQrCode" class="modal">
     <div class="modal-content">
         <span class="close" onclick="closeModalQrCode()">&times;</span>
-        <img src="/assets/img/QR+Code+Dicas+1400x1400.jpg">
+        <qrcode *ngIf="idForQrCode" [qrdata]="idForQrCode" [size]="256" [level]="'M'"></qrcode>
         <p class="nome-evento">{{nomeEventoSelecionado}}</p>
         <p class="text-center">Apresente esse Qr Code para que os participantes possam confirmar sua presença no evento.</p>
     </div>
