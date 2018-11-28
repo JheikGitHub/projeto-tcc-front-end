@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
       },
       async (err: HttpErrorResponse) => {
         this.spinner.hide();
-        this.showMessage('Acesso negado. Verifique seu USERNAME e SENHA.')
+        this.showMessage('Acesso negado. Verifique seu Login e SENHA.')
       }
     );
   }

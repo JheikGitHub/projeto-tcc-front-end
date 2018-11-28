@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { LoginService } from '../account/login/login.service';
 import { Funcionario } from './funcionario';
+import { UserConfirmacaoPresenca } from '../user/user-confirmacao-presenca';
 
 const URL_API = 'http://localhost:51990';
 
@@ -67,9 +68,19 @@ export class FuncionarioService {
         })
     }
 
+
+    getUserConfirmcaoPresenca(dados: DadosConfirmacaoPresenca){
+        return this.http.post<UserConfirmacaoPresenca>(URL_API+"/api/usuario/buscar-por-cpf-confirmar-presenca", dados)
+    }
+    
 }
 
 export interface ConfirmacaoPresenca {
     UsuarioId: number;
     EventoId: number;
+}
+
+export interface DadosConfirmacaoPresenca{
+    CpfUsuario: string
+    IdEvento: number
 }

@@ -1,45 +1,49 @@
 <h1 class="title-dashboard"><i class="mdi mdi-check green"></i>Confirmar presença</h1>
-<a class="link-voltar" [routerLink]="['/funcionario-dashboard/meus-eventos']" routerLinkActive="router-link-active"><i
-        class="mdi mdi-arrow-left"></i>Voltar</a>
+<a class="link-voltar" [routerLink]="['/funcionario-dashboard/meus-eventos']" routerLinkActive="router-link-active"><i class="mdi mdi-arrow-left"></i>Voltar</a>
+
+<div class="text-center">
+    <img src="http://localhost:51990/imagens/eventos/{{evento?.PathImagem}}" style="width:100%; max-width: 175px; border-radius:2px" />
+    <p><b>Evento: </b>{{evento?.Nome}}</p>
+</div>
+
 <div class="confirmar-presenca">
-
-    <ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
-
-    <form action="" class="form-konoha form-presenca" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="form-konoha form-responsive" [formGroup]="form">
 
         <label for="cpf">Digite o CPF do participante</label>
-        <input  formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00">
-   
-        <div *ngIf="submit && form.controls['cpf'].invalid || form.controls['cpf'].touched">
-                <app-message-erro *ngIf="form.get('cpf').errors?.required" text=" campo cpf é obrigátorio.">
-                </app-message-erro>
-                <app-message-erro *ngIf="form.get('cpf').errors?.pattern" text="cpf inválido.">
-                </app-message-erro>
-          </div>
-     
-        <button class="btn btn-blue" [disabled]="!form.valid" class="btn-confirmar-presenca"><i class="mdi mdi-check"></i>Busca usuario</button>
+        <input formControlName="cpf" type="text" id="cpf" name="cpf" placeholder="000.000.000-00" (keyup)="realizarConfirmacaoPresenca()" maxlength="14">
+
+        <div>
+            <!--Não apaque essa div -->
+        </div>
+
+        <div class="text-left">
+            <app-message-erro *ngIf="form.get('cpf').errors?.pattern && (form.get('cpf').value.length >= 11)" text="Informe o CPF nesse formato: 000.000.000-00"></app-message-erro>
+            <app-message-erro *ngIf="form.get('cpf').hasError('CpfInvalido') && form.get('cpf').value.length == 14" text="Número de CPF Inválido"></app-message-erro>
+        </div>
     </form>
 
     <div class="particpante-check" *ngIf="mostraTemplate">
         <figure>
-            <img src="http://localhost:51990/Imagens/Usuario/{{user?.PathFotoPerfil}}" alt="foto perfil">
+            <img src="http://localhost:51990/Imagens/Usuario/{{user.Usuario?.PathFotoPerfil}}" alt="foto perfil">
         </figure>
         <dl class="page-details">
             <dt>Nome: </dt>
-            <dd>{{user?.Nome}}</dd>
+            <dd>{{user.Usuario?.Nome}}</dd>
             <dt>CPF: </dt>
-            <dd>{{user?.Cpf}}</dd>
+            <dd>{{user.Usuario?.Cpf}}</dd>
         </dl>
-        <div class="buttons">
-            <button (click)="confirmaPresenca(user.Id)" class="btn-confirmar-presenca"><i class="mdi mdi-check"></i>Confirmar
-                presença</button>
-            <button (click)="cancelarPresenca(user.Id)" class="btn-cancel-confirmar-presenca"><i class="mdi mdi-close"></i>Cancelar</button>
+        <div class="buttons" *ngIf="user.StatusConfirmacao == 'Ok'">
+            <button (click)="confirmaPresenca()" class="btn-confirmar-presenca"><i class="mdi mdi-check"></i>Confirmar presença</button>
+            <button (click)="cancelar()" class="btn-cancel-confirmar-presenca"><i class="mdi mdi-close"></i>Cancelar</button>
         </div>
-        <!-- <div class="messagens-check">
-                <p class="alert danger"><i class="mdi mdi-account-alert"></i>Não encontramos nenhum participante com esse número de CPF</p>
-                <p class="alert warning"><i class="mdi mdi-account-remove"></i>Participante já teve presença confirmada em outro evento que ocorreu neste período</p>
-                <p class="alert success"><i class="mdi mdi-account-check"></i>Presença confirmada com sucesso neste evento</p>
-                <p class="alert information"><i class="mdi mdi-account-check"></i>Particiante ja teve sua presença confirmada neste evento</p>  
-            </div> -->
+        <div class="messagens-check" *ngIf="user.StatusConfirmacao != 'Ok'">
+            <p *ngIf="user.StatusConfirmacao == 'FE5'" class="alert warning"><i class="mdi mdi-account-remove"></i>Participante já teve sua presença confirmada em outro evento que ocorreu nesse período</p>
+            <p *ngIf="user.StatusConfirmacao == 'FE6'" class="alert information"><i class="mdi mdi-account-check"></i>Particiante ja teve sua presença confirmada neste evento</p>
+        </div>
     </div>
 </div>
+
+<ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>
+
+<p *ngIf="msgSuccess" class="alert-float success"><i class="mdi mdi-check-circle"></i><i class="mdi mdi-close" (click)="resetMessages()"></i>{{msgSuccess}}</p>
+<p *ngIf="msgError" class="alert-float warning"><i class="mdi mdi-alert"></i><i class="mdi mdi-close" (click)="resetMessages()"></i>{{msgError}}</p>
