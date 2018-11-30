@@ -2,8 +2,8 @@
 <a [routerLink]="['/admin-dashboard/criar-evento']" routerLinkActive="router-link-active" class="btn-criar-agenda"><i
     class="mdi mdi-plus-box"></i>Criar novo evento</a>
 
-<form [formGroup]="buscarEventos" class="search-agendas-eventos">
-    <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="buscar evento">
+<form [formGroup]="buscarEventos" class="form-pesquisa">
+    <input type="text" [(ngModel)]="parametroBusca" [ngModelOptions]="{standalone: true}" placeholder="Digite o nome ou tipo do evento">
     <button type="submit"><i class="mdi mdi-magnify"></i></button>
 </form>
 
@@ -17,11 +17,55 @@
         <p class="nome-agenda">{{evento.Nome}}</p>
 
         <div class="link-opcoes">
+            <a (click)="gerarListaInscritos(evento)" onclick="viewPdf()" routerLinkActive="router-link-active" class="green2" title="Listar inscritos"><i class="mdi mdi-account-group"></i></a>
             <a [routerLink]="['/admin-dashboard/confirmacao-presenca',evento.Id]" routerLinkActive="router-link-active" class="green" title="Confirmar presenças"><i class="mdi mdi-account-multiple-check"></i></a>
-            <a class="gray" title="Qr Code do Evento" onclick="openModalQrCode()"><i class="mdi mdi-qrcode"></i></a>
+            <a class="gray" title="Qr Code do Evento" onclick="openModalQrCode()" (click)="qrCodeEvento(evento)"><i class="mdi mdi-qrcode"></i></a>
             <a [routerLink]="['/admin-dashboard/topicos',evento.Nome]" routerLinkActive="router-link-active" class="yellow" title="Tópicos de discussão"><i class="mdi mdi-comment"></i></a>
             <a [routerLink]="['detalhes-evento/',evento.Id]" routerLinkActive="router-link-active" class="aqua" title="Detalhar Evento"><i class="mdi mdi-view-list"></i></a>
             <a [routerLink]="['/admin-dashboard/editar-evento/',evento.Id]" routerLinkActive="router-link-active" class="blue" title="Editar Evento"><i class="mdi mdi-pencil"></i></a>
-            <a (click)="delete(evento.Id)" class="red" title="Deletar Evento"><i class="mdi mdi-delete-empty"></i></a>
+            <a (click)="cancel(evento)" onclick="openModal()" class="orange" title="Cancelar Evento"><i class="mdi mdi-close"></i></a>
+            <a (click)="delete(evento)" onclick="openModal()" class="red" title="Deletar Evento"><i class="mdi mdi-delete-empty"></i></a>
+        </div>
+        <div class="link-opcoes" *ngIf="evento.Cancelado" style="padding: 10px 0; font-size: 18px">
+            <span class="mensagem warning">Evento cancelado</span>
         </div>
     </div>
+</div>
+
+<p *ngIf="message" class="alert-float success"><i class="mdi mdi-check-circle-outline"></i><i class="mdi mdi-close" onclick="this.parentElement.style.display='none';"></i>{{message}}</p>
+<p *ngIf="msgInfo" class="alert-float info"><i class="mdi mdi-information-outline"></i><i class="mdi mdi-close" onclick="this.parentElement.style.display='none';"></i>{{msgInfo}}</p>
+<div id="modalQrCode" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModalQrCode()">&times;</span>
+        <qrcode *ngIf="idForQrCode" [qrdata]="idForQrCode" [size]="256" [level]="'M'"></qrcode>
+        <p class="nome-evento">{{nomeEventoSelecionado}}</p>
+        <p class="text-center">Apresente esse Qr Code para que os participantes possam confirmar sua presença no evento.</p>
+    </div>
+</div>
+
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="text-center">
+            <figure>
+                <img src="http://localhost:51990/Imagens/Eventos/{{imagemEventoSelecionado}}">
+                <figcaption>Evento: {{nomeEventoSelecionado}}</figcaption>
+            </figure>
+            <p><i class="mdi mdi-information-outline"></i>{{acaoUsuario}}</p>
+            <p class="mensagem warning" style="margin-top: -18px" *ngIf="!isDelete">Essa ação não pode ser desfeita.</p>
+            <button class="btn-modal yes" onclick="closeModal()" (click)="confirmDelete()" *ngIf="isDelete">Sim</button>
+            <button class="btn-modal yes" onclick="closeModal()" (click)="confirmCancel()" *ngIf="!isDelete">Sim</button>
+            <button class="btn-modal no" onclick="closeModal()">Não</button>
+        </div>
+    </div>
+</div>
+
+<div id="modalPdf" class="modal" *ngIf="!msgInfo">
+    <div class="modal-content">
+        <span class="close" onclick="closeModalPdf()">&times;</span>
+        <object type="application/pdf" class="box-pdf" id="boxPdf" [data]='sanitizer.bypassSecurityTrustResourceUrl(pdfBase64)'></object>
+        <a href="sanitizer.bypassSecurityTrustResourceUrl(pdfBase64)" download="Lista de Inscritos" class="btn btn-download"><i class="mdi mdi-download"></i>Download</a>
+    </div>
+</div>
+
+<ngx-spinner bdColor="rgba(255, 255, 255, .5)" size="large" color="#2196F3" type="ball-fussion"></ngx-spinner>

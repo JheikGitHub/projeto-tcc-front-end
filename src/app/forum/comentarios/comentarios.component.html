@@ -16,7 +16,7 @@
 <article class="comentarios">
     <ng-template #List let-items>
         <div class="comentario comentario-pai" *ngFor="let item of items">
-            <button class="btn-delete-comment" *ngIf="item.UsuarioId == user?.Id || user?.Perfil == 'Admin'" (click)="excluirComentario(item)" onclick="openModal()" title="Excluir comentário"><i class="mdi mdi-delete"></i></button>
+            <button class="btn-delete-comment" *ngIf="item.UsuarioId == user?.Id || user?.Perfil == 'Admin' || isModeradorEvento(user, funcionarios)" (click)="excluirComentario(item)" onclick="openModal()" title="Excluir comentário"><i class="mdi mdi-delete"></i></button>
             <span class="nome-autor">{{item.Usuario.Nome}}</span> <span class="data-hora">{{item.DataHoraPublicacao | date: 'dd/MM/yyyy'}} - {{item.DataHoraPublicacao | date:'HH:mm'}}</span>
             <figure>
                 <img src="http://localhost:51990/Imagens/Usuario/{{item.Usuario.PathFotoPerfil}}" title="{{item.Usuario.Nome}}">

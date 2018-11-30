@@ -70,8 +70,8 @@ export class CriarEventoComponent implements OnInit {
       nome: ['', [Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Z0-9 ]*$'), this.noWhitespaceValidator], [this.validarNomeEvento.bind(this)]],
       local: ['', [Validators.required, Validators.maxLength(100)]],
       diaEvento: ['', [Validators.required]],
-      dataInicio: ['', [Validators.required, Validators.pattern('[0-9]{2}[:|\/]{1}[0-9]{2}')]],
-      dataEncerramento: ['', [Validators.required, Validators.pattern('[0-9]{2}[:|\/]{1}[0-9]{2}')]],
+      dataInicio: ['', [Validators.required]],
+      dataEncerramento: ['', [Validators.required]],
       descricao: ['', [Validators.required, Validators.maxLength(500), this.noWhitespaceValidator]],
       apresentador: ['', [Validators.required, Validators.maxLength(300)]],
       cargaHoraria: ['', Validators.required],
@@ -182,7 +182,7 @@ export class CriarEventoComponent implements OnInit {
     this.evento.TipoEvento = this.form.get('tipoEvento').value;
     this.evento.AgendaEventoId = this.form.get('agendaEventoId').value;
 
-    this.evento.funcionario = this.moderadoresEvento
+    this.evento.Funcionario = this.moderadoresEvento
   }
 
   onSubmit() {

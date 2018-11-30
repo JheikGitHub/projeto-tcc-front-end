@@ -20,5 +20,5 @@ export class Evento {
 
     AgendaEvento: Agenda;
 
-    funcionario: Funcionario[];
+    Funcionario: Funcionario[];
 }

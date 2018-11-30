@@ -100,4 +100,8 @@ export class EventoService {
     return this.http.get<Participant[]>(URL_API + '/api/evento/participantes-inscritos-no-evento/' + idEvento)
   }
 
+  getTodosEventos() {
+    return this.http.get<Evento[]>(URL_API + "/api/evento/busca-todos");
+  }
+
 }

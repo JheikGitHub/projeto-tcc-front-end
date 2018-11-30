@@ -160,7 +160,7 @@ export class FuncionarioMeusEventosComponent implements OnInit {
   }
 
   gerarTabela(columns, rows, nomeEvento) {
-    var doc = new jsPDF('p', 'pt');
+   /* var doc = new jsPDF('p', 'pt');
     doc.autoTable(columns, rows, {//Quando roda Funciona
       theme: 'striped',
       columnWidth: 'auto',
@@ -174,7 +174,7 @@ export class FuncionarioMeusEventosComponent implements OnInit {
       }
     });
 
-    this.pdfBase64 = doc.output('datauristring')
+    this.pdfBase64 = doc.output('datauristring')*/
   }
 
 }

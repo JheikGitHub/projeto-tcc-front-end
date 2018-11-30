@@ -99,7 +99,7 @@
 
         <label for="imagem">Imagem do evento</label>
         <div class="preview-image">
-            <label for="imagem" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
+            <label for="imagem" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi mdi-image"></i></label>
             <input (change)="onFileChange($event)" formControlName="imagem" #fileInput type="file" name="imagem" id="imagem" onchange="loadFile()">
             <img id="previewImage" />
             <label for="imagem" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar outra imagem</label>

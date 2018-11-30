@@ -5,6 +5,10 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { User } from 'src/app/user/user';
 import { CriarContaService } from './sign-in.service';
+import { LoginService, UserAuthenticateDTO } from '../login/login.service';
+import { bind } from '@angular/core/src/render3/instructions';
+import { Participant } from 'src/app/participante/participante';
+import { ParticipanteService } from 'src/app/participante/participante.service';
 
 
 @Component({
@@ -14,7 +18,8 @@ import { CriarContaService } from './sign-in.service';
 })
 export class CriarContaComponent implements OnInit {
 
-  private user: User = new User();
+  private user: Participant = new Participant();
+  private user2: UserAuthenticateDTO = new UserAuthenticateDTO();
   private messageErro: string = '';
   private msgAlert: string = '';
   private form: FormGroup;
@@ -22,6 +27,8 @@ export class CriarContaComponent implements OnInit {
   constructor(
     private formBuild: FormBuilder,
     private service: CriarContaService,
+    private serviceLogin: LoginService,
+    private participanteService: ParticipanteService,
     private router: Router) { }
 
   ngOnInit() {
@@ -36,9 +43,10 @@ export class CriarContaComponent implements OnInit {
       Validators.pattern('[0-9]{3}[.|\/]{1}[0-9]{3}[.|\/]{1}[0-9]{3}[-|\/]{1}[0-9]{2}')]],
       genero: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
+      login: ['', [Validators.required, Validators.minLength(6)]],
       senha: ['', [Validators.required, Validators.minLength(6)]],
-      fotoPerfil: ['']
-    });
+      fotoPerfil: [null, [Validators.required]]
+    }, this.passwordsEquals);
   }
 
   validaCampos() {
@@ -127,21 +135,27 @@ export class CriarContaComponent implements OnInit {
   }
 
   pegaValoresInput() {
+    this.user.Usuario = new User()
+
     var path = this.form.get('fotoPerfil').value;
-    this.user.Nome = this.form.get('nome').value;
-    this.user.UserName = this.form.get('email').value;
-    this.user.DataNascimento = this.form.get('dataNascimento').value;
-    this.user.Cpf = this.form.get('cpf').value;
-    this.user.Genero = this.form.get('genero').value;
-    this.user.Email = this.form.get('email').value;
-    this.user.Senha = this.form.get('senha').value;
+    this.user.Usuario.Nome = this.form.get('nome').value;
+    this.user.Usuario.UserName = this.form.get('login').value;
+    this.user.Usuario.DataNascimento = this.form.get('dataNascimento').value;
+    this.user.Usuario.Cpf = this.form.get('cpf').value;
+    this.user.Usuario.Genero = this.form.get('genero').value;
+    this.user.Usuario.Email = this.form.get('email').value;
+    this.user.Usuario.Senha = this.form.get('senha').value;
+    
+    this.user.Matricula = ("0"+this.form.get('cpf').value);
+    this.user.CodCarteirinha = ("0"+this.form.get('cpf').value);
 
     if (path.value != '')
-      this.user.PathFotoPerfil = path.value;
+      this.user.Usuario.PathFotoPerfil = path.value;
     else
-      this.user.PathFotoPerfil = '';
+      this.user.Usuario.PathFotoPerfil = '';
 
-    this.user.Perfil = "Aluno";
+    this.user.IsAluno = false;
+    this.user.Usuario.Perfil = "Participante";
   }
 
   onSubmit() {
@@ -153,10 +167,22 @@ export class CriarContaComponent implements OnInit {
 
     this.pegaValoresInput();
 
-    this.service.createAccount(this.user).subscribe(
+    this.participanteService.adicioanaParticipante(this.user).subscribe(
       (data) => {
         this.showMessage("cadastro realizado com sucesso.")
-        this.router.navigate(['/participante-dashboard']);
+        this.user2.username = this.user.Usuario.UserName
+        this.user2.password = this.user.Usuario.Senha
+
+        this.serviceLogin.authenticate(this.user2).subscribe((data: any) => {
+            this.serviceLogin.setToken(data.access_token);
+           
+            this.serviceLogin.getUser().subscribe(
+              (data: User) => {
+                this.serviceLogin.setUser(data.UserName, data.Perfil);
+                  this.router.navigate(['/participante-dashboard'])
+            })
+        })   
+
       },
       (err: HttpErrorResponse) => {
         this.showMessage("Falha ao se registrar, Por favor Tente novamente mais tarde.");
@@ -169,5 +195,9 @@ export class CriarContaComponent implements OnInit {
     setTimeout(() => {
       this.msgAlert = ''
     }, 7000);
+  }
+
+  private passwordsEquals(f: FormGroup) {
+    return f.get('NovaSenha').value === f.get('ConfirmarSenha').value ? false : true;
   }
 }

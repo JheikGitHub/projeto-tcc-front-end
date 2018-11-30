@@ -12,7 +12,7 @@
         <div class="detalhes-evento-agenda">
             <div class="time-local-agenda-evento">
                 <p class="data-evento"><i class="mdi mdi-calendar-today"></i><span>Data:</span> {{evento?.DataInicio | date: 'dd/MM/yyyy'}}</p>
-                <p class="hora-evento"><i class="mdi mdi-clock-outline"></i><span>Hora:</span> {{evento?.DataInicio | date:"HH:mm"}} - {{evento?.DataInicio | date:"HH:mm"}}</p>
+                <p class="hora-evento"><i class="mdi mdi-clock-outline"></i><span>Hora:</span> {{evento?.DataInicio | date:"HH:mm"}} - {{evento?.DataEncerramento | date:"HH:mm"}}</p>
                 <p class="local-evento"><i class="mdi mdi-map-marker-radius"></i><span>Local:</span> {{evento?.Local}}</p>
                 <p class="local-evento"><i class="mdi mdi-account-star"></i><span>Apresentador:</span> {{evento?.Apresentador}}</p>
             </div>
@@ -25,7 +25,7 @@
         </div>
         <p class="info info-blue info-login-required" *ngIf="!user"><span class="mdi mdi-close closebtn"></span>Faça Login para se inscrever neste e em outros eventos. <a routerLink='/login'><i class="mdi mdi-lock-outline"></i>Login</a></p>
         <button *ngIf="user && inscritoNoEvento" class="btn-evento cancel-subscribe" (click)="cancelarInscricao()" [class.disabled]="isClickedOnce"><i class="mdi mdi-close"></i>Cancelar Inscrição</button>
-        <button *ngIf="user && !inscritoNoEvento && evento?.NumeroVagas > 0" class="btn-evento subscribe" (click)="realizarInscricao()"><i class="mdi mdi-square-edit-outline"></i>Inscrever-se</button>
+        <button *ngIf="user && !inscritoNoEvento && evento?.NumeroVagas > 0 && user.Perfil == 'Participante'" class="btn-evento subscribe" (click)="realizarInscricao()"><i class="mdi mdi-square-edit-outline"></i>Inscrever-se</button>
         <p *ngIf="evento?.NumeroVagas == 0" class="alert information vagas-esgotadas"><i class="mdi mdi-information-outline"></i>Vagas para inscrição esgotadas.</p>
         <div class="forum-debates" id="topicos-discussao">
             <router-outlet></router-outlet>

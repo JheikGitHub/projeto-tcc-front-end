@@ -73,6 +73,9 @@
 
     </div> -->
 
+        <label for="login" class="label-k">Login</label>
+        <input formControlName="login" type="text" name="login" id="login" class="input-k" placeholder="Digite seu login de acesso">
+
         <label for="senha">Senha</label>
         <input formControlName="senha" type="password" name="senha" id="senha" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
 
@@ -88,13 +91,13 @@
 
         <div class="preview-image">
             <label for="fotoPerfil" id="labelUploadImage" class="label-upload-image"><i class="mdi mdi-account-outline"></i></label>
-            <input (change)="onFileChange($event)" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
+            <input (change)="onFileChange($event)" accept="image/*" #fileInput type="file" name="fotoPerfil" id="fotoPerfil" onchange="loadFile()">
             <img id="previewImage" />
             <label for="fotoPerfil" class="cancel-upload" id="cancelUpload" onclick="cancelUpload()"><i class="mdi mdi-cancel"></i>Enviar
         outra imagem</label>
         </div>
 
-        <button type="submit" class="btn btn-blue">Criar minha conta</button>
+        <button type="submit" [disabled]="form.invalid" class="btn btn-blue">Criar minha conta</button>
 
     </form>
 

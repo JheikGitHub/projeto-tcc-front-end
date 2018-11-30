@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -10,6 +10,12 @@ import { FuncionarioService } from '../../funcionario/funcionario.service';
 import { Evento } from '../evento';
 import { EventoService } from '../evento.service';
 import { AgendaService } from '../../agenda/agenda.service';
+import { EventoVerificacaoNome } from '../evento-verificacao-nome';
+import { map } from 'rxjs/operators';
+import { User } from 'src/app/user/user';
+
+declare function showTab(n): any
+declare function resetCurrentTab(): any
 
 @Component({
   selector: 'app-alterar-evento',
@@ -22,9 +28,12 @@ export class AlterarEventoComponent implements OnInit {
   private agendas: Agenda[] = [];
   private funcionarios: Funcionario[] = [];
   private evento: Evento = new Evento();
-  private lista: Funcionario[] = [];
+  eventoVerificacaoNome: EventoVerificacaoNome = new EventoVerificacaoNome()
+  moderadoresEvento: Funcionario[] = [];
   private messageErro: string = '';
   private fileToUpload: File = null;
+  imgEvento: string = null
+
 
   constructor(
     private script: ScriptService,
@@ -36,13 +45,13 @@ export class AlterarEventoComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
-
-    this.script.load('konohajs').then(data => {
-      console.log('script loaded ', data);
-    }).catch(error => console.log(error));
+    resetCurrentTab()
 
     this.agendaService.getAllAgendas().subscribe(
-      (data: Agenda[]) => { this.agendas = data },
+      (data: Agenda[]) => {
+        this.agendas = data
+        showTab(0)
+      },
       (err) => {
         console.log(err);
       }
@@ -50,6 +59,9 @@ export class AlterarEventoComponent implements OnInit {
     this.evento = this.route.snapshot.data['evento'];
 
     this.atualizaCampos(this.evento);
+
+    this.eventoVerificacaoNome.IdEvento = this.evento.Id
+    this.imgEvento = this.evento.PathImagem
 
     this.funcionarioService.getAll().subscribe(
       (data: Funcionario[]) => {
@@ -62,24 +74,21 @@ export class AlterarEventoComponent implements OnInit {
 
   }
 
-  adicionarFuncionario(funcionario) {
-    this.lista.push(funcionario);
-  }
-
   atualizaCampos(event: Evento) {
     this.form = this.formBuild.group({
       lista: this.funcionarios,
-      nome: [event.Nome, [Validators.required, Validators.maxLength(100)]],
+      nome: [event.Nome, [Validators.required, Validators.maxLength(100), Validators.pattern('^[a-zA-Z0-9 ]*$'), this.noWhitespaceValidator], [this.validarNomeEvento.bind(this)]],
       local: [event.Local, [Validators.required, Validators.maxLength(100)]],
       diaEvento: [event.DataInicio, [Validators.required]],
-      dataInicio: [event.DataInicio, [Validators.required, Validators.pattern('[0-9]{2}[:|\/]{1}[0-9]{2}')]],
-      dataEncerramento: [event.DataEncerramento, [Validators.required, Validators.pattern('[0-9]{2}[:|\/]{1}[0-9]{2}')]],
+      dataInicio: [null, [Validators.required]],
+      dataEncerramento: [null, [Validators.required]],
       descricao: [event.Descricao, [Validators.required, Validators.maxLength(500)]],
       apresentador: [event.Apresentador, [Validators.required, Validators.maxLength(300)]],
       cargaHoraria: [event.CargaHoraria, Validators.required],
       quantidadeVagas: [event.NumeroVagas, Validators.required],
       tipoEvento: [event.TipoEvento, [Validators.required, Validators.maxLength(50)]],
-      imagem: [Validators.required]
+      imagem: [null],
+      agendaEventoId: [event.AgendaEventoId, [Validators.required]]
     });
   }
 
@@ -89,15 +98,9 @@ export class AlterarEventoComponent implements OnInit {
       let file = event.target.files[0];
       reader.readAsDataURL(file);
       reader.onload = () => {
-        this.form.get('imagem').setValue({
-          value: reader.result.toString().split(',')[1]
-        })
+        this.evento.PathImagem = reader.result.toString().split(',')[1]
       }
     }
-  }
-
-  pegaAgendaId(idAgenda) {
-    this.evento.AgendaEventoId = idAgenda;
   }
 
   atualizaEvento() {
@@ -114,10 +117,8 @@ export class AlterarEventoComponent implements OnInit {
     this.evento.CargaHoraria = this.form.get('cargaHoraria').value;
     this.evento.NumeroVagas = this.form.get('quantidadeVagas').value;
     this.evento.TipoEvento = this.form.get('tipoEvento').value;
-    var path = this.form.get('imagem').value;
-    this.evento.PathImagem = path.value;
-
-    this.evento.funcionario = this.lista;
+    this.evento.AgendaEventoId = this.form.get('agendaEventoId').value
+    this.evento.Funcionario = this.moderadoresEvento
   }
 
   validaCampos() {
@@ -195,25 +196,88 @@ export class AlterarEventoComponent implements OnInit {
 
   onSubmit() {
 
-    if (this.form.invalid){
-      this.validaCampos();
-      return;
-    }
+    // if (this.form.invalid){
+    //   this.validaCampos();
+    //   return;
+    // }
+    
     this.atualizaEvento();
+    console.log(this.evento);
+    
 
-    this.eventoService.editarEvento(this.evento).subscribe(
-      () => { alert("Evento alterado com sucesso."); this.router.navigate(['/funcionario-dashboard']) },
-      (err: HttpErrorResponse) => {
-        if (err.status == 401) {
-          alert("Usuario não logado");
-          this.router.navigate(["/login"])
-        }
-        else {
-          alert("Falha ao alterar agenda. Por favor tente novamente");
-        }
-      }
-    );
+     this.eventoService.editarEvento(this.evento).subscribe(
+       () => { alert("Evento alterado com sucesso."); this.router.navigate(['/funcionario-dashboard']) },
+       (err: HttpErrorResponse) => {
+         if (err.status == 401) {
+           alert("Usuario não logado");
+           this.router.navigate(["/login"])
+         }
+         else {
+           alert("Falha ao alterar agenda. Por favor tente novamente");
+         }
+       }
+     );
 
   }
+
+
+  setModerador(moderador) {
+
+    if (this.moderadoresEvento.indexOf(moderador) > -1){
+      this.moderadoresEvento = this.moderadoresEvento.filter(m => m !== moderador)
+      console.log('Removido');
+     console.log(this.moderadoresEvento);   
+
+    }    
+    else{
+      this.moderadoresEvento.push(moderador)
+      console.log('Adicionado');
+      console.log(this.moderadoresEvento);
+    
+    }
+
+  }
+
+
+  isModerador(evento, moderador) {
+
+    let moderadorThisEvent: Boolean = false
+    evento.Funcionario.forEach(element => {
+      if (element.Id == moderador.Id) {
+        moderadorThisEvent = true
+        if (this.moderadoresEvento.indexOf(moderador) == -1){
+          this.setModerador(moderador)
+        }
+      }
+    });
+
+    return moderadorThisEvent
+  }
+
+  parseDate(dateString: string): Date {
+    if (dateString) {
+      return new Date(dateString);
+    } else {
+      return null;
+    }
+  }
+
+  validarNomeEvento(formControl: FormControl) {
+    this.eventoVerificacaoNome.NomeEvento = formControl.value
+    if (this.form)
+      this.eventoVerificacaoNome.IdAgenda = +this.form.get('agendaEventoId').value;
+
+    return this.eventoService.verificarNomeEventoExistente(this.eventoVerificacaoNome).pipe(map(
+      nomeExistente => nomeExistente ? { existeEsseNome: true } : null
+    ))
+
+  }
+
+  noWhitespaceValidator(control: FormControl) {
+    let isWhitespace = (control.value || '').trim().length === 0;
+    let isValid = !isWhitespace;
+    return isValid ? null : { 'whitespace': true }
+  }
+  
 
 }

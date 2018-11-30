@@ -8,6 +8,9 @@ import { LoginService } from '../../account/login/login.service';
 import { ForumService } from '../forun.service';
 import { BuscaComentarioTopicoDiscussao } from './buscaComentarioTopicoDiscussao';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { TopicoDiscussao } from '../topicos-discussao/topico-discussao';
+import { EventoService } from 'src/app/evento/evento.service';
+import { Funcionario } from 'src/app/funcionario/funcionario';
 
 @Component({
   selector: 'app-comentarios',
@@ -18,7 +21,8 @@ export class ComentariosComponent implements OnInit {
 
   comentarios = []
   topicoDiscusaoId: number
-  topicoDiscussao
+  topicoDiscussao: TopicoDiscussao = new TopicoDiscussao()
+  private funcionarios: User[] = [];
 
   comentario: Comentario = new Comentario()
   topico: BuscaComentarioTopicoDiscussao = new BuscaComentarioTopicoDiscussao()
@@ -32,7 +36,7 @@ export class ComentariosComponent implements OnInit {
   message: string = null
   messageErro: string = null
 
-  constructor(private service: ForumService, private route: ActivatedRoute, private serviceLogin: LoginService, private spinner: NgxSpinnerService) { }
+  constructor(private service: ForumService, private route: ActivatedRoute, private serviceLogin: LoginService, private spinner: NgxSpinnerService, private serviceEvento: EventoService) { }
 
   ngOnInit() {
     this.topicoDiscusaoId = this.route.snapshot.params['topico-discussao']
@@ -49,13 +53,6 @@ export class ComentariosComponent implements OnInit {
       minhaResposta: new FormControl('', [Validators.required, this.noWhitespaceValidator])
     })
 
-    if(this.serviceLogin.hasToken){
-      this.serviceLogin.getUser().subscribe((usuario: User) => {
-      this.user = usuario
-      },(err) => { console.log('Usuário não logado') });
-    }
-   
-    
   }
 
   onSubmitComment(idCommentResposta: number) {
@@ -66,7 +63,7 @@ export class ComentariosComponent implements OnInit {
     this.comentario.TopicoId = +this.topicoDiscusaoId
     this.comentario.UsuarioId = this.user.Id
 
-    this.service.realizarComentario(this.comentario).subscribe(()=>{
+    this.service.realizarComentario(this.comentario).subscribe(() => {
       this.getComentariosTopicoDiscussao()
       this.spinner.hide()
       this.comentar.reset()
@@ -75,20 +72,42 @@ export class ComentariosComponent implements OnInit {
       setTimeout(() => {
         this.message = ''
       }, 5000);
-    },(err) => { alert('Não foi possível postar seu comentário.'); this.spinner.hide() })
+    }, (err) => { alert('Não foi possível postar seu comentário.'); this.spinner.hide() })
 
   }
 
   getComentariosTopicoDiscussao() {
     this.service.getAllComentariosTopicoDiscussao(this.topicoDiscusaoId).subscribe(comentario => {
       this.comentarios = comentario
-    }) 
+    })
   }
 
-  getTopicoDiscussao(id: number){
+  getTopicoDiscussao(id: number) {
     this.service.getTopicoDiscussao(id).subscribe(topico => {
       this.topicoDiscussao = topico
+      this.buscaTodosModeradoresEvento(topico.EventoId)
     })
+  }
+
+  buscaTodosModeradoresEvento(id: number) {
+    this.serviceEvento.moderadoresEvento(id).subscribe(
+      (data: User[]) => {
+
+        this.funcionarios = data;
+
+
+
+        if (this.serviceLogin.hasToken) {
+          this.serviceLogin.getUser().subscribe((usuario: User) => {
+            this.user = usuario
+          }, (err) => { console.log('Usuário não logado') });
+        }
+
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   responderComentario(comentario) {
@@ -96,30 +115,37 @@ export class ComentariosComponent implements OnInit {
     this.comentarioSelecionado = comentario
   }
 
-  isModeradorEvento(){
-    return true
+  isModeradorEvento(moderador, funcionarios) {
+    let moderadorThisEvent: Boolean = false
+    if (moderador && funcionarios)
+      funcionarios.forEach(element => {
+        if (element.Id == moderador.Id) {
+          moderadorThisEvent = true
+        }
+      });
+    return moderadorThisEvent
   }
 
-  excluirComentario(comentario){
+  excluirComentario(comentario) {
     this.exclusaoComentario = true
     this.comentarioSelecionado = comentario
   }
 
-  confirmExclusaoComentario(){
+  confirmExclusaoComentario() {
     this.spinner.show()
-    this.service.deletarComentario(this.comentarioSelecionado.Id).subscribe(()=>{
+    this.service.deletarComentario(this.comentarioSelecionado.Id).subscribe(() => {
       this.getComentariosTopicoDiscussao()
       this.spinner.hide()
       this.message = "Comentário excluido com sucesso"
       setTimeout(() => {
         this.message = ''
       }, 5000);
-    },(err) => {
+    }, (err) => {
       this.messageErro = "Não é possível excluir esse comentário"
       setTimeout(() => {
         this.messageErro = ''
       }, 5000);
-      this.spinner.hide() 
+      this.spinner.hide()
     })
   }
 
@@ -129,9 +155,9 @@ export class ComentariosComponent implements OnInit {
     return isValid ? null : { 'whitespace': true }
   }
 
-  resetMsg(){
+  resetMsg() {
     this.message = null
-    this.messageErro = null 
+    this.messageErro = null
   }
 
 }

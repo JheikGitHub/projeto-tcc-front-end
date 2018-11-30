@@ -26,12 +26,7 @@ export class ParticipanteService {
     }
 
     adicioanaParticipante(participante: Participant) {
-        return this.http.post(URL_API + "/api/aluno/adiciona-participante", participante, {
-            headers: new HttpHeaders({
-                'Content-Type': 'application/json',
-                'Authorization': 'bearer ' + this.token.getToken()
-            })
-        });
+        return this.http.post(URL_API + "/api/aluno/adiciona-participante", participante);
     }
 
     buscaParticipanteLogado() {

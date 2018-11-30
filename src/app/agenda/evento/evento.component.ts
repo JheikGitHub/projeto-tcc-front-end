@@ -37,9 +37,10 @@ export class EventoComponent implements OnInit {
         this.mostarEvento()
     }
 
-    buscaTodosModeradoresEvento() {
-        this.serviceEvento.moderadoresEvento(this.idEvento).subscribe(
-            (data: User[]) => { this.funcionarios = data },
+    buscaTodosModeradoresEvento(id: number) {
+        this.serviceEvento.moderadoresEvento(id).subscribe(
+            (data: User[]) => { this.funcionarios = data; console.log(this.funcionarios);
+             },
             (err) => {
                 console.log(err);
             }
@@ -50,8 +51,9 @@ export class EventoComponent implements OnInit {
     mostarEvento() {
         this.service.getEvento(this.route.snapshot.params['nome-evento']).subscribe((evento: Evento) => {
             this.evento = evento
-            this.idEvento = this.evento.Id
-            this.buscaTodosModeradoresEvento()
+            this.idEvento = evento.Id
+            console.log(evento);
+            this.buscaTodosModeradoresEvento(evento.Id)
             this.mostarUsuarioLogado()
             this.spinner.hide()
         })
@@ -62,7 +64,9 @@ export class EventoComponent implements OnInit {
             this.serviceLogin.getUser().subscribe((usuario: User) => {
                 this.user = usuario
                 this.idUsuario = this.user.Id
-                this.verificarInscricao()
+                this.verificarInscricao();
+                console.log(usuario);
+                
             }, (err) => { console.log('Usuário não logado') });
         }
     }

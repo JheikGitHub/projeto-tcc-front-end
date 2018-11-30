@@ -14,6 +14,7 @@ import { AdminConfirmaPresencaComponent } from './confirma-presenca/confirma-pre
 import { AdminCriarEventoComponent } from './criar-evento/criar-evento.component';
 import { AdminDetalhesEventoComponent } from './detalhes-evento/detalhes-evento.component';
 import { AdminMeusEventosComponent } from './meus-eventos.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { AdminMeusEventosComponent } from './meus-eventos.component';
     ForumAdminModule,
     EventoModule,
     NgxSpinnerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    QRCodeModule
   ],
   declarations: [
     AdminMeusEventosComponent,

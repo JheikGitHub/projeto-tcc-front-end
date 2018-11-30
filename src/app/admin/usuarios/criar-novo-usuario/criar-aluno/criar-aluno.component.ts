@@ -140,7 +140,7 @@ export class CriarAlunoComponent implements OnInit {
       this.participante.Usuario.PathFotoPerfil = '';
 
     this.participante.IsAluno = true;
-    this.participante.Usuario.Perfil = "Aluno";
+    this.participante.Usuario.Perfil = "Participante";
   }
 
   onSubmit() {
